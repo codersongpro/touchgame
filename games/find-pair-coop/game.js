@@ -1,8 +1,8 @@
 /* find-pair-coop */
 'use strict';
 
-const TOTAL_ROUNDS = 5;
-const ROUND_TIME = 25;
+const TOTAL_ROUNDS = 10;
+const ROUND_TIME = 15;
 
 // 4 categories × 9 emojis = 36 items
 const CATEGORIES = [
