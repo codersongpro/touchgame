@@ -42,8 +42,9 @@ const sfx = createSoundManager({
 
 const $ = id => document.getElementById(id);
 const introScreen=$('introScreen'),countdownScreen=$('countdownScreen'),gameScreen=$('gameScreen'),resultScreen=$('resultScreen');
-const countdownNum=$('countdownNumber'),hudRound=$('hudRound'),hudScore=$('hudScore'),hudFill=$('hudTimerFill');
-const targetBox=$('targetBox'),catTag=$('catTag'),picGrid=$('picGrid'),banner=$('banner');
+const countdownNum=$('countdownNumber');
+const questionCounter=$('questionCounter'), problemTimer=$('problemTimer'), problemStatus=$('problemStatus'), catTag=$('catTag');
+const targetEmoji=$('targetEmoji'), picGrid=$('picGrid'), scoreVal=$('scoreVal');
 
 function showScreen(el){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));void el.offsetWidth;el.classList.add('active');}
 function push(t){allTimeouts.push(t);return t;}
@@ -59,8 +60,6 @@ $('backBtn').addEventListener('click', goHome);
 const stI=$('soundToggleIntro');
 stI.addEventListener('click',()=>{stI.textContent=sfx.toggleMute()?'🔇':'🔊';});
 stI.textContent=sfx.isMuted()?'🔇':'🔊';
-const stG=$('soundToggleGame');
-stG.addEventListener('click',()=>{stG.textContent=sfx.toggleMute()?'🔇':'🔊';});
 
 onTap($('playBtn'),startCountdown);
 onTap($('retryBtn'),startCountdown);
@@ -78,33 +77,30 @@ function startCountdown(){
 
 function startGame(){
   round=0;score=0;perfect=0;
-  stG.textContent=sfx.isMuted()?'🔇':'🔊';
   showScreen(gameScreen);
+  scoreVal.textContent = '0';
   nextRound();
 }
 
 function nextRound(){
   if(round>=TOTAL_ROUNDS){endGame();return;}
   round++;
-  // Pick a random category
   const cat = CATEGORIES[Math.floor(Math.random()*CATEGORIES.length)];
   const pool = shuffle([...cat.items]);
   target = pool[0];
-  // 9-tile grid: target + 8 distractors from same category
   options = shuffle(pool.slice(0, 9));
   roundActive = false;
-  hudRound.textContent = round + '/' + TOTAL_ROUNDS;
-  hudScore.textContent = score + '점';
-  catTag.textContent = '카테고리: ' + cat.label;
+  questionCounter.textContent = round + ' / ' + TOTAL_ROUNDS;
+  catTag.textContent = cat.label;
   renderTarget();
   renderGrid();
   disableInputs(true);
-  showBanner('👁 P1: 그림을 잘 보세요!','info');
+  setStatus('P1: 그림을 잘 보세요!');
   push(setTimeout(startInputPhase, 1500));
 }
 
 function renderTarget(){
-  targetBox.textContent = target;
+  targetEmoji.textContent = target;
 }
 
 function renderGrid(){
@@ -123,17 +119,20 @@ function disableInputs(dis){
   picGrid.querySelectorAll('.pic-btn').forEach(b=>b.disabled=dis);
 }
 
+function setStatus(txt){
+  problemStatus.textContent = txt;
+}
+
 function startInputPhase(){
   roundActive = true;
   disableInputs(false);
-  showBanner('🗣 P1: 특징을 설명해주세요!','info');
+  setStatus('🗣 P1: 특징을 설명해주세요!');
   if(roundTimer)roundTimer.stop();
-  hudFill.style.width='100%';
-  hudFill.className='hud-timer-fill';
+  problemTimer.textContent = ROUND_TIME;
+  problemTimer.classList.remove('urgent');
   roundTimer = createTimer(ROUND_TIME, rem=>{
-    const pct=(rem/ROUND_TIME)*100;
-    hudFill.style.width=pct+'%';
-    if(rem<=5)hudFill.className='hud-timer-fill danger';
+    problemTimer.textContent = rem;
+    if(rem<=5) problemTimer.classList.add('urgent');
   }, ()=>{evaluate(false, null);});
   roundTimer.start();
 }
@@ -149,41 +148,34 @@ function evaluate(correct, btn){
   if(!roundActive)return;
   roundActive = false;
   if(roundTimer)roundTimer.pause();
+  problemTimer.classList.remove('urgent');
   disableInputs(true);
   if(btn){
-    btn.classList.add(correct?'correct':'wrong');
+    btn.classList.add(correct?'state-correct':'state-wrong');
   }
   if(!correct){
-    // Highlight the actual target
     picGrid.querySelectorAll('.pic-btn').forEach(b=>{
-      if(b.dataset.em===target) b.classList.add('correct');
+      if(b.dataset.em===target) b.classList.add('state-correct');
     });
   }
   if(correct){
     score++;perfect++;
     sfx.play('correct');
-    showBanner('🎉 정답! 잘 찾았어요!','ok');
+    setStatus('🎉 정답!');
   }else{
     sfx.play('wrong');
-    showBanner('❌ 아쉬워요! 정답: '+target,'ng');
+    setStatus('❌ 정답: ' + target);
   }
-  hudScore.textContent = score + '점';
+  scoreVal.textContent = score;
   push(setTimeout(nextRound, 2000));
-}
-
-function showBanner(txt,cls){
-  banner.textContent=txt;
-  banner.className='banner '+cls+' show';
 }
 
 function endGame(){
   stopAll();
   sfx.play('end');
   const success = score>=3;
-  $('resultEmoji').textContent = success?'🏆':'😔';
-  $('resultHeadline').textContent = success?'협동 성공!':'아쉬워요...';
-  $('resultHeadline').className = 'result-headline ' + (success?'success':'fail');
-  $('resultSub').textContent = success?'호흡이 잘 맞았어요!':'3라운드 이상 정답이 목표!';
+  $('resultTitle').textContent = success?'🏆 협동 성공!':'😔 아쉬워요...';
+  $('resultWinner').textContent = success?'호흡이 잘 맞았어요!':'3라운드 이상 정답이 목표!';
   $('statScore').textContent = score+'/'+TOTAL_ROUNDS;
   $('statPerfect').textContent = perfect+'회';
   push(setTimeout(()=>showScreen(resultScreen),400));
