@@ -1,7 +1,7 @@
 {
   "name": "짬짬이 교실",
   "short_name": "짬짬이 교실",
-  "description": "자투리 시간에 즐기는 초등 교실 미니게임 26개",
+  "description": "자투리 시간에 즐기는 초등 교실 미니게임 25개",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
