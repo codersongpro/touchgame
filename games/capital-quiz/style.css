@@ -229,14 +229,14 @@
   color: rgba(0,0,0,0.55);
 }
 
-/* ── Answer button grid (2x2) ───────────────────────────────── */
+/* ── Answer button grid (2x2) — flag-quiz 패턴 (하단 정렬, 컴팩트) ── */
 .answer-grid {
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 6px;
-  align-content: stretch;
+  gap: 8px;
+  align-content: end;
+  padding: 4px 6px 12px;
 }
 
 /* ── Individual SVG answer button ───────────────────────────── */
@@ -248,6 +248,7 @@
   overflow: visible;
   display: flex;
   align-items: stretch;
+  height: 56px;
 }
 .answer-btn-wrap svg {
   width: 100%;
