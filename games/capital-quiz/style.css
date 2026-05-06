@@ -229,14 +229,14 @@
   color: rgba(0,0,0,0.55);
 }
 
-/* ── Answer button grid (2x2) — flag-quiz 패턴 (하단 정렬, 컴팩트) ── */
+/* ── Answer button grid (2x2) — flag-quiz 패턴 (가운데 정렬) ── */
 .answer-grid {
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  align-content: end;
-  padding: 4px 6px 12px;
+  gap: 10px;
+  align-content: center;
+  padding: 4px 8px;
 }
 
 /* ── Individual SVG answer button ───────────────────────────── */
@@ -248,13 +248,12 @@
   overflow: visible;
   display: flex;
   align-items: stretch;
-  height: 56px;
+  min-height: 70px;
 }
 .answer-btn-wrap svg {
   width: 100%;
   height: 100%;
   display: block;
-  min-height: 48px;
 }
 .answer-btn-wrap .btn-rect {
   transition: filter 0.12s, transform 0.12s;
