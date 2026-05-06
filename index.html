@@ -464,6 +464,7 @@
       'memory-flash': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="mf1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFD54F"/><stop offset="100%" stop-color="#F9A825"/></linearGradient></defs><polygon points="42,6 48,28 70,28 52,42 58,64 42,50 26,64 32,42 14,28 36,28" fill="#F57F17"/><polygon points="42,8 47,28 68,28 51,41 56,62 42,49 28,62 33,41 16,28 37,28" fill="url(#mf1)"/><ellipse cx="36" cy="22" rx="6" ry="3" fill="#fff" opacity="0.2"/></svg>',
       'secret-code': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="12" width="30" height="56" rx="4" fill="#1A237E"/><rect x="10" y="20" width="22" height="8" rx="2" fill="#EF5350"/><rect x="10" y="32" width="22" height="8" rx="2" fill="#42A5F5"/><rect x="10" y="44" width="22" height="8" rx="2" fill="#FFEE58"/><rect x="10" y="56" width="22" height="8" rx="2" fill="#66BB6A"/><rect x="44" y="12" width="30" height="56" rx="4" fill="#263238"/><rect x="48" y="18" width="10" height="10" rx="2" fill="#EF5350" opacity="0.4"/><rect x="60" y="18" width="10" height="10" rx="2" fill="#42A5F5" opacity="0.4"/><rect x="48" y="30" width="10" height="10" rx="2" fill="#FFEE58" opacity="0.4"/><rect x="60" y="30" width="10" height="10" rx="2" fill="#66BB6A" opacity="0.4"/><rect x="48" y="42" width="10" height="10" rx="2" fill="#AB47BC" opacity="0.4"/><rect x="60" y="42" width="10" height="10" rx="2" fill="#FF7043" opacity="0.4"/><rect x="48" y="54" width="10" height="10" rx="2" fill="#26C6DA" opacity="0.4"/><rect x="60" y="54" width="10" height="10" rx="2" fill="#EC407A" opacity="0.4"/><path d="M36 40 L44 40" stroke="#FFD54F" stroke-width="2" stroke-dasharray="2,2"/></svg>',
       'mirror-draw': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="10" width="30" height="60" rx="3" fill="#E1F5FE" stroke="#0288D1" stroke-width="1.5"/><line x1="6" y1="22" x2="36" y2="22" stroke="#B3E5FC" stroke-width="0.5"/><line x1="6" y1="34" x2="36" y2="34" stroke="#B3E5FC" stroke-width="0.5"/><line x1="6" y1="46" x2="36" y2="46" stroke="#B3E5FC" stroke-width="0.5"/><line x1="6" y1="58" x2="36" y2="58" stroke="#B3E5FC" stroke-width="0.5"/><line x1="18" y1="10" x2="18" y2="70" stroke="#B3E5FC" stroke-width="0.5"/><line x1="30" y1="10" x2="30" y2="70" stroke="#B3E5FC" stroke-width="0.5"/><circle cx="12" cy="28" r="4" fill="#EF5350"/><circle cx="24" cy="28" r="4" fill="#EF5350"/><circle cx="18" cy="40" r="4" fill="#EF5350"/><circle cx="12" cy="52" r="4" fill="#EF5350"/><circle cx="24" cy="52" r="4" fill="#EF5350"/><rect x="44" y="10" width="30" height="60" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/><line x1="44" y1="22" x2="74" y2="22" stroke="#FFCCBC" stroke-width="0.5"/><line x1="44" y1="34" x2="74" y2="34" stroke="#FFCCBC" stroke-width="0.5"/><line x1="44" y1="46" x2="74" y2="46" stroke="#FFCCBC" stroke-width="0.5"/><line x1="44" y1="58" x2="74" y2="58" stroke="#FFCCBC" stroke-width="0.5"/><line x1="56" y1="10" x2="56" y2="70" stroke="#FFCCBC" stroke-width="0.5"/><line x1="68" y1="10" x2="68" y2="70" stroke="#FFCCBC" stroke-width="0.5"/><circle cx="50" cy="28" r="4" fill="#FFA726" opacity="0.4"/><circle cx="62" cy="28" r="4" fill="#FFA726" opacity="0.4"/></svg>',
+      'english-word': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ew1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#81C784"/><stop offset="100%" stop-color="#2E7D32"/></linearGradient></defs><rect x="8" y="14" width="64" height="52" rx="6" fill="#1B5E20"/><rect x="9" y="13" width="64" height="52" rx="6" fill="url(#ew1)"/><ellipse cx="40" cy="22" rx="22" ry="4" fill="#fff" opacity="0.18"/><text x="22" y="46" fill="#fff" font-size="22" font-weight="900" font-family="sans-serif">A</text><text x="38" y="46" fill="#FFD54F" font-size="22" font-weight="900" font-family="sans-serif">B</text><text x="54" y="46" fill="#fff" font-size="22" font-weight="900" font-family="sans-serif">C</text><line x1="18" y1="56" x2="62" y2="56" stroke="#fff" stroke-width="1.5" opacity="0.5"/></svg>',
     };
 
     // 카테고리 매핑
@@ -492,7 +493,8 @@
       'proverb-quiz': 'knowledge',
       'nim-game': 'brain',
       'secret-code': 'coop',
-      'mirror-draw': 'coop'
+      'mirror-draw': 'coop',
+      'english-word': 'knowledge'
     };
 
     const FALLBACK_GAMES = [
@@ -520,7 +522,8 @@
       { folder:'proverb-quiz', name:'속담 완성', description:'속담의 뒷부분을 맞춰보세요!', icon:'📜', color:'#795548', grades:[2,3,4,5,6], playTime:'1분' },
       { folder:'nim-game', name:'돌 가져가기', description:'마지막 돌을 가져가면 지는 전략 게임!', icon:'🪨', color:'#607D8B', grades:[1,2,3,4,5,6], playTime:'2~3분' },
       { folder:'secret-code', name:'비밀 암호', description:'P1이 본 색 순서를 말로 알려주고 P2가 입력!', icon:'🔐', color:'#3F51B5', grades:[1,2,3,4,5,6], playTime:'1~2분' },
-      { folder:'mirror-draw', name:'거울 그리기', description:'P1이 설명하고 P2가 격자에 똑같이 그려요!', icon:'🎨', color:'#FB8C00', grades:[2,3,4,5,6], playTime:'1~2분' }
+      { folder:'mirror-draw', name:'거울 그리기', description:'P1이 설명하고 P2가 격자에 똑같이 그려요!', icon:'🎨', color:'#FB8C00', grades:[2,3,4,5,6], playTime:'1~2분' },
+      { folder:'english-word', name:'영어 단어', description:'영어 단어를 보고 한국어 뜻을 맞춰보세요!', icon:'🔤', color:'#4CAF50', grades:[3,4,5,6], playTime:'1분' }
     ];
 
     const grid = document.getElementById('gameGrid');
