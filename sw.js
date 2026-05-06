@@ -1,5 +1,5 @@
 // sw.js - Service worker for offline support
-const CACHE_NAME = 'jjamjjami-gyosil-v1';
+const CACHE_NAME = 'jjamjjami-gyosil-v2';
 
 // Install: pre-cache the launcher
 self.addEventListener('install', function(event) {
@@ -12,6 +12,7 @@ self.addEventListener('install', function(event) {
         './shared/engine.js',
         './games/registry.json',
         './favicon.svg',
+        './og-image.svg',
         './manifest.json'
       ]);
     })

@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFF8F0"/>
+      <stop offset="100%" stop-color="#F3E5F5"/>
+    </linearGradient>
+    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c4dff"/>
+      <stop offset="100%" stop-color="#5c6bc0"/>
+    </linearGradient>
+    <radialGradient id="dot" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(0,0,0,0.06)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 배경 -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- 도트 패턴 -->
+  <g fill="rgba(0,0,0,0.04)">
+    <circle cx="80" cy="80" r="3"/><circle cx="160" cy="80" r="3"/><circle cx="240" cy="80" r="3"/>
+    <circle cx="320" cy="80" r="3"/><circle cx="400" cy="80" r="3"/><circle cx="480" cy="80" r="3"/>
+    <circle cx="80" cy="160" r="3"/><circle cx="160" cy="160" r="3"/><circle cx="240" cy="160" r="3"/>
+    <circle cx="80" cy="540" r="3"/><circle cx="160" cy="540" r="3"/><circle cx="240" cy="540" r="3"/>
+    <circle cx="1120" cy="80" r="3"/><circle cx="1040" cy="160" r="3"/><circle cx="1120" cy="160" r="3"/>
+    <circle cx="1040" cy="540" r="3"/><circle cx="1120" cy="540" r="3"/><circle cx="1120" cy="460" r="3"/>
+  </g>
+
+  <!-- 로고 (왼쪽) -->
+  <g transform="translate(120, 175)">
+    <!-- Rounded square -->
+    <rect x="0" y="0" width="280" height="280" rx="60" fill="url(#logo)" filter="drop-shadow(0 12px 32px rgba(124,77,255,0.35))"/>
+    <!-- Top shine -->
+    <path d="M70 0 L210 0 Q280 0 280 70 L280 100 Q140 150 0 100 L0 70 Q0 0 70 0 Z" fill="#fff" opacity="0.10"/>
+    <!-- White clock face -->
+    <circle cx="140" cy="150" r="80" fill="#fff"/>
+    <!-- Play triangle -->
+    <path d="M118 110 L118 190 L186 150 Z" fill="url(#logo)"/>
+    <!-- 12 o'clock dot -->
+    <circle cx="140" cy="80" r="8" fill="url(#logo)"/>
+    <!-- Yellow spark -->
+    <circle cx="230" cy="55" r="20" fill="#FFD54F"/>
+    <circle cx="230" cy="55" r="9" fill="#fff"/>
+  </g>
+
+  <!-- 텍스트 (오른쪽) -->
+  <g transform="translate(460, 235)">
+    <!-- Title -->
+    <text x="0" y="0" font-family="'Pretendard Variable', -apple-system, 'Noto Sans KR', sans-serif"
+          font-size="92" font-weight="900" fill="#2C2C2C"
+          letter-spacing="-0.04em">짬짬이 교실</text>
+
+    <!-- Subtitle -->
+    <text x="0" y="60" font-family="'Pretendard Variable', -apple-system, 'Noto Sans KR', sans-serif"
+          font-size="38" font-weight="700" fill="#7C4DFF"
+          letter-spacing="-0.02em">자투리 시간 초등 교실 미니게임</text>
+
+    <!-- Pill badges -->
+    <g transform="translate(0, 110)">
+      <!-- 25개 게임 -->
+      <rect x="0" y="0" width="170" height="56" rx="28" fill="#FFD54F" stroke="#2C2C2C" stroke-width="3"/>
+      <text x="85" y="36" text-anchor="middle"
+            font-family="'Pretendard Variable', sans-serif"
+            font-size="26" font-weight="900" fill="#2C2C2C">🎮 25개 게임</text>
+
+      <!-- 무료 -->
+      <rect x="186" y="0" width="120" height="56" rx="28" fill="#fff" stroke="#2C2C2C" stroke-width="3"/>
+      <text x="246" y="36" text-anchor="middle"
+            font-family="'Pretendard Variable', sans-serif"
+            font-size="26" font-weight="900" fill="#2C2C2C">💸 무료</text>
+
+      <!-- 2-4명 -->
+      <rect x="322" y="0" width="200" height="56" rx="28" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="3"/>
+      <text x="422" y="36" text-anchor="middle"
+            font-family="'Pretendard Variable', sans-serif"
+            font-size="26" font-weight="900" fill="#2C2C2C">👥 2~4인 동시</text>
+    </g>
+
+    <!-- 카테고리 -->
+    <text x="0" y="220" font-family="'Pretendard Variable', sans-serif"
+          font-size="22" font-weight="700" fill="#666" letter-spacing="-0.01em">⚡ 반응속도 · 🧠 두뇌 · 📐 수학 · 📚 지식 · 🤝 협력</text>
+  </g>
+</svg>
