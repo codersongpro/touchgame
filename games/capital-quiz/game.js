@@ -321,6 +321,8 @@ function buildAnswerButtons(playerIdx, choices) {
     svg.setAttribute('preserveAspectRatio', 'none');
     svg.setAttribute('aria-hidden', 'true');
 
+    // Use player's dot color with low opacity for soft pastel look (matching flag-quiz pattern)
+    const dotColor = PLAYER_CONFIG[playerIdx].dot;
     const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
     rect.setAttribute('x', '2');
     rect.setAttribute('y', '2');
@@ -328,7 +330,10 @@ function buildAnswerButtons(playerIdx, choices) {
     rect.setAttribute('height', '50');
     rect.setAttribute('rx', '13');
     rect.setAttribute('ry', '13');
-    rect.setAttribute('fill', fill);
+    rect.setAttribute('fill', dotColor);
+    rect.setAttribute('fill-opacity', '0.18');
+    rect.setAttribute('stroke', dotColor);
+    rect.setAttribute('stroke-width', '2');
     rect.classList.add('btn-rect');
     // Drop shadow filter
     rect.setAttribute('filter', `url(#sh${playerIdx}${btnIdx})`);
@@ -363,7 +368,7 @@ function buildAnswerButtons(playerIdx, choices) {
     text.setAttribute('font-family', "'Pretendard Variable',-apple-system,'Noto Sans KR',sans-serif");
     text.setAttribute('font-size', fontSize);
     text.setAttribute('font-weight', '800');
-    text.setAttribute('fill', '#FFFFFF');
+    text.setAttribute('fill', '#222');
     text.setAttribute('letter-spacing', '0.5');
     text.classList.add('btn-text');
     text.textContent = city;
