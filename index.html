@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="description" content="자투리 시간에 즐기는 초등 교실 미니게임 25개. 반응속도, 두뇌, 수학, 지식, 협력 게임. 크롬북/태블릿 터치스크린 최적화, 무료, 오프라인 동작.">
+  <meta name="description" content="자투리 시간에 즐기는 초등 교실 미니게임 28개. 반응속도, 두뇌, 수학, 지식, 협력 게임. 크롬북/태블릿 터치스크린 최적화, 무료, 오프라인 동작.">
   <meta name="keywords" content="짬짬이 교실, 초등학교, 미니게임, 교실 게임, 자투리 시간, 두뇌 게임, 협력 게임, 무료 게임">
   <meta name="author" content="짬짬이 교실">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="짬짬이 교실 - 자투리 시간 초등 미니게임">
-  <meta property="og:description" content="자투리 시간에 즐기는 25개 초등 교실 미니게임. 크롬북/태블릿에서 바로 플레이.">
+  <meta property="og:description" content="자투리 시간에 즐기는 28개 초등 교실 미니게임. 크롬북/태블릿에서 바로 플레이.">
   <meta property="og:url" content="https://shway81-droid.github.io/jjamjjami-gyosil/">
   <meta property="og:image" content="https://shway81-droid.github.io/jjamjjami-gyosil/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="짬짬이 교실 — 자투리 시간 초등 교실 미니게임 25개">
+  <meta property="og:image:alt" content="짬짬이 교실 — 자투리 시간 초등 교실 미니게임 28개">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="짬짬이 교실">
-  <meta name="twitter:description" content="자투리 시간에 즐기는 초등 교실 미니게임 25개">
+  <meta name="twitter:description" content="자투리 시간에 즐기는 초등 교실 미니게임 28개">
   <meta name="twitter:image" content="https://shway81-droid.github.io/jjamjjami-gyosil/og-image.svg">
   <title>짬짬이 교실 — 자투리 시간 초등 미니게임</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -146,6 +146,7 @@
     .cat-btn[data-cat="math"].active  { background: #29B6F6; box-shadow: 0 2px 8px rgba(41,182,246,0.35); }
     .cat-btn[data-cat="knowledge"].active { background: #EC407A; box-shadow: 0 2px 8px rgba(236,64,122,0.35); }
     .cat-btn[data-cat="coop"].active { background: #00ACC1; box-shadow: 0 2px 8px rgba(0,172,193,0.35); }
+    .cat-btn[data-cat="puzzle"].active { background: #7C4DFF; box-shadow: 0 2px 8px rgba(124,77,255,0.35); }
 
     /* 게임 카드 그리드 */
     .game-grid {
@@ -308,7 +309,8 @@
     .cat-btn[data-cat="math"].active      { background: #26C6DA !important; }
     .cat-btn[data-cat="knowledge"].active { background: #EC407A !important; }
     .cat-btn[data-cat="coop"].active      { background: #66BB6A !important; }
-    .filter-btn[data-cat="all"].active    { background: #7C4DFF !important; }
+    .cat-btn[data-cat="puzzle"].active    { background: #7C4DFF !important; }
+    .filter-btn[data-cat="all"].active    { background: #5C6BC0 !important; }
 
     /* 게임 카드 — 두꺼운 검정 테두리, 큰 그림자, 라운드 ↑ */
     .game-grid {
@@ -416,6 +418,7 @@
       <button class="filter-btn cat-btn" data-cat="math">📐 수학</button>
       <button class="filter-btn cat-btn" data-cat="knowledge">📚 지식</button>
       <button class="filter-btn cat-btn" data-cat="coop">🤝 협력</button>
+      <button class="filter-btn cat-btn" data-cat="puzzle">🧩 퍼즐</button>
     </nav>
   </div>
 
@@ -466,6 +469,7 @@
       'mirror-draw': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="10" width="30" height="60" rx="3" fill="#E1F5FE" stroke="#0288D1" stroke-width="1.5"/><line x1="6" y1="22" x2="36" y2="22" stroke="#B3E5FC" stroke-width="0.5"/><line x1="6" y1="34" x2="36" y2="34" stroke="#B3E5FC" stroke-width="0.5"/><line x1="6" y1="46" x2="36" y2="46" stroke="#B3E5FC" stroke-width="0.5"/><line x1="6" y1="58" x2="36" y2="58" stroke="#B3E5FC" stroke-width="0.5"/><line x1="18" y1="10" x2="18" y2="70" stroke="#B3E5FC" stroke-width="0.5"/><line x1="30" y1="10" x2="30" y2="70" stroke="#B3E5FC" stroke-width="0.5"/><circle cx="12" cy="28" r="4" fill="#EF5350"/><circle cx="24" cy="28" r="4" fill="#EF5350"/><circle cx="18" cy="40" r="4" fill="#EF5350"/><circle cx="12" cy="52" r="4" fill="#EF5350"/><circle cx="24" cy="52" r="4" fill="#EF5350"/><rect x="44" y="10" width="30" height="60" rx="3" fill="#FFF3E0" stroke="#F57C00" stroke-width="1.5"/><line x1="44" y1="22" x2="74" y2="22" stroke="#FFCCBC" stroke-width="0.5"/><line x1="44" y1="34" x2="74" y2="34" stroke="#FFCCBC" stroke-width="0.5"/><line x1="44" y1="46" x2="74" y2="46" stroke="#FFCCBC" stroke-width="0.5"/><line x1="44" y1="58" x2="74" y2="58" stroke="#FFCCBC" stroke-width="0.5"/><line x1="56" y1="10" x2="56" y2="70" stroke="#FFCCBC" stroke-width="0.5"/><line x1="68" y1="10" x2="68" y2="70" stroke="#FFCCBC" stroke-width="0.5"/><circle cx="50" cy="28" r="4" fill="#FFA726" opacity="0.4"/><circle cx="62" cy="28" r="4" fill="#FFA726" opacity="0.4"/></svg>',
       'english-word': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ew1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#81C784"/><stop offset="100%" stop-color="#2E7D32"/></linearGradient></defs><rect x="8" y="14" width="64" height="52" rx="6" fill="#1B5E20"/><rect x="9" y="13" width="64" height="52" rx="6" fill="url(#ew1)"/><ellipse cx="40" cy="22" rx="22" ry="4" fill="#fff" opacity="0.18"/><text x="22" y="46" fill="#fff" font-size="22" font-weight="900" font-family="sans-serif">A</text><text x="38" y="46" fill="#FFD54F" font-size="22" font-weight="900" font-family="sans-serif">B</text><text x="54" y="46" fill="#fff" font-size="22" font-weight="900" font-family="sans-serif">C</text><line x1="18" y1="56" x2="62" y2="56" stroke="#fff" stroke-width="1.5" opacity="0.5"/></svg>',
       'find-pair-coop': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="fp1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#4DB6AC"/><stop offset="100%" stop-color="#00695C"/></linearGradient></defs><rect x="6" y="10" width="30" height="60" rx="4" fill="#fff" stroke="#00695C" stroke-width="2"/><circle cx="21" cy="40" r="11" fill="#FFD54F"/><circle cx="18" cy="36" r="2" fill="#1A1A1A"/><circle cx="24" cy="36" r="2" fill="#1A1A1A"/><path d="M16 44 Q21 48 26 44" stroke="#1A1A1A" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="32" cy="14" r="3" fill="#00897B"/><text x="32" y="17" text-anchor="middle" font-size="5" fill="#fff" font-weight="900">👁</text><rect x="44" y="10" width="30" height="60" rx="4" fill="#004D40"/><rect x="48" y="14" width="6" height="6" rx="1" fill="#4DB6AC"/><rect x="56" y="14" width="6" height="6" rx="1" fill="#4DB6AC"/><rect x="64" y="14" width="6" height="6" rx="1" fill="#4DB6AC"/><rect x="48" y="22" width="6" height="6" rx="1" fill="#4DB6AC"/><rect x="56" y="22" width="6" height="6" rx="1" fill="#FFD54F"/><rect x="64" y="22" width="6" height="6" rx="1" fill="#4DB6AC"/><rect x="48" y="30" width="6" height="6" rx="1" fill="#4DB6AC"/><rect x="56" y="30" width="6" height="6" rx="1" fill="#4DB6AC"/><rect x="64" y="30" width="6" height="6" rx="1" fill="#4DB6AC"/><circle cx="59" cy="25" r="4.5" fill="none" stroke="#fff" stroke-width="1.5"/><line x1="36" y1="40" x2="42" y2="40" stroke="#FFD54F" stroke-width="2" stroke-dasharray="2,1"/><circle cx="59" cy="58" r="9" fill="none" stroke="#FFD54F" stroke-width="2"/><line x1="65" y1="64" x2="70" y2="68" stroke="#FFD54F" stroke-width="2.5" stroke-linecap="round"/></svg>',
+      'slide-puzzle': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="64" height="64" rx="8" fill="#2C2C2C"/><rect x="11" y="11" width="18" height="18" rx="3" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="1.5"/><text x="20" y="24" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">1</text><rect x="31" y="11" width="18" height="18" rx="3" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="1.5"/><text x="40" y="24" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">2</text><rect x="51" y="11" width="18" height="18" rx="3" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="1.5"/><text x="60" y="24" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">3</text><rect x="11" y="31" width="18" height="18" rx="3" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="1.5"/><text x="20" y="44" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">4</text><rect x="31" y="31" width="18" height="18" rx="3" fill="#FFD54F" stroke="#2C2C2C" stroke-width="1.5"/><text x="40" y="44" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">5</text><rect x="51" y="31" width="18" height="18" rx="3" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="1.5"/><text x="60" y="44" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">6</text><rect x="11" y="51" width="18" height="18" rx="3" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="1.5"/><text x="20" y="64" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">7</text><rect x="31" y="51" width="18" height="18" rx="3" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="1.5"/><text x="40" y="64" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">8</text><path d="M55 55 L65 60 L55 65 Z" fill="#FFD54F"/></svg>',
     };
 
     // 카테고리 매핑
@@ -496,7 +500,8 @@
       'secret-code': 'coop',
       'mirror-draw': 'coop',
       'english-word': 'knowledge',
-      'find-pair-coop': 'coop'
+      'find-pair-coop': 'coop',
+      'slide-puzzle': 'puzzle'
     };
 
     const FALLBACK_GAMES = [
@@ -526,7 +531,8 @@
       { folder:'secret-code', name:'비밀 암호', description:'P1이 본 색 순서를 말로 알려주고 P2가 입력!', icon:'🔐', color:'#3F51B5', grades:[1,2,3,4,5,6], playTime:'1~2분' },
       { folder:'mirror-draw', name:'거울 그리기', description:'P1이 설명하고 P2가 격자에 똑같이 그려요!', icon:'🎨', color:'#FB8C00', grades:[2,3,4,5,6], playTime:'1~2분' },
       { folder:'english-word', name:'영어 단어', description:'영어 단어를 보고 한국어 뜻을 맞춰보세요!', icon:'🔤', color:'#4CAF50', grades:[3,4,5,6], playTime:'1분' },
-      { folder:'find-pair-coop', name:'같은 그림 찾기', description:'P1이 본 그림을 말로 설명하고 P2가 찾으세요!', icon:'🔍', color:'#00897B', grades:[1,2,3,4,5,6], playTime:'1~2분' }
+      { folder:'find-pair-coop', name:'같은 그림 찾기', description:'P1이 본 그림을 말로 설명하고 P2가 찾으세요!', icon:'🔍', color:'#00897B', grades:[1,2,3,4,5,6], playTime:'1~2분' },
+      { folder:'slide-puzzle', name:'슬라이딩 퍼즐', description:'3×3 조각을 밀어 그림을 완성! 먼저 푸는 사람 승리!', icon:'🧩', color:'#7C4DFF', grades:[1,2,3,4,5,6], playTime:'1~2분' }
     ];
 
     const grid = document.getElementById('gameGrid');

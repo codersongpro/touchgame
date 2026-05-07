@@ -62,7 +62,7 @@
       <rect x="0" y="0" width="170" height="56" rx="28" fill="#FFD54F" stroke="#2C2C2C" stroke-width="3"/>
       <text x="85" y="36" text-anchor="middle"
             font-family="'Pretendard Variable', sans-serif"
-            font-size="26" font-weight="900" fill="#2C2C2C">🎮 25개 게임</text>
+            font-size="26" font-weight="900" fill="#2C2C2C">🎮 28개 게임</text>
 
       <!-- 무료 -->
       <rect x="186" y="0" width="120" height="56" rx="28" fill="#fff" stroke="#2C2C2C" stroke-width="3"/>
@@ -79,6 +79,6 @@
 
     <!-- 카테고리 -->
     <text x="0" y="220" font-family="'Pretendard Variable', sans-serif"
-          font-size="22" font-weight="700" fill="#666" letter-spacing="-0.01em">⚡ 반응속도 · 🧠 두뇌 · 📐 수학 · 📚 지식 · 🤝 협력</text>
+          font-size="22" font-weight="700" fill="#666" letter-spacing="-0.01em">⚡ 반응속도 · 🧠 두뇌 · 📐 수학 · 📚 지식 · 🤝 협력 · 🧩 퍼즐</text>
   </g>
 </svg>

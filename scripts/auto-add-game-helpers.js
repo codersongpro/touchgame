@@ -49,9 +49,9 @@ if (cmd === 'list-existing-folders') {
 if (cmd === 'stats') {
   const launcher = fs.readFileSync(LAUNCHER, 'utf-8');
   const reg = readRegistry();
-  const counts = { speed: 0, brain: 0, math: 0, knowledge: 0, coop: 0 };
+  const counts = { speed: 0, brain: 0, math: 0, knowledge: 0, coop: 0, puzzle: 0 };
   reg.forEach(folder => {
-    const re = new RegExp(`['"]${folder}['"]\\s*:\\s*['"](speed|brain|math|knowledge|coop)['"]`);
+    const re = new RegExp(`['"]${folder}['"]\\s*:\\s*['"](speed|brain|math|knowledge|coop|puzzle)['"]`);
     const m = launcher.match(re);
     if (m) counts[m[1]]++;
   });
@@ -80,7 +80,7 @@ if (cmd === 'discard') {
 
   // 3. Remove from launcher CATEGORY_MAP
   let launcher = fs.readFileSync(LAUNCHER, 'utf-8');
-  const catRe = new RegExp(`,?\\s*['"]${folder}['"]\\s*:\\s*['"](speed|brain|math|knowledge|coop)['"]`, 'g');
+  const catRe = new RegExp(`,?\\s*['"]${folder}['"]\\s*:\\s*['"](speed|brain|math|knowledge|coop|puzzle)['"]`, 'g');
   launcher = launcher.replace(catRe, '');
 
   // 4. Remove from launcher GAME_ICONS

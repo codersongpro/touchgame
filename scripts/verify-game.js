@@ -109,7 +109,7 @@ check('5. registry.json 등록', () => {
 check('6. 런처 CATEGORY_MAP 등록', () => {
   const p = path.join(ROOT, 'index.html');
   const html = fs.readFileSync(p, 'utf-8');
-  const re = new RegExp(`['"]${folder}['"]\\s*:\\s*['"](speed|brain|math|knowledge|coop)['"]`);
+  const re = new RegExp(`['"]${folder}['"]\\s*:\\s*['"](speed|brain|math|knowledge|coop|puzzle)['"]`);
   return re.test(html) || `CATEGORY_MAP에 "${folder}" 없음`;
 });
 
