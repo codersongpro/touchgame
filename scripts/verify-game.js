@@ -156,6 +156,23 @@ check('7. index.html에 result-actions 보존', () => {
   return html.includes('result-actions') || 'result-actions 없음 — 다시하기/홈 버튼 깨짐';
 });
 
+check('7. 터치 접근성: style.css에 다크 배경 색 없음', () => {
+  const p = path.join(gameDir, 'style.css');
+  if (!fs.existsSync(p)) return 'style.css 없음';
+  const css = fs.readFileSync(p, 'utf-8');
+  // 흔한 다크 배경 색상 체크
+  const darkColors = [
+    /background[^;]*#000(?:000)?(?:[^0-9a-f]|$)/i,
+    /background[^;]*#0D1B2A/i,
+    /background[^;]*#1A1A1A/i,
+    /background[^;]*#0a0a0a/i,
+  ];
+  for (const re of darkColors) {
+    if (re.test(css)) return `다크 배경 색 발견 (Level 3 위반): ${re}`;
+  }
+  return true;
+});
+
 // === 8. JS 문법 검사 ===
 check('8. game.js 문법 검사', () => {
   const p = path.join(gameDir, 'game.js');
