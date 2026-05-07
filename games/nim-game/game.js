@@ -123,6 +123,40 @@
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.6);
+    },
+
+    // 턴 변경 - P1 (높은 톤 "딩")
+    turnP1: function (ctx) {
+      [659, 880].forEach(function (freq, i) {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+        var t = ctx.currentTime + i * 0.08;
+        gain.gain.setValueAtTime(0.22, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.2);
+      });
+    },
+
+    // 턴 변경 - P2 (낮은 톤 "동")
+    turnP2: function (ctx) {
+      [392, 523].forEach(function (freq, i) {
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.value = freq;
+        var t = ctx.currentTime + i * 0.08;
+        gain.gain.setValueAtTime(0.22, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t);
+        osc.stop(t + 0.2);
+      });
     }
   });
 
@@ -235,18 +269,52 @@
   }
 
   // ─── 턴 UI 업데이트 ──────────────────────────────────────────────────────
-  function updateTurnUI() {
+  function updateTurnUI(announce) {
     var color = PLAYER_COLORS[currentPlayer];
     var name  = PLAYER_NAMES[currentPlayer];
+    var pCls  = currentPlayer === 0 ? 'p1' : 'p2';
 
     turnDot.style.background = color;
     turnText.textContent = name + '의 차례';
 
     turnBanner.classList.remove('p1', 'p2');
-    turnBanner.classList.add(currentPlayer === 0 ? 'p1' : 'p2');
+    turnBanner.classList.add(pCls);
 
     takeButtons.classList.remove('p1', 'p2');
-    takeButtons.classList.add(currentPlayer === 0 ? 'p1' : 'p2');
+    takeButtons.classList.add(pCls);
+
+    // 방안 B: 게임 보드 두꺼운 컬러 테두리 (지속)
+    var gameScreen = document.getElementById('gameScreen');
+    if (gameScreen) {
+      gameScreen.classList.remove('turn-p1', 'turn-p2');
+      gameScreen.classList.add('turn-' + pCls);
+    }
+
+    if (announce) {
+      // 방안 A: 풀스크린 턴 변경 오버레이 (0.6초)
+      showTurnOverlay(name, color, pCls);
+      // 방안 D: 효과음
+      sounds.play(currentPlayer === 0 ? 'turnP1' : 'turnP2');
+    }
+  }
+
+  // ─── 풀스크린 턴 변경 오버레이 ──────────────────────────────────────────
+  function showTurnOverlay(name, color, pCls) {
+    var overlay = document.getElementById('turnOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'turnOverlay';
+      overlay.className = 'turn-overlay';
+      overlay.innerHTML = '<div class="turn-overlay-text"></div>';
+      document.body.appendChild(overlay);
+    }
+    overlay.className = 'turn-overlay show ' + pCls;
+    overlay.querySelector('.turn-overlay-text').textContent = '⚡ ' + name + ' 차례 ⚡';
+    // Restart animation
+    void overlay.offsetWidth;
+    setTimeout(function () {
+      overlay.classList.remove('show');
+    }, 600);
   }
 
   // ─── 카운터 UI 업데이트 ──────────────────────────────────────────────────
@@ -320,7 +388,7 @@
       } else {
         // Switch player
         currentPlayer = 1 - currentPlayer;
-        updateTurnUI();
+        updateTurnUI(true); // announce = true (오버레이 + 사운드)
         updateButtonState();
         takeButtons.classList.remove('locked');
       }

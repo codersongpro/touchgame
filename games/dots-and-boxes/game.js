@@ -108,6 +108,54 @@
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.5);
+    },
+    // 턴 변경 사운드 - P1 (높은 톤)
+    turnP1: function (ctx) {
+      [880, 1175].forEach(function (freq, i) {
+        var osc = ctx.createOscillator(); var gain = ctx.createGain();
+        osc.type = 'triangle'; osc.frequency.value = freq;
+        var t = ctx.currentTime + i * 0.08;
+        gain.gain.setValueAtTime(0.22, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(t); osc.stop(t + 0.2);
+      });
+    },
+    // 턴 변경 - P2 (낮은 톤)
+    turnP2: function (ctx) {
+      [392, 523].forEach(function (freq, i) {
+        var osc = ctx.createOscillator(); var gain = ctx.createGain();
+        osc.type = 'triangle'; osc.frequency.value = freq;
+        var t = ctx.currentTime + i * 0.08;
+        gain.gain.setValueAtTime(0.22, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(t); osc.stop(t + 0.2);
+      });
+    },
+    // 턴 변경 - P3 (중간 높음)
+    turnP3: function (ctx) {
+      [659, 880].forEach(function (freq, i) {
+        var osc = ctx.createOscillator(); var gain = ctx.createGain();
+        osc.type = 'triangle'; osc.frequency.value = freq;
+        var t = ctx.currentTime + i * 0.08;
+        gain.gain.setValueAtTime(0.22, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(t); osc.stop(t + 0.2);
+      });
+    },
+    // 턴 변경 - P4 (중간 낮음)
+    turnP4: function (ctx) {
+      [494, 659].forEach(function (freq, i) {
+        var osc = ctx.createOscillator(); var gain = ctx.createGain();
+        osc.type = 'triangle'; osc.frequency.value = freq;
+        var t = ctx.currentTime + i * 0.08;
+        gain.gain.setValueAtTime(0.22, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(t); osc.stop(t + 0.2);
+      });
     }
   });
 
@@ -253,10 +301,44 @@
   }
 
   // ─── 턴 UI ────────────────────────────────────────────────────────────────
-  function updateTurnUI() {
+  function updateTurnUI(announce) {
     turnDot.style.background = PLAYER_COLORS[currentPlayer];
     turnText.textContent = PLAYER_NAMES[currentPlayer] + '의 차례';
     updateScoreUI();
+
+    // 방안 B: 게임 화면 전체 두꺼운 컬러 테두리
+    var gameScreen = document.getElementById('gameScreen');
+    if (gameScreen) {
+      gameScreen.classList.remove('turn-p1', 'turn-p2', 'turn-p3', 'turn-p4');
+      gameScreen.classList.add('turn-p' + (currentPlayer + 1));
+    }
+
+    if (announce) {
+      // 방안 A: 풀스크린 오버레이
+      showTurnOverlay();
+      // 방안 D: 사운드
+      sounds.play('turnP' + (currentPlayer + 1));
+    }
+  }
+
+  // ─── 풀스크린 턴 변경 오버레이 ──────────────────────────────────────────
+  function showTurnOverlay() {
+    var overlay = document.getElementById('turnOverlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'turnOverlay';
+      overlay.className = 'turn-overlay';
+      overlay.innerHTML = '<div class="turn-overlay-text"></div>';
+      document.body.appendChild(overlay);
+    }
+    var pCls = 'p' + (currentPlayer + 1);
+    overlay.className = 'turn-overlay show ' + pCls;
+    overlay.querySelector('.turn-overlay-text').textContent =
+      '⚡ ' + PLAYER_NAMES[currentPlayer] + ' 차례 ⚡';
+    void overlay.offsetWidth;
+    setTimeout(function () {
+      overlay.classList.remove('show');
+    }, 600);
   }
 
   // ─── 보드 빌드 ────────────────────────────────────────────────────────────
@@ -444,15 +526,17 @@
     // 박스 완성 체크
     var completed = checkBoxes(dir, row, col);
 
+    var playerSwitched = false;
     if (completed > 0) {
       sounds.play('box');
       // 같은 플레이어 연속 턴 (no player switch)
     } else {
       // 다음 플레이어
       currentPlayer = (currentPlayer + 1) % numPlayers;
+      playerSwitched = true;
     }
 
-    updateTurnUI();
+    updateTurnUI(playerSwitched); // announce only when player actually changed
 
     // 게임 종료 체크
     if (allBoxesFilled()) {
