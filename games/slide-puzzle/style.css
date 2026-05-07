@@ -117,7 +117,7 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  padding: 10px 8px 10px;
+  padding: 10px 8px 16px;
   border-radius: 12px;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -152,7 +152,7 @@
   color: #2C2C2C;
 }
 
-/* Puzzle grid 3x3 */
+/* Puzzle grid 3x3 — 터치스크린 학생이 닿기 쉽게 zone 하단 배치 */
 .puzzle-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -166,6 +166,7 @@
   border-radius: 12px;
   box-shadow: 5px 5px 0 #2C2C2C;
   flex-shrink: 0;
+  margin-top: auto;  /* 헤더 아래 빈 공간을 모두 흡수 → 그리드를 zone 하단으로 밀기 */
 }
 
 .puzzle-tile {
