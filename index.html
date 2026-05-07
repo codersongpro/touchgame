@@ -338,6 +338,24 @@
     .game-card-thumb {
       border-bottom: 3px solid #2C2C2C !important;
       aspect-ratio: 1.05 !important;
+      position: relative;
+    }
+    /* 인원수 알약 배지 (디자인 1) */
+    .player-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #FFD54F;
+      border: 2px solid #2C2C2C;
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      color: #2C2C2C;
+      box-shadow: 2px 2px 0 #2C2C2C;
+      letter-spacing: -0.02em;
+      z-index: 5;
+      pointer-events: none;
     }
     .card-icon-svg svg {
       width: 70% !important;
@@ -514,6 +532,17 @@
       'color-signal': 'coop'
     };
 
+    // 게임별 지원 인원수 표시 (정의 안 된 게임은 기본 '2-4명')
+    var PLAYER_COUNTS = {
+      // 2P 전용 게임 (턴제, 협력, 1:1 대결)
+      'whack-a-mole': '2명',
+      'nim-game': '2명',
+      'secret-code': '2명',
+      'mirror-draw': '2명',
+      'color-signal': '2명'
+      // 나머지 28개 게임은 자동으로 '2-4명' 적용
+    };
+
     const FALLBACK_GAMES = [
       { folder:'whack-a-mole', name:'두더지 잡기', description:'내 영역의 두더지를 빠르게 잡으세요!', icon:'🔨', color:'#81C784', grades:[1,2,3,4,5,6], playTime:'30초' },
       { folder:'reaction-race', name:'신호 반응', description:'초록색이 되면 재빨리 터치!', icon:'🚦', color:'#66BB6A', grades:[1,2,3,4,5,6], playTime:'1분' },
@@ -591,8 +620,11 @@
         a.setAttribute('aria-label', game.name + ' 게임 시작');
         a.dataset.grades = JSON.stringify(game.grades);
         a.dataset.cat = CATEGORY_MAP[game.folder] || 'brain';
+        // 게임별 지원 인원수 (PLAYER_COUNTS에 정의 안 된 게임은 2-4명 기본)
+        var players = PLAYER_COUNTS[game.folder] || '2-4명';
         a.innerHTML =
           '<div class="game-card-thumb" style="--thumb-color:' + pastelColor(game.color) + '">' +
+            '<span class="player-badge">' + players + '</span>' +
             '<span class="card-icon-svg">' + (GAME_ICONS[game.folder] || game.icon) + '</span>' +
           '</div>' +
           '<div class="game-card-info">' +
