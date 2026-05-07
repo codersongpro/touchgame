@@ -283,6 +283,7 @@ const _GAME_CATEGORY_MAP = {
   'secret-code': 'coop', 'mirror-draw': 'coop', 'color-signal': 'coop',
   'slide-puzzle': 'puzzle', 'maze-run': 'puzzle', 'pipe-connect': 'puzzle',
   'laser-reflect': 'puzzle', 'one-stroke': 'puzzle', 'dot-connect': 'puzzle',
+  'spot-the-difference': 'brain',
 };
 
 function _detectGameCategory() {
