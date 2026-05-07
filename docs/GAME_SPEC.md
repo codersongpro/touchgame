@@ -10,7 +10,7 @@
 # 기본 정보
 folder: english-word           # 영문 폴더명 (kebab-case)
 name: 영어 단어                  # 한글 표시명
-description: 영어 단어를 보고 뜻을 맞춰보세요!  # 1줄 설명
+description: 영어 단어를 보고 뜻을 맞혀보세요!  # 1줄 설명
 icon: 🔤                       # 이모지 (런처 카드용)
 color: "#4CAF50"               # 카드 배경 헥스 코드
 
@@ -107,7 +107,7 @@ template: flag-quiz            # 베이스로 복사할 기존 게임 폴더
 ```yaml
 folder: english-word
 name: 영어 단어
-description: 영어 단어를 보고 뜻을 맞춰보세요!
+description: 영어 단어를 보고 뜻을 맞혀보세요!
 icon: 🔤
 color: "#4CAF50"
 pattern: A
