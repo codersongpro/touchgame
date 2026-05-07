@@ -23,30 +23,36 @@ const DOT_COLORS = {
 // All dots paired. Grid size 5x5.
 // `endpoints`: { color: [pos1, pos2] }
 const PUZZLES = [
-  // Round 1: 5x5, 2 colors (간단)
+  // Round 1: 2 colors. R: [0,8] B: [12,24]
+  // R 경로: 0→1→2→3→8 (위→오른쪽)
+  // B 경로: 12→13→14→19→24 (오른쪽→아래)
   {
     size: 5,
     endpoints: {
-      R: [0, 24],
-      B: [4, 20],
+      R: [0, 8],
+      B: [12, 24],
     },
   },
-  // Round 2: 5x5, 3 colors
+  // Round 2: 2 colors, 더 긴 경로
+  // R: 0→5→10→15→16→17→22 (왼쪽 아래로)
+  // B: 4→9→14→19→24 (오른쪽 세로)
   {
     size: 5,
     endpoints: {
-      R: [0, 12],
-      B: [2, 22],
-      G: [4, 24],
+      R: [0, 22],
+      B: [4, 24],
     },
   },
-  // Round 3: 5x5, 3 colors 더 까다로움
+  // Round 3: 3 colors
+  // R: 0→1→2→3→4→9 (윗줄)
+  // B: 5→10→11→12→13→14→19→24 (가로지르며 대각선)
+  // G: 15→16→17→18→23 (아래줄)
   {
     size: 5,
     endpoints: {
-      R: [0, 18],
-      B: [4, 10],
-      Y: [6, 24],
+      R: [0, 9],
+      B: [5, 24],
+      G: [15, 23],
     },
   },
 ];
@@ -248,14 +254,9 @@ function handleCellTap(playerIdx, cellIdx) {
   }
   renderDots(playerIdx);
 
-  // 완료 체크: 모든 색 완성 + 모든 셀 채움
+  // 완료 체크: 모든 색 연결 완성
   const allColorsDone = Object.keys(pz.endpoints).every(c => isPathComplete(state, pz, c));
-  if (allColorsDone) {
-    let filled = 0;
-    for (const c in state.paths) filled += state.paths[c].length;
-    const totalCells = pz.size * pz.size;
-    if (filled === totalCells) handleSolve(playerIdx);
-  }
+  if (allColorsDone) handleSolve(playerIdx);
 }
 
 function resetZone(playerIdx) {

@@ -24,37 +24,40 @@ const PLAYER_CONFIG = [
 // 거울에 회전(rot)이 있어 0=/, 1=\
 
 const PUZZLES = [
-  // Round 1: 단순한 두 거울
+  // Round 1: 1 mirror flip needed
+  // source-E(0,0) → (0,4) mirror flip to \ → (3,4) target
   {
     size: 5,
     cells: [
-      'source-E', 0, 'mirror-0', 0, 0,
+      'source-E', 0, 0, 0, 'mirror-0',  // mirror starts / (rot=0), needs \ (rot=1)
       0, 0, 0, 0, 0,
       0, 0, 0, 0, 0,
       0, 0, 0, 0, 'target',
       0, 0, 0, 0, 0,
     ],
   },
-  // Round 2: 세 거울 사용
+  // Round 2: 2 mirror flips needed
+  // source-E(0,0) → (0,4) \ → (4,4) / → (4,0) target
   {
     size: 5,
     cells: [
-      'source-E', 0, 0, 0, 'mirror-1',
+      'source-E', 0, 0, 0, 'mirror-0',  // (0,4) start /, need \
       0, 0, 0, 0, 0,
-      0, 0, 'mirror-0', 0, 0,
       0, 0, 0, 0, 0,
-      'target', 0, 0, 0, 0,
+      0, 0, 0, 0, 0,
+      'target', 0, 0, 0, 'mirror-1',    // (4,4) start \, need /
     ],
   },
-  // Round 3: 더 복잡
+  // Round 3: 3 mirror flips needed
+  // source-E(0,0) → (0,2) \ → (4,2) / → (4,0) \ → (2,0) target
   {
     size: 5,
     cells: [
-      'source-S', 0, 0, 0, 0,
+      'source-E', 0, 'mirror-0', 0, 0,  // (0,2) start /, need \
       0, 0, 0, 0, 0,
-      'mirror-1', 0, 'mirror-0', 0, 'target',
+      'target', 0, 0, 0, 0,             // (2,0) target
       0, 0, 0, 0, 0,
-      0, 0, 'mirror-0', 0, 0,
+      'mirror-0', 0, 'mirror-1', 0, 0,  // (4,0) start /, need \; (4,2) start \, need /
     ],
   },
 ];

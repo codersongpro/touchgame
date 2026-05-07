@@ -44,74 +44,74 @@ function getConns(type, rot) {
 // solution이 있는 풀이 가능한 퍼즐
 // 각 셀: { type, rot, fixed }
 const PUZZLES = [
-  // Round 1: 4x4 단순
+  // Round 1: 4x4 단순. 경로: 0→1→5→6→10→14→15
   {
     size: 4,
     cells: [
-      { type: 'cap', rot: 1, fixed: true },  // 0: 입구(오른쪽으로)
-      { type: 'corner', rot: 2, initial: 0 },// 1: 정답 rot=2 (S+W) 시작 0
-      { type: 'corner', rot: 3, initial: 1 },// 2: 정답 rot=3 (W+N)
-      { type: 'empty' },
-      { type: 'empty' },
-      { type: 'corner', rot: 0, initial: 2 },// 5: 정답 rot=0 (N+E)
-      { type: 'corner', rot: 2, initial: 3 },// 6: 정답 rot=2 (S+W)
+      { type: 'cap', rot: 1, fixed: true },        // 0: 입구 East
+      { type: 'corner', rot: 2, initial: 0 },      // 1: S+W (rot 2)
       { type: 'empty' },
       { type: 'empty' },
       { type: 'empty' },
-      { type: 'corner', rot: 0, initial: 1 },// 10: 정답 rot=0 (N+E)
-      { type: 'straight', rot: 0, initial: 1 },// 11: 정답 rot=0 (EW)
+      { type: 'corner', rot: 0, initial: 2 },      // 5: N+E (rot 0)
+      { type: 'corner', rot: 2, initial: 3 },      // 6: S+W (rot 2)
       { type: 'empty' },
       { type: 'empty' },
       { type: 'empty' },
-      { type: 'cap', rot: 3, fixed: true },  // 15: 출구(왼쪽으로)
+      { type: 'straight', rot: 1, initial: 0 },    // 10: NS (rot 1)
+      { type: 'empty' },
+      { type: 'empty' },
+      { type: 'empty' },
+      { type: 'corner', rot: 0, initial: 1 },      // 14: N+E (rot 0)
+      { type: 'cap', rot: 3, fixed: true },        // 15: 출구 West
     ],
-    inletPos: 0, inletDir: 1,  // 0번 셀에서 east 방향으로 입구
-    outletPos: 15, outletDir: 3, // 15번 셀에서 west 방향으로 출구
+    inletPos: 0, inletDir: 1,
+    outletPos: 15, outletDir: 3,
   },
-  // Round 2: 4x4
+  // Round 2: 경로: 0→4→5→6→10→11→15
   {
     size: 4,
     cells: [
-      { type: 'cap', rot: 2, fixed: true },  // 0: 입구 아래로
+      { type: 'cap', rot: 2, fixed: true },        // 0: 입구 South
       { type: 'empty' },
       { type: 'empty' },
       { type: 'empty' },
-      { type: 'corner', rot: 0, initial: 2 }, // 4: 정답 N+E
-      { type: 'straight', rot: 0, initial: 1 }, // 5: 정답 EW
-      { type: 'corner', rot: 2, initial: 1 }, // 6: 정답 S+W
+      { type: 'corner', rot: 0, initial: 2 },      // 4: N+E (rot 0)
+      { type: 'straight', rot: 0, initial: 1 },    // 5: EW (rot 0)
+      { type: 'corner', rot: 2, initial: 1 },      // 6: S+W (rot 2)
       { type: 'empty' },
       { type: 'empty' },
       { type: 'empty' },
-      { type: 'corner', rot: 3, initial: 0 }, // 10: 정답 W+N
-      { type: 'corner', rot: 2, initial: 3 }, // 11: 정답 S+W
+      { type: 'corner', rot: 0, initial: 3 },      // 10: N+E (rot 0)
+      { type: 'corner', rot: 2, initial: 3 },      // 11: S+W (rot 2)
       { type: 'empty' },
       { type: 'empty' },
       { type: 'empty' },
-      { type: 'cap', rot: 0, fixed: true },  // 15: 출구 위로
+      { type: 'cap', rot: 0, fixed: true },        // 15: 출구 North
     ],
     inletPos: 0, inletDir: 2,
     outletPos: 15, outletDir: 0,
   },
-  // Round 3: 4x4 약간 복잡
+  // Round 3: 경로 0→1→5→9→10→14→15 (회전이 더 많이 필요)
   {
     size: 4,
     cells: [
-      { type: 'cap', rot: 1, fixed: true },
-      { type: 'straight', rot: 0, initial: 1 },
-      { type: 'corner', rot: 1, initial: 3 },
+      { type: 'cap', rot: 1, fixed: true },        // 0: 입구 East
+      { type: 'corner', rot: 2, initial: 1 },      // 1: S+W (rot 2)
       { type: 'empty' },
       { type: 'empty' },
       { type: 'empty' },
-      { type: 'straight', rot: 1, initial: 0 },
-      { type: 'empty' },
-      { type: 'corner', rot: 0, initial: 2 },
-      { type: 'straight', rot: 0, initial: 1 },
-      { type: 'corner', rot: 3, initial: 1 },
+      { type: 'straight', rot: 1, initial: 0 },    // 5: NS (rot 1)
       { type: 'empty' },
       { type: 'empty' },
       { type: 'empty' },
+      { type: 'corner', rot: 0, initial: 3 },      // 9: N+E (rot 0)
+      { type: 'corner', rot: 2, initial: 1 },      // 10: S+W (rot 2)
       { type: 'empty' },
-      { type: 'cap', rot: 3, fixed: true },
+      { type: 'empty' },
+      { type: 'empty' },
+      { type: 'corner', rot: 0, initial: 1 },      // 14: N+E (rot 0)
+      { type: 'cap', rot: 3, fixed: true },        // 15: 출구 West
     ],
     inletPos: 0, inletDir: 1,
     outletPos: 15, outletDir: 3,
