@@ -4,7 +4,7 @@
 .screen-countdown {
   justify-content: center;
   align-items: center;
-  background: #1a0f0a;
+  background: #FFF8E1;
 }
 
 /* ── Shared header ────────────────────────────────────────── */
@@ -135,7 +135,7 @@
 
 /* ── Game screen ──────────────────────────────────────────── */
 .screen-game {
-  background: #1a0f0a;
+  background: #FFF8E1;
   position: relative;
 }
 

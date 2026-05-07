@@ -115,10 +115,31 @@ function renderStroke(playerIdx) {
 
   // 노드
   const currentNode = path.length ? path[path.length - 1] : -1;
+  // Eulerian path 시작 가능 노드 계산 (홀수 차수 노드만 시작 가능, 모두 짝수면 어디든 OK)
+  const isStartPhase = path.length === 0;
+  let validStartNodes = null;
+  if (isStartPhase) {
+    const degree = new Array(g.nodes.length).fill(0);
+    g.edges.forEach(([a, b]) => { degree[a]++; degree[b]++; });
+    const oddDegreeNodes = degree.map((d, i) => d % 2 === 1 ? i : -1).filter(i => i >= 0);
+    // Eulerian: odd-degree 노드가 0개면 모든 노드에서 시작 가능 (Eulerian circuit)
+    //           odd-degree 노드가 2개면 그 중 하나에서만 시작 가능 (Eulerian path)
+    validStartNodes = oddDegreeNodes.length === 0 ? null /* 어디든 OK */ : oddDegreeNodes;
+  }
+
   g.nodes.forEach((pos, idx) => {
     const isCurrent = idx === currentNode;
     const isVisited = path.includes(idx);
-    svg += `<circle cx="${pos[0]}" cy="${pos[1]}" r="5" fill="${isCurrent ? '#FFD54F' : (isVisited ? '#4CAF50' : '#fff')}" stroke="#2C2C2C" stroke-width="2.5"/>`;
+    const isValidStart = isStartPhase && validStartNodes && validStartNodes.includes(idx);
+    let fill = '#fff';
+    if (isCurrent) fill = '#FFD54F';
+    else if (isVisited) fill = '#4CAF50';
+    else if (isValidStart) fill = '#FFE082'; // 시작 가능 노드 힌트 (옅은 노랑)
+    svg += `<circle cx="${pos[0]}" cy="${pos[1]}" r="5" fill="${fill}" stroke="#2C2C2C" stroke-width="2.5"/>`;
+    // 시작 가능 노드는 펄스 링 추가
+    if (isValidStart) {
+      svg += `<circle cx="${pos[0]}" cy="${pos[1]}" r="7" fill="none" stroke="#FF9800" stroke-width="1.5" opacity="0.7"><animate attributeName="r" from="6" to="10" dur="1.2s" repeatCount="indefinite"/><animate attributeName="opacity" from="0.7" to="0" dur="1.2s" repeatCount="indefinite"/></circle>`;
+    }
     // 클릭 영역 (큰 circle, 투명)
     svg += `<circle class="node-clickable" data-idx="${idx}" cx="${pos[0]}" cy="${pos[1]}" r="10" fill="transparent"/>`;
   });

@@ -1,7 +1,7 @@
 /* games/bomb-dodge/style.css */
 
 body {
-  background: #1A1A2E;
+  background: #FFF8E1;
   overflow: hidden;
   touch-action: none;
 }
@@ -56,7 +56,7 @@ body {
 .screen-countdown {
   justify-content: center;
   align-items: center;
-  background: #1A1A2E;
+  background: #FFF8E1;
 }
 .countdown-number {
   text-shadow: 0 4px 24px rgba(244,67,54,0.6);

@@ -173,8 +173,27 @@ check('7. 터치 접근성: style.css에 다크 배경 색 없음', () => {
   return true;
 });
 
-// === 8. JS 문법 검사 ===
-check('8. game.js 문법 검사', () => {
+// === 8. 카테고리 매핑 일관성 (런처 ↔ engine.js) ===
+check('8. 카테고리 매핑 일관성 (launcher ↔ engine.js)', () => {
+  const launcher = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf-8');
+  const engine = fs.readFileSync(path.join(ROOT, 'shared', 'engine.js'), 'utf-8');
+
+  const launcherRe = new RegExp(`['"]${folder}['"]\\s*:\\s*['"](speed|brain|math|knowledge|coop|puzzle)['"]`);
+  const engineRe = new RegExp(`['"]${folder}['"]\\s*:\\s*['"](speed|brain|math|knowledge|coop|puzzle)['"]`);
+
+  const launcherMatch = launcher.match(launcherRe);
+  const engineMatch = engine.match(engineRe);
+
+  if (!launcherMatch) return `런처에 카테고리 없음`;
+  if (!engineMatch) return `engine.js _GAME_CATEGORY_MAP에 "${folder}" 없음 (BGM 분류 누락)`;
+  if (launcherMatch[1] !== engineMatch[1]) {
+    return `카테고리 불일치 — launcher: ${launcherMatch[1]}, engine: ${engineMatch[1]}`;
+  }
+  return true;
+});
+
+// === 9. JS 문법 검사 ===
+check('9. game.js 문법 검사', () => {
   const p = path.join(gameDir, 'game.js');
   if (!fs.existsSync(p)) return 'game.js 없음';
   try {

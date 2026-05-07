@@ -147,7 +147,7 @@
 ```
 
 체크 항목:
-- 카테고리별 게임 수 (speed/brain/math/knowledge/coop)
+- 카테고리별 게임 수 (speed/brain/math/knowledge/coop/puzzle)
 - 학년별 커버리지
 - 메커니즘 중복도
 - 부족한 영역 (예: "영어 게임 0개", "협력 게임 부족")
@@ -157,10 +157,10 @@
 
 ```
 추천 N: {게임 이름}
-- 카테고리: {카테고리}
-- 패턴: {A | B | C}
+- 카테고리: {카테고리}  (speed/brain/math/knowledge/coop/puzzle)
+- 패턴: {A | B | C | D}
 - 메커니즘: {1줄 설명}
-- 골든 템플릿: {flag-quiz | whack-a-mole | nim-game | secret-code}
+- 골든 템플릿: {flag-quiz | whack-a-mole | nim-game | secret-code | slide-puzzle}
 - 부족 영역 해결: {예: "영어 교과 부재 해결"}
 - 예상 제작 시간: {분 단위}
 ```
@@ -345,25 +345,22 @@
 
 ### 우선순위 (위에서 아래로)
 1. **부족 카테고리** — 게임 수 가장 적은 카테고리 우선
-   - 현재 분포: speed(4) brain(8) math(6) knowledge(6) coop(2)
-   - coop이 가장 부족 → coop 후보 우선 검토
+   - 현재 분포: speed(4) brain(8) math(6) knowledge(6) coop(3) puzzle(6)
+   - 매번 분석 시점에 `node scripts/auto-add-game-helpers.js stats`로 재확인
 2. **메커니즘 다양성** — 기존 게임과 가장 다른 메커니즘 선호
-   - 같은 패턴(A/B/C) 안에서도 데이터 형식이 겹치면 회피
-3. **빠른 구현 가능성** — 골든 템플릿(flag-quiz / whack-a-mole / nim-game / secret-code) 기반으로 만들 수 있는 게임 우선
+   - 같은 패턴(A/B/C/D) 안에서도 데이터 형식이 겹치면 회피
+3. **빠른 구현 가능성** — 골든 템플릿(flag-quiz / whack-a-mole / nim-game / secret-code / slide-puzzle) 기반으로 만들 수 있는 게임 우선
 4. **교육 가치** — 초등 교과 연계되면 가산점
 
 ### 게임 후보 풀 (자동 모드용 백로그)
-Claude는 다음 후보 중에서 위 우선순위에 따라 선택:
+Claude는 다음 후보 중에서 위 우선순위에 따라 선택. 이미 구현된 게임은 제외.
 
-**coop 후보 (현재 부족, 우선)**
+**coop 후보**
 - 박자 따라하기 (rhythm-echo) — 청각 협력
-- 같은 그림 찾기 (find-pair-coop) — 정보 비대칭 협력
-- 색깔 신호 보내기 (color-signal) — 시각 신호 전달
 
 **knowledge 확장 후보**
 - 동물 분류 (animal-sort) — 과학
 - 한글 자음 모음 (hangul-jamo) — 국어
-- 사칙연산 부호 (math-sign) — 수학 (knowledge 분류는 부적합 → math)
 
 **brain 신선 후보**
 - 패턴 잇기 (pattern-chain) — 시퀀스 추론
@@ -372,7 +369,17 @@ Claude는 다음 후보 중에서 위 우선순위에 따라 선택:
 **speed 신선 후보**
 - 빠르게 분류 (quick-sort-revisit) — 좌/우 분류 반사
 
-선택 시 동일 폴더명 사용 금지. 만약 모든 후보가 폴더명 중복이면 "후보 없음" 보고 후 종료.
+**math 확장 후보**
+- 사칙연산 부호 (math-sign) — 부호 추론
+- 도형 넓이 비교 (area-compare) — 공간 감각
+
+**puzzle 확장 후보** (현재 6개로 충분, 우선순위 낮음)
+- 색칠 영역 (paint-fill) — 영역 채우기 알고리즘
+- 칠교놀이 (tangram) — 도형 조합
+
+이미 구현됨 (제외): find-pair-coop(삭제됨), color-signal, english-word, slide-puzzle, maze-run, pipe-connect, laser-reflect, one-stroke, dot-connect
+
+선택 시 동일 폴더명 사용 금지 (`node scripts/auto-add-game-helpers.js list-existing-folders`로 확인). 만약 모든 후보가 폴더명 중복이면 "후보 없음" 보고 후 종료.
 
 ## 자가 품질 게이트 (Claude 정의 6개 기준)
 

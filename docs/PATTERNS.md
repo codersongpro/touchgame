@@ -1,6 +1,6 @@
 # 게임 패턴 카탈로그
 
-짬짬이 교실의 25개 게임은 3가지 플레이 패턴 중 하나를 따른다. 새 게임은 반드시 이 중 하나의 패턴을 골라 골든 템플릿을 기반으로 제작한다.
+짬짬이 교실의 33개 게임은 4가지 플레이 패턴 중 하나를 따른다. 새 게임은 반드시 이 중 하나의 패턴을 골라 골든 템플릿을 기반으로 제작한다.
 
 ---
 
@@ -23,8 +23,8 @@
 - 시각 매칭 (그림자, 색깔, 모양)
 - 빠른 판단 (크기 비교, 많다 적다)
 
-### 기존 게임 (12개)
-flag-quiz, capital-quiz, ox-quiz, color-touch, shape-match, size-compare, more-or-less, color-count, shadow-match, missing-piece, mirror-match, initial-quiz, proverb-quiz, clock-reading
+### 기존 게임 (15개)
+flag-quiz, capital-quiz, ox-quiz, color-touch, shape-match, size-compare, more-or-less, color-count, shadow-match, missing-piece, mirror-match, initial-quiz, proverb-quiz, clock-reading, english-word
 
 ---
 
@@ -47,6 +47,7 @@ flag-quiz, capital-quiz, ox-quiz, color-touch, shape-match, size-compare, more-o
 
 ### 기존 게임 (7개)
 whack-a-mole, reaction-race, balloon-pop, bomb-dodge, number-tap, quick-math, memory-match
+(여기서 memory-match는 짝 맞추기 메커니즘)
 
 ---
 
@@ -68,8 +69,8 @@ whack-a-mole, reaction-race, balloon-pop, bomb-dodge, number-tap, quick-math, me
 - 협력 (정보 비대칭, 역할 분담, 타이밍)
 - 그리기/설명 게임
 
-### 기존 게임 (6개)
-nim-game, dots-and-boxes, secret-code, mirror-draw
+### 기존 게임 (5개)
+nim-game, dots-and-boxes, secret-code, mirror-draw, color-signal
 
 ---
 
@@ -146,14 +147,22 @@ games/{folder}/
 - 결과 화면 다시하기/홈 버튼
 
 ### 공통 모듈 (`shared/engine.js`)
-- `createTimer(seconds, onTick, onEnd)` — 카운트다운
-- `createScoreboard(element)` — 점수
+- `createTimer(seconds, onTick, onEnd)` — 카운트다운 타이머
+- `createScoreboard(element)` — 점수 관리
 - `createSoundManager(soundMap)` — Web Audio 효과음
-- `playCountdown(callback)` — 3, 2, 1 카운트다운
+- `createBgmManager()` — 카테고리별 BGM (자동 주입, 기본 OFF)
+- `onTap(element, callback)` — 클릭 + 터치 통합 핸들러 (300ms 딜레이 없음)
+- `goHome()` — 런처로 이동
+- `_GAME_CATEGORY_MAP` — 폴더명 → 카테고리 (BGM 자동 매핑용)
+
+### 게임별 카운트다운
+각 게임이 자체 구현 (예: `startPreGameCountdown(onDone)`). 공통 모듈에는 없음.
 
 ### 등록 절차
 1. `games/registry.json` 배열에 폴더명 추가
-2. `index.html` 런처의 `CATEGORY_MAP`, `GAME_ICONS`, `FALLBACK_GAMES`에 추가
+2. `index.html` 런처의 `CATEGORY_MAP`, `GAME_ICONS`, `FALLBACK_GAMES`, `PLAYER_COUNTS`에 추가
+3. `shared/engine.js`의 `_GAME_CATEGORY_MAP`에도 추가 (BGM 분류)
+4. `node scripts/verify-game.js {folder}` 정적 검증
 
 ---
 
@@ -164,6 +173,7 @@ games/{folder}/
 | 정답이 정해져 있고 모두 같은 문제를 푸는가? | A |
 | 각자 자기 영역에서 점수를 모으는가? | B |
 | 한 명씩 번갈아 행동하거나 역할이 다른가? | C |
+| 협력이나 정보 비대칭이 핵심인가? | C |
+| 같은 퍼즐을 동시에 풀어 먼저 끝낸 사람이 승리? | D |
 | 시간 제한이 핵심이고 누적 점수가 승부? | B |
 | 라운드제이고 정답/오답이 명확한가? | A |
-| 협력이나 정보 비대칭이 핵심인가? | C |

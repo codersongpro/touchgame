@@ -4,7 +4,7 @@
 .screen-countdown {
   justify-content: center;
   align-items: center;
-  background: #0D1B2A;
+  background: #FFF8E1;
 }
 
 /* ── Game header (intro) ──────────────────────────────────── */
@@ -125,7 +125,7 @@
 
 /* ── Game screen ──────────────────────────────────────────── */
 .screen-game {
-  background: #0D1B2A;
+  background: #FFF8E1;
   height: 100vh;
   overflow: hidden;
   position: relative;

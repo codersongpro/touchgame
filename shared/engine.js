@@ -156,6 +156,7 @@ function createBgmManager() {
   let scheduledNodes = []; // for cleanup
   let nextNoteTime = 0;
   let timerId = null;
+  let currentNoteIdx = 0; // 멜로디 위치 추적 (scheduledNodes splice와 무관하게 유지)
 
   // sessionStorage에서 상태 복원
   try {
@@ -206,22 +207,22 @@ function createBgmManager() {
     if (!on || !currentCategory) return;
     const pattern = PATTERNS[currentCategory] || PATTERNS.brain;
     const c = getContext();
-    let noteIdx = (scheduledNodes.length / 2) % pattern.notes.length;
 
     // 0.2초마다 호출 → 0.5초 미리 스케줄
     while (nextNoteTime < c.currentTime + 0.5) {
-      scheduleNote(pattern.notes[noteIdx], nextNoteTime, pattern.beat * 0.9, pattern.type);
+      scheduleNote(pattern.notes[currentNoteIdx], nextNoteTime, pattern.beat * 0.9, pattern.type);
       nextNoteTime += pattern.beat;
-      noteIdx = (noteIdx + 1) % pattern.notes.length;
+      currentNoteIdx = (currentNoteIdx + 1) % pattern.notes.length;
     }
 
-    // 오래된 노드 정리 (메모리 누수 방지)
+    // 오래된 노드 정리 (메모리 누수 방지) - currentNoteIdx와 무관하게 안전
     if (scheduledNodes.length > 200) scheduledNodes.splice(0, 100);
   }
 
   function startScheduler() {
     if (timerId) return;
     nextNoteTime = getContext().currentTime + 0.1;
+    currentNoteIdx = 0; // 새 시작
     scheduler();
     timerId = setInterval(scheduler, 200);
   }
