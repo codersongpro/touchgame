@@ -274,6 +274,7 @@ function createBgmManager() {
  */
 const _GAME_CATEGORY_MAP = {
   'whack-a-mole': 'speed', 'reaction-race': 'speed', 'balloon-pop': 'speed', 'bomb-dodge': 'speed',
+  'quick-sort': 'speed',
   'color-touch': 'brain', 'shape-match': 'brain', 'shadow-match': 'brain', 'missing-piece': 'brain',
   'mirror-match': 'brain', 'dots-and-boxes': 'brain', 'memory-match': 'brain', 'nim-game': 'brain',
   'quick-math': 'math', 'size-compare': 'math', 'color-count': 'math', 'more-or-less': 'math',
