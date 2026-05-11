@@ -355,31 +355,39 @@
 ### 게임 후보 풀 (자동 모드용 백로그)
 Claude는 다음 후보 중에서 위 우선순위에 따라 선택. 이미 구현된 게임은 제외.
 
-**coop 후보**
-- 박자 따라하기 (rhythm-echo) — 청각 협력
+**speed 후보** (반응속도)
+- 숫자 폭격 (number-strike) — 화면에 깜빡이는 숫자 중 "오늘의 숫자"만 빠르게 터치
+- 방향 화살표 (arrow-tap) — ↑↓←→ 화살표 보고 같은 방향 버튼 즉각 터치
+- 카운트다운 정확히 (countdown-tap) — 5→4→3→2→1→0! "0" 뜨는 순간만 터치 (자제력+타이밍)
+- 가위바위보 반사 (rps-react) — 상대 손 모양 보고 이기는 손 빨리 내기
+- 점프하는 표적 (chase-tap) — 무작위 위치로 점프하는 도형 따라가서 터치
+
+**coop 후보** (협력)
+- 숫자 합 만들기 (sum-relay) — P1·P2 카드에서 한 장씩 골라 목표 합 만들기 (협력+수학)
+- 색 섞기 (color-mix) — P1 빨강 계열 / P2 파랑 계열 골라 목표 색 합성 (협력+과학)
+- 자음+모음 합치기 (jamo-merge) — P1 자음판 / P2 모음판으로 단어 완성 (협력+국어)
+- 도형 조립 (assemble-shape) — P1만 부품 그림, 말로 설명 → P2 완성도 4개 중 정답 선택
+- 번갈아 카운트 (turn-count) — 1→20 순서로 P1 홀수, P2 짝수 자기 차례에 터치
 
 **knowledge 확장 후보**
-- 동물 분류 (animal-sort) — 과학
 - 한글 자음 모음 (hangul-jamo) — 국어
 
 **brain 신선 후보**
 - 패턴 잇기 (pattern-chain) — 시퀀스 추론
 - 짝 맞추기 강화판 (memo-twin) — 기억력
 
-**speed 신선 후보**
-- 빠르게 분류 (quick-sort-revisit) — 좌/우 분류 반사
-
 **math 확장 후보**
-- 사칙연산 부호 (math-sign) — 부호 추론
 - 도형 넓이 비교 (area-compare) — 공간 감각
 
 **puzzle 확장 후보** (현재 6개로 충분, 우선순위 낮음)
 - 색칠 영역 (paint-fill) — 영역 채우기 알고리즘
 - 칠교놀이 (tangram) — 도형 조합
 
-이미 구현됨 (제외): find-pair-coop(삭제됨), color-signal, english-word, slide-puzzle, maze-run, pipe-connect, laser-reflect, one-stroke, dot-connect
+이미 구현됨 (제외): find-pair-coop(삭제됨), color-signal, english-word, slide-puzzle, maze-run, pipe-connect, laser-reflect, one-stroke, dot-connect, rhythm-echo, animal-sort, math-sign
 
-선택 시 동일 폴더명 사용 금지 (`node scripts/auto-add-game-helpers.js list-existing-folders`로 확인). 만약 모든 후보가 폴더명 중복이면 "후보 없음" 보고 후 종료.
+사용자 삭제 (재추가 보류): quick-sort (2026-05-11) — 사용자 명시 삭제. 다음 자동 모드 실행 시 후보로 선정 금지.
+
+선택 시 동일 폴더명 사용 금지 (`node scripts/auto-add-game-helpers.js list-existing-folders`로 확인). **위 풀의 모든 후보가 소진되면** → `docs/AUTO_MODE.md`의 **Step 2-A (자율 생성)** 절차로 진행.
 
 ## 자가 품질 게이트 (Claude 정의 6개 기준)
 
