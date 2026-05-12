@@ -252,8 +252,12 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-.pad-btn.flash {
+/* reveal 중 disabled 상태여도 flash는 또렷이 보여야 함 */
+.pad-btn.flash,
+.pad-btn:disabled.flash {
+  opacity: 1 !important;
   animation: pad-flash 0.45s ease-out;
+  z-index: 2;
 }
 @keyframes pad-flash {
   0%   { transform: scale(0.9); filter: brightness(1.6); box-shadow: 0 0 24px #FFD54F; }
