@@ -496,6 +496,7 @@
       'rhythm-echo': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="14" y="14" width="22" height="22" rx="5" fill="#EF5350" stroke="#2C2C2C" stroke-width="2"/><rect x="44" y="14" width="22" height="22" rx="5" fill="#42A5F5" stroke="#2C2C2C" stroke-width="2"/><rect x="14" y="44" width="22" height="22" rx="5" fill="#FFEE58" stroke="#2C2C2C" stroke-width="2"/><rect x="44" y="44" width="22" height="22" rx="5" fill="#66BB6A" stroke="#2C2C2C" stroke-width="2"/><circle cx="55" cy="25" r="9" fill="none" stroke="#FFD54F" stroke-width="3"/><path d="M55 19 L55 31 M50 22 L60 28 M50 28 L60 22" stroke="#2C2C2C" stroke-width="1.5" fill="none" opacity="0.4"/></svg>',
       'math-sign': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="64" height="64" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="14" y="14" width="22" height="22" rx="5" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="2"/><text x="25" y="32" text-anchor="middle" font-size="18" font-weight="900" fill="#2C2C2C">+</text><rect x="44" y="14" width="22" height="22" rx="5" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="2"/><text x="55" y="32" text-anchor="middle" font-size="18" font-weight="900" fill="#2C2C2C">−</text><rect x="14" y="44" width="22" height="22" rx="5" fill="#C8E6C9" stroke="#2C2C2C" stroke-width="2"/><text x="25" y="62" text-anchor="middle" font-size="18" font-weight="900" fill="#2C2C2C">×</text><rect x="44" y="44" width="22" height="22" rx="5" fill="#FFE0B2" stroke="#2C2C2C" stroke-width="2"/><text x="55" y="62" text-anchor="middle" font-size="18" font-weight="900" fill="#2C2C2C">÷</text></svg>',
       'animal-sort': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="12" y="12" width="26" height="26" rx="5" fill="#FFE0B2" stroke="#2C2C2C" stroke-width="2"/><text x="25" y="33" text-anchor="middle" font-size="16">🦁</text><rect x="42" y="12" width="26" height="26" rx="5" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="2"/><text x="55" y="33" text-anchor="middle" font-size="16">🦅</text><rect x="12" y="42" width="26" height="26" rx="5" fill="#C8E6C9" stroke="#2C2C2C" stroke-width="2"/><text x="25" y="63" text-anchor="middle" font-size="16">🐟</text><rect x="42" y="42" width="26" height="26" rx="5" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="2"/><text x="55" y="63" text-anchor="middle" font-size="16">🐝</text></svg>',
+      'arrow-tap': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="12" y="12" width="26" height="26" rx="5" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="2"/><g transform="rotate(0 25 25)"><rect x="22" y="18" width="6" height="14" fill="#2C2C2C"/><polygon points="16,21 34,21 25,12" fill="#2C2C2C"/></g><rect x="42" y="12" width="26" height="26" rx="5" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="2"/><g transform="rotate(90 55 25)"><rect x="52" y="18" width="6" height="14" fill="#2C2C2C"/><polygon points="46,21 64,21 55,12" fill="#2C2C2C"/></g><rect x="12" y="42" width="26" height="26" rx="5" fill="#C8E6C9" stroke="#2C2C2C" stroke-width="2"/><g transform="rotate(-90 25 55)"><rect x="22" y="48" width="6" height="14" fill="#2C2C2C"/><polygon points="16,51 34,51 25,42" fill="#2C2C2C"/></g><rect x="42" y="42" width="26" height="26" rx="5" fill="#FFE0B2" stroke="#2C2C2C" stroke-width="2"/><g transform="rotate(180 55 55)"><rect x="52" y="48" width="6" height="14" fill="#2C2C2C"/><polygon points="46,51 64,51 55,42" fill="#2C2C2C"/></g></svg>',
     };
 
     // 카테고리 매핑
@@ -536,7 +537,8 @@
       'spot-the-difference': 'brain',
       'rhythm-echo': 'coop',
       'math-sign': 'math',
-      'animal-sort': 'knowledge'
+      'animal-sort': 'knowledge',
+      'arrow-tap': 'speed'
     };
 
     // 게임별 지원 인원수 표시 (정의 안 된 게임은 기본 '2-4명')
@@ -588,7 +590,8 @@
       { folder:'spot-the-difference', name:'틀린 그림 찾기', description:'두 그림에서 다른 부분을 먼저 찾으세요! 10개 테마 × 5라운드', icon:'🔍', color:'#FF6F61', grades:[1,2,3,4,5,6], playTime:'3~5분' },
       { folder:'rhythm-echo', name:'박자 따라하기', description:'박자 시퀀스를 기억하고 번갈아 가며 따라 치세요! 협력 메모리 게임', icon:'🥁', color:'#FF7043', grades:[1,2,3,4,5,6], playTime:'1~2분' },
       { folder:'math-sign', name:'부호 맞히기', description:'빈칸에 들어갈 사칙연산 부호(+ − × ÷)를 찾으세요!', icon:'➕', color:'#FB8C00', grades:[2,3,4,5,6], playTime:'1분' },
-      { folder:'animal-sort', name:'동물 분류', description:'동물을 보고 어느 무리에 속하는지 맞혀보세요! 포유류·조류·어류·곤충', icon:'🦁', color:'#8D6E63', grades:[1,2,3,4,5,6], playTime:'1분' }
+      { folder:'animal-sort', name:'동물 분류', description:'동물을 보고 어느 무리에 속하는지 맞혀보세요! 포유류·조류·어류·곤충', icon:'🦁', color:'#8D6E63', grades:[1,2,3,4,5,6], playTime:'1분' },
+      { folder:'arrow-tap', name:'방향 화살표', description:'화살표를 보고 같은 방향을 빠르게 터치!', icon:'🧭', color:'#7C4DFF', grades:[1,2,3,4,5,6], playTime:'1분' }
     ];
 
     const grid = document.getElementById('gameGrid');
