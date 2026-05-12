@@ -273,7 +273,7 @@ function createBgmManager() {
  * 런처 index.html의 CATEGORY_MAP과 동기화 유지
  */
 const _GAME_CATEGORY_MAP = {
-  'whack-a-mole': 'speed', 'reaction-race': 'speed', 'balloon-pop': 'speed', 'bomb-dodge': 'speed', 'arrow-tap': 'speed',
+  'reaction-race': 'speed', 'balloon-pop': 'speed', 'bomb-dodge': 'speed', 'arrow-tap': 'speed',
   'color-touch': 'brain', 'shape-match': 'brain', 'shadow-match': 'brain', 'missing-piece': 'brain',
   'mirror-match': 'brain', 'dots-and-boxes': 'brain', 'memory-match': 'brain', 'nim-game': 'brain',
   'quick-math': 'math', 'size-compare': 'math', 'color-count': 'math', 'more-or-less': 'math',
@@ -281,7 +281,7 @@ const _GAME_CATEGORY_MAP = {
   'ox-quiz': 'knowledge', 'initial-quiz': 'knowledge', 'capital-quiz': 'knowledge',
   'flag-quiz': 'knowledge', 'proverb-quiz': 'knowledge', 'english-word': 'knowledge',
   'animal-sort': 'knowledge',
-  'secret-code': 'coop', 'mirror-draw': 'coop', 'color-signal': 'coop', 'rhythm-echo': 'coop',
+  'secret-code': 'coop', 'color-signal': 'coop',
   'slide-puzzle': 'puzzle', 'maze-run': 'puzzle', 'pipe-connect': 'puzzle',
   'laser-reflect': 'puzzle', 'one-stroke': 'puzzle', 'dot-connect': 'puzzle',
   'spot-the-difference': 'brain',

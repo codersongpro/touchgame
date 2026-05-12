@@ -5,7 +5,7 @@
 //   → 새 게임 추가 시 사용자에게 즉시 표시됨
 // - 그 외 게임 파일들 (game.js, style.css 등) → 캐시 우선 (빠른 로딩 + 오프라인 지원)
 
-const CACHE_NAME = 'jjamjjami-gyosil-v8';
+const CACHE_NAME = 'jjamjjami-gyosil-v9';
 
 // Install: pre-cache the launcher
 self.addEventListener('install', function(event) {
