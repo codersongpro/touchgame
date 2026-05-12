@@ -354,11 +354,12 @@ body {
 }
 
 /* 버튼 내 SVG 돌 색상 변경 (player 색 틴트) */
-.take-buttons.p1 .take-btn:not(:disabled) .take-btn-icon circle:first-child {
+/* 메인 돌 원은 stroke 속성으로 식별, 하이라이트 원(작은 흰색)은 제외 */
+.take-buttons.p1 .take-btn:not(:disabled) .take-btn-icon circle[stroke] {
   fill: #5BBEF7;
   stroke: #29B6F6;
 }
-.take-buttons.p2 .take-btn:not(:disabled) .take-btn-icon circle:first-child {
+.take-buttons.p2 .take-btn:not(:disabled) .take-btn-icon circle[stroke] {
   fill: #EF7370;
   stroke: #EF5350;
 }

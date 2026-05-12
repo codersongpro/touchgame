@@ -211,9 +211,8 @@
 
   // ─── 돌 SVG 생성 ──────────────────────────────────────────────────────────
   function makeStoneSVG() {
-    // Each stone slightly random shade for visual variety
-    var shades = ['#78909C', '#607D8B', '#6D8A97', '#7A9299'];
-    var fill = shades[Math.floor(Math.random() * shades.length)];
+    // 모든 돌은 동일한 색상으로 통일 (가져갈 때 자연스럽게 보이도록)
+    var fill = '#78909C';
     var stroke = '#546E7A';
     return (
       '<svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true">' +
