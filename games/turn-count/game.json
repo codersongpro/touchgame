@@ -1,0 +1,1 @@
+{ "name": "번갈아 카운트", "description": "P1과 P2가 번갈아 숫자를 눌러 목표까지 카운트! 협력 순서 게임", "icon": "🔢", "color": "#7C4DFF", "grades": [1,2,3,4,5,6], "playTime": "1~2분" }
