@@ -193,6 +193,19 @@ body {
   100% { transform: scale(1); }
 }
 
+/* 오답 페널티: 카운트가 후퇴할 때 빨간색 흔들림 */
+.count-now-val.penalty {
+  animation: countPenalty 0.45s ease;
+}
+@keyframes countPenalty {
+  0%   { transform: scale(1); color: inherit; }
+  20%  { transform: scale(1.25) translateX(-6px); color: #E53935; }
+  40%  { transform: scale(1.25) translateX(6px); color: #E53935; }
+  60%  { transform: scale(1.25) translateX(-4px); color: #E53935; }
+  80%  { transform: scale(1.1); color: #E53935; }
+  100% { transform: scale(1); color: inherit; }
+}
+
 .count-arrow {
   font-size: 1.6rem;
   font-weight: 900;

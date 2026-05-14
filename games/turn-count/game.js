@@ -5,8 +5,9 @@
 
   // ─── 라운드 데이터 (목표 숫자 5라운드) ───────────────────────────────────
   var ROUND_GOALS = [10, 15, 20, 25, 30];
+  var ROUND_TIMES = [20, 18, 16, 14, 12]; // 라운드별 시간 단축 (난이도 상승)
   var TOTAL_ROUNDS = ROUND_GOALS.length;
-  var ROUND_TIME = 25; // seconds per round
+  var WRONG_PENALTY = 2; // 오답 시 카운트 후퇴값
 
   // ─── 타이머 관리 ─────────────────────────────────────────────────────────
   var timers = [];
@@ -233,8 +234,9 @@
     tapP1NumEl.textContent = nextOdd;
     tapP2NumEl.textContent = nextEven;
 
-    tapP1Btn.disabled = (nextPlayer !== 0) || locked;
-    tapP2Btn.disabled = (nextPlayer !== 1) || locked;
+    // A안: 두 버튼 항상 활성화 (잠금 중이 아니면). 잘못 누르면 페널티.
+    tapP1Btn.disabled = locked;
+    tapP2Btn.disabled = locked;
   }
 
   // ─── 카운트 UI ──────────────────────────────────────────────────────────
@@ -269,7 +271,7 @@
 
   // ─── 라운드 타이머 ───────────────────────────────────────────────────────
   function startRoundTimer() {
-    timeLeft = ROUND_TIME;
+    timeLeft = ROUND_TIMES[currentRound];
     updateTimerUI();
     if (roundTimer) { clearInterval(roundTimer); roundTimer = null; }
     roundTimer = setInterval(function () {
@@ -292,11 +294,21 @@
   function handleTap(player) {
     if (locked) return;
     if (player !== nextPlayer) {
+      // 잘못된 차례 페널티: 카운트 후퇴 + 흔들림 + 오답음
       sounds.play('wrong');
       var boardEl = player === 0 ? board1El : board2El;
       boardEl.classList.remove('shake');
       void boardEl.offsetWidth;
       boardEl.classList.add('shake');
+
+      // 카운트를 WRONG_PENALTY만큼 후퇴 (0 미만으로는 안 내려감)
+      currentCount = Math.max(0, currentCount - WRONG_PENALTY);
+      nextNumber = currentCount + 1;
+      updateCountUI(true);
+      countNowEl.classList.remove('penalty');
+      void countNowEl.offsetWidth;
+      countNowEl.classList.add('penalty');
+      updateActiveBoard();
       return;
     }
 
