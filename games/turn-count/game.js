@@ -5,7 +5,7 @@
 
   // ─── 라운드 데이터 (목표 숫자 5라운드) ───────────────────────────────────
   var ROUND_GOALS = [10, 15, 20, 25, 30];
-  var ROUND_TIMES = [20, 18, 16, 14, 12]; // 라운드별 시간 단축 (난이도 상승)
+  var ROUND_TIMES = [18, 16, 14, 12, 10]; // 라운드별 시간 단축 (난이도 상승)
   var TOTAL_ROUNDS = ROUND_GOALS.length;
   var WRONG_PENALTY = 2; // 오답 시 카운트 후퇴값
 
