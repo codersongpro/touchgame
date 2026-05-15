@@ -288,6 +288,254 @@ function svgAirplane() {
 }
 
 // ══════════════════════════════════════════════════════════════
+// ADDITIONAL SVG ITEMS (확장)
+// ══════════════════════════════════════════════════════════════
+
+function svgLion() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<circle cx="30" cy="32" r="22" fill="#FF8F00" stroke="#E65100" stroke-width="1.5"/>'
+    + '<circle cx="30" cy="32" r="14" fill="#FFD54F" stroke="#FFA000" stroke-width="1.2"/>'
+    + '<circle cx="24" cy="29" r="2.2" fill="#333"/>'
+    + '<circle cx="36" cy="29" r="2.2" fill="#333"/>'
+    + '<path d="M27 36 Q30 39 33 36" fill="none" stroke="#333" stroke-width="1.6" stroke-linecap="round"/>'
+    + '<path d="M30 34 L28 37 L32 37 Z" fill="#5D4037"/>'
+    + '<line x1="14" y1="28" x2="22" y2="30" stroke="#E65100" stroke-width="1.2"/>'
+    + '<line x1="14" y1="32" x2="22" y2="32" stroke="#E65100" stroke-width="1.2"/>'
+    + '<line x1="38" y1="30" x2="46" y2="28" stroke="#E65100" stroke-width="1.2"/>'
+    + '<line x1="38" y1="32" x2="46" y2="32" stroke="#E65100" stroke-width="1.2"/>'
+    + '</svg>';
+}
+
+function svgElephant() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<ellipse cx="34" cy="34" rx="20" ry="14" fill="#90A4AE" stroke="#546E7A" stroke-width="1.5"/>'
+    + '<circle cx="20" cy="28" r="10" fill="#90A4AE" stroke="#546E7A" stroke-width="1.5"/>'
+    + '<path d="M14 32 Q4 36 6 48 Q10 50 12 44 Q14 38 16 36" fill="#90A4AE" stroke="#546E7A" stroke-width="1.5"/>'
+    + '<ellipse cx="16" cy="22" rx="6" ry="8" fill="#78909C" stroke="#546E7A" stroke-width="1.2"/>'
+    + '<circle cx="22" cy="27" r="1.6" fill="#333"/>'
+    + '<rect x="22" y="44" width="3" height="8" fill="#90A4AE" stroke="#546E7A" stroke-width="1"/>'
+    + '<rect x="32" y="46" width="3" height="6" fill="#90A4AE" stroke="#546E7A" stroke-width="1"/>'
+    + '<rect x="42" y="46" width="3" height="6" fill="#90A4AE" stroke="#546E7A" stroke-width="1"/>'
+    + '</svg>';
+}
+
+function svgTiger() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<ellipse cx="30" cy="34" rx="22" ry="18" fill="#FF8F00" stroke="#BF360C" stroke-width="1.5"/>'
+    + '<path d="M14 28 L16 36 M22 22 L20 32 M30 20 L30 30 M38 22 L40 32 M46 28 L44 36" stroke="#3E2723" stroke-width="2.5" stroke-linecap="round"/>'
+    + '<circle cx="22" cy="32" r="2.4" fill="#333"/>'
+    + '<circle cx="38" cy="32" r="2.4" fill="#333"/>'
+    + '<path d="M27 40 Q30 44 33 40" fill="none" stroke="#333" stroke-width="1.8" stroke-linecap="round"/>'
+    + '<path d="M30 36 L27 39 L33 39 Z" fill="#3E2723"/>'
+    + '<polygon points="14,16 18,8 22,18" fill="#FF8F00" stroke="#BF360C" stroke-width="1.2"/>'
+    + '<polygon points="38,18 42,8 46,16" fill="#FF8F00" stroke="#BF360C" stroke-width="1.2"/>'
+    + '</svg>';
+}
+
+function svgTurtle() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<ellipse cx="30" cy="34" rx="20" ry="14" fill="#43A047" stroke="#1B5E20" stroke-width="1.5"/>'
+    + '<path d="M30 22 L30 46 M14 30 L46 30 M14 38 L46 38" stroke="#1B5E20" stroke-width="1.2"/>'
+    + '<circle cx="22" cy="26" r="2.5" fill="#66BB6A" stroke="#1B5E20" stroke-width="1"/>'
+    + '<circle cx="38" cy="26" r="2.5" fill="#66BB6A" stroke="#1B5E20" stroke-width="1"/>'
+    + '<circle cx="22" cy="42" r="2.5" fill="#66BB6A" stroke="#1B5E20" stroke-width="1"/>'
+    + '<circle cx="38" cy="42" r="2.5" fill="#66BB6A" stroke="#1B5E20" stroke-width="1"/>'
+    + '<circle cx="50" cy="34" r="5" fill="#66BB6A" stroke="#1B5E20" stroke-width="1.5"/>'
+    + '<circle cx="52" cy="33" r="1" fill="#333"/>'
+    + '</svg>';
+}
+
+function svgPenguin() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<ellipse cx="30" cy="36" rx="16" ry="20" fill="#212121" stroke="#000" stroke-width="1.5"/>'
+    + '<ellipse cx="30" cy="38" rx="10" ry="14" fill="#FFFFFF" stroke="#BDBDBD" stroke-width="1"/>'
+    + '<circle cx="25" cy="24" r="2" fill="#FFF"/>'
+    + '<circle cx="35" cy="24" r="2" fill="#FFF"/>'
+    + '<circle cx="25" cy="24" r="1" fill="#000"/>'
+    + '<circle cx="35" cy="24" r="1" fill="#000"/>'
+    + '<polygon points="28,28 32,28 30,32" fill="#FF9800" stroke="#E65100" stroke-width="0.8"/>'
+    + '<ellipse cx="14" cy="40" rx="4" ry="2.5" fill="#212121"/>'
+    + '<ellipse cx="46" cy="40" rx="4" ry="2.5" fill="#212121"/>'
+    + '<polygon points="26,54 30,52 30,58" fill="#FF9800"/>'
+    + '<polygon points="34,54 30,52 30,58" fill="#FF9800"/>'
+    + '</svg>';
+}
+
+function svgGlasses() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<circle cx="18" cy="32" r="11" fill="rgba(100,181,246,0.25)" stroke="#1565C0" stroke-width="2.5"/>'
+    + '<circle cx="42" cy="32" r="11" fill="rgba(100,181,246,0.25)" stroke="#1565C0" stroke-width="2.5"/>'
+    + '<line x1="29" y1="32" x2="31" y2="32" stroke="#1565C0" stroke-width="2.5"/>'
+    + '<line x1="7" y1="32" x2="2" y2="28" stroke="#1565C0" stroke-width="2.5" stroke-linecap="round"/>'
+    + '<line x1="53" y1="32" x2="58" y2="28" stroke="#1565C0" stroke-width="2.5" stroke-linecap="round"/>'
+    + '</svg>';
+}
+
+function svgBag() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<path d="M18 22 Q18 14 30 14 Q42 14 42 22" fill="none" stroke="#6D4C41" stroke-width="3" stroke-linecap="round"/>'
+    + '<rect x="10" y="22" width="40" height="32" rx="4" fill="#FF8A65" stroke="#BF360C" stroke-width="1.8"/>'
+    + '<rect x="14" y="32" width="32" height="14" rx="2" fill="#FFAB91" stroke="#BF360C" stroke-width="1.2"/>'
+    + '<circle cx="30" cy="39" r="2.5" fill="#FFD54F" stroke="#FF8F00" stroke-width="1"/>'
+    + '</svg>';
+}
+
+function svgBook() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="8" y="14" width="44" height="34" rx="2" fill="#5D4037" stroke="#3E2723" stroke-width="1.5"/>'
+    + '<rect x="10" y="16" width="40" height="30" rx="1" fill="#FFCC80"/>'
+    + '<line x1="30" y1="16" x2="30" y2="46" stroke="#8D6E63" stroke-width="2"/>'
+    + '<line x1="14" y1="22" x2="26" y2="22" stroke="#6D4C41" stroke-width="1"/>'
+    + '<line x1="14" y1="28" x2="26" y2="28" stroke="#6D4C41" stroke-width="1"/>'
+    + '<line x1="14" y1="34" x2="26" y2="34" stroke="#6D4C41" stroke-width="1"/>'
+    + '<line x1="34" y1="22" x2="46" y2="22" stroke="#6D4C41" stroke-width="1"/>'
+    + '<line x1="34" y1="28" x2="46" y2="28" stroke="#6D4C41" stroke-width="1"/>'
+    + '<line x1="34" y1="34" x2="46" y2="34" stroke="#6D4C41" stroke-width="1"/>'
+    + '</svg>';
+}
+
+function svgPencil() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="14" y="20" width="32" height="10" fill="#FFD54F" stroke="#F57F17" stroke-width="1.5" transform="rotate(45,30,25)"/>'
+    + '<polygon points="46,8 50,4 54,10 54,14" fill="#FFCC80" stroke="#BF360C" stroke-width="1.2"/>'
+    + '<polygon points="50,4 54,10 50,8" fill="#212121"/>'
+    + '<rect x="6" y="44" width="14" height="10" fill="#EF5350" stroke="#C62828" stroke-width="1.5" transform="rotate(45,12,48)"/>'
+    + '<rect x="4" y="50" width="6" height="10" fill="#90A4AE" stroke="#455A64" stroke-width="1.2" transform="rotate(45,7,54)"/>'
+    + '</svg>';
+}
+
+function svgUmbrella() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<path d="M6 30 Q6 12 30 10 Q54 12 54 30 Z" fill="#EF5350" stroke="#B71C1C" stroke-width="1.8"/>'
+    + '<path d="M6 30 Q14 26 18 30 Q22 26 30 30 Q38 26 42 30 Q46 26 54 30" fill="none" stroke="#B71C1C" stroke-width="1.5"/>'
+    + '<path d="M18 12 Q14 22 18 30" fill="#F44336" stroke="#B71C1C" stroke-width="1"/>'
+    + '<path d="M42 12 Q46 22 42 30" fill="#F44336" stroke="#B71C1C" stroke-width="1"/>'
+    + '<line x1="30" y1="10" x2="30" y2="50" stroke="#3E2723" stroke-width="2.5"/>'
+    + '<path d="M30 50 Q26 52 28 56" fill="none" stroke="#3E2723" stroke-width="2.5" stroke-linecap="round"/>'
+    + '</svg>';
+}
+
+function svgCup() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<path d="M14 18 L20 50 L40 50 L46 18 Z" fill="#FFFFFF" stroke="#455A64" stroke-width="2"/>'
+    + '<ellipse cx="30" cy="18" rx="16" ry="4" fill="#90CAF9" stroke="#1565C0" stroke-width="1.5"/>'
+    + '<path d="M46 24 Q54 26 54 34 Q54 42 46 42" fill="none" stroke="#455A64" stroke-width="2.5"/>'
+    + '<path d="M46 28 Q50 30 50 34 Q50 38 46 38" fill="none" stroke="#455A64" stroke-width="1.5"/>'
+    + '</svg>';
+}
+
+function svgCake() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="10" y="32" width="40" height="20" rx="2" fill="#FFCC80" stroke="#BF360C" stroke-width="1.5"/>'
+    + '<path d="M10 32 Q14 28 18 32 Q22 28 26 32 Q30 28 34 32 Q38 28 42 32 Q46 28 50 32" fill="#FFFFFF" stroke="#BF360C" stroke-width="1.2"/>'
+    + '<rect x="16" y="38" width="3" height="8" fill="#E91E63"/>'
+    + '<rect x="28" y="38" width="3" height="8" fill="#42A5F5"/>'
+    + '<rect x="40" y="38" width="3" height="8" fill="#FFD600"/>'
+    + '<line x1="28" y1="14" x2="28" y2="20" stroke="#5D4037" stroke-width="2"/>'
+    + '<line x1="28" y1="20" x2="28" y2="32" stroke="#FFE082" stroke-width="2.5"/>'
+    + '<path d="M28 8 Q26 14 28 16 Q30 14 28 8 Z" fill="#FF9800"/>'
+    + '</svg>';
+}
+
+function svgPizza() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<polygon points="30,8 4,52 56,52" fill="#FFCC80" stroke="#BF360C" stroke-width="1.8"/>'
+    + '<polygon points="30,12 8,50 52,50" fill="#FFA726"/>'
+    + '<polygon points="30,16 12,48 48,48" fill="#FF7043"/>'
+    + '<circle cx="22" cy="32" r="3" fill="#C62828"/>'
+    + '<circle cx="34" cy="28" r="3" fill="#C62828"/>'
+    + '<circle cx="38" cy="40" r="3" fill="#C62828"/>'
+    + '<circle cx="26" cy="42" r="3" fill="#C62828"/>'
+    + '<ellipse cx="30" cy="36" rx="2" ry="3" fill="#388E3C"/>'
+    + '</svg>';
+}
+
+function svgBalloon() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<ellipse cx="30" cy="22" rx="18" ry="22" fill="#EF5350" stroke="#B71C1C" stroke-width="1.8"/>'
+    + '<ellipse cx="22" cy="14" rx="6" ry="8" fill="rgba(255,255,255,0.4)"/>'
+    + '<polygon points="28,42 32,42 30,46" fill="#B71C1C"/>'
+    + '<path d="M30 46 Q26 52 30 56 Q34 52 30 46" fill="none" stroke="#3E2723" stroke-width="1.5"/>'
+    + '</svg>';
+}
+
+function svgBike() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<circle cx="14" cy="42" r="10" fill="none" stroke="#212121" stroke-width="2.5"/>'
+    + '<circle cx="14" cy="42" r="3" fill="#424242"/>'
+    + '<circle cx="46" cy="42" r="10" fill="none" stroke="#212121" stroke-width="2.5"/>'
+    + '<circle cx="46" cy="42" r="3" fill="#424242"/>'
+    + '<line x1="14" y1="42" x2="30" y2="42" stroke="#42A5F5" stroke-width="3"/>'
+    + '<line x1="30" y1="42" x2="46" y2="42" stroke="#42A5F5" stroke-width="3"/>'
+    + '<line x1="30" y1="42" x2="36" y2="22" stroke="#42A5F5" stroke-width="3"/>'
+    + '<line x1="14" y1="42" x2="22" y2="22" stroke="#42A5F5" stroke-width="3"/>'
+    + '<line x1="22" y1="22" x2="40" y2="22" stroke="#212121" stroke-width="2.5"/>'
+    + '<rect x="34" y="36" width="6" height="4" rx="1" fill="#3E2723"/>'
+    + '</svg>';
+}
+
+function svgTrain() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="6" y="20" width="38" height="24" rx="3" fill="#EF5350" stroke="#B71C1C" stroke-width="1.8"/>'
+    + '<rect x="44" y="14" width="12" height="30" rx="2" fill="#42A5F5" stroke="#1565C0" stroke-width="1.8"/>'
+    + '<rect x="12" y="26" width="8" height="8" fill="#E1F5FE" stroke="#1565C0" stroke-width="1.2"/>'
+    + '<rect x="24" y="26" width="8" height="8" fill="#E1F5FE" stroke="#1565C0" stroke-width="1.2"/>'
+    + '<rect x="46" y="20" width="8" height="6" fill="#E1F5FE" stroke="#1565C0" stroke-width="1.2"/>'
+    + '<circle cx="14" cy="48" r="4" fill="#212121"/>'
+    + '<circle cx="26" cy="48" r="4" fill="#212121"/>'
+    + '<circle cx="38" cy="48" r="4" fill="#212121"/>'
+    + '<circle cx="50" cy="48" r="4" fill="#212121"/>'
+    + '<rect x="34" y="8" width="6" height="14" fill="#90A4AE" stroke="#455A64" stroke-width="1.2"/>'
+    + '<ellipse cx="37" cy="8" rx="5" ry="2" fill="#CFD8DC"/>'
+    + '</svg>';
+}
+
+function svgChair() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="16" y="10" width="28" height="6" rx="2" fill="#8D6E63" stroke="#3E2723" stroke-width="1.5"/>'
+    + '<rect x="16" y="20" width="28" height="6" rx="2" fill="#8D6E63" stroke="#3E2723" stroke-width="1.5"/>'
+    + '<rect x="14" y="30" width="32" height="8" rx="2" fill="#A1887F" stroke="#3E2723" stroke-width="1.8"/>'
+    + '<rect x="16" y="38" width="4" height="16" fill="#8D6E63" stroke="#3E2723" stroke-width="1.5"/>'
+    + '<rect x="40" y="38" width="4" height="16" fill="#8D6E63" stroke="#3E2723" stroke-width="1.5"/>'
+    + '<rect x="16" y="10" width="4" height="22" fill="#8D6E63" stroke="#3E2723" stroke-width="1.5"/>'
+    + '<rect x="40" y="10" width="4" height="22" fill="#8D6E63" stroke="#3E2723" stroke-width="1.5"/>'
+    + '</svg>';
+}
+
+function svgHat() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<ellipse cx="30" cy="44" rx="26" ry="6" fill="#5D4037" stroke="#3E2723" stroke-width="1.8"/>'
+    + '<path d="M14 44 Q14 16 30 14 Q46 16 46 44 Z" fill="#3E2723" stroke="#1A0F0A" stroke-width="1.8"/>'
+    + '<rect x="14" y="38" width="32" height="6" fill="#D32F2F" stroke="#B71C1C" stroke-width="1.2"/>'
+    + '<rect x="28" y="36" width="6" height="10" fill="#FFD54F" stroke="#F57F17" stroke-width="1"/>'
+    + '</svg>';
+}
+
+function svgBurger() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<path d="M8 22 Q8 10 30 10 Q52 10 52 22 Z" fill="#FFB74D" stroke="#BF360C" stroke-width="1.8"/>'
+    + '<circle cx="20" cy="16" r="1.2" fill="#FFF8E1"/>'
+    + '<circle cx="30" cy="14" r="1.2" fill="#FFF8E1"/>'
+    + '<circle cx="40" cy="16" r="1.2" fill="#FFF8E1"/>'
+    + '<rect x="6" y="22" width="48" height="6" fill="#A5D6A7" stroke="#2E7D32" stroke-width="1"/>'
+    + '<rect x="6" y="28" width="48" height="6" fill="#FFEB3B" stroke="#F57F17" stroke-width="1"/>'
+    + '<rect x="6" y="34" width="48" height="8" fill="#6D4C41" stroke="#3E2723" stroke-width="1.5"/>'
+    + '<path d="M8 42 Q8 50 30 50 Q52 50 52 42 Z" fill="#FFB74D" stroke="#BF360C" stroke-width="1.8"/>'
+    + '</svg>';
+}
+
+function svgMilk() {
+  return '<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">'
+    + '<rect x="18" y="14" width="24" height="40" rx="2" fill="#FFFFFF" stroke="#1565C0" stroke-width="2"/>'
+    + '<polygon points="18,14 30,6 42,14" fill="#FFFFFF" stroke="#1565C0" stroke-width="2"/>'
+    + '<line x1="18" y1="14" x2="42" y2="14" stroke="#1565C0" stroke-width="2"/>'
+    + '<rect x="22" y="30" width="16" height="14" fill="#42A5F5" stroke="#1565C0" stroke-width="1.5"/>'
+    + '<text x="30" y="40" text-anchor="middle" font-size="8" font-weight="900" fill="#FFFFFF">MILK</text>'
+    + '<line x1="30" y1="14" x2="30" y2="6" stroke="#1565C0" stroke-width="1"/>'
+    + '</svg>';
+}
+
+// ══════════════════════════════════════════════════════════════
 // WORD POOL
 // Each entry: { word, svgFn }
 // initials is computed automatically via getInitials()
@@ -314,6 +562,26 @@ var WORD_POOL = [
   { word: '로켓',   svgFn: svgRocket     },  // ㄹㅋ
   { word: '집',     svgFn: svgHouse      },  // ㅈ
   { word: '비행기', svgFn: svgAirplane   },  // ㅂㅎㄱ
+  { word: '사자',   svgFn: svgLion       },  // ㅅㅈ
+  { word: '코끼리', svgFn: svgElephant   },  // ㅋㄲㄹ
+  { word: '호랑이', svgFn: svgTiger      },  // ㅎㄹㅇ
+  { word: '거북이', svgFn: svgTurtle     },  // ㄱㅂㅇ
+  { word: '펭귄',   svgFn: svgPenguin    },  // ㅍㄱ
+  { word: '안경',   svgFn: svgGlasses    },  // ㅇㄱ
+  { word: '가방',   svgFn: svgBag        },  // ㄱㅂ
+  { word: '책',     svgFn: svgBook       },  // ㅊ
+  { word: '연필',   svgFn: svgPencil     },  // ㅇㅍ
+  { word: '우산',   svgFn: svgUmbrella   },  // ㅇㅅ
+  { word: '컵',     svgFn: svgCup        },  // ㅋ
+  { word: '케이크', svgFn: svgCake       },  // ㅋㅇㅋ
+  { word: '피자',   svgFn: svgPizza      },  // ㅍㅈ
+  { word: '풍선',   svgFn: svgBalloon    },  // ㅍㅅ
+  { word: '자전거', svgFn: svgBike       },  // ㅈㅈㄱ
+  { word: '기차',   svgFn: svgTrain      },  // ㄱㅊ
+  { word: '의자',   svgFn: svgChair      },  // ㅇㅈ
+  { word: '모자',   svgFn: svgHat        },  // ㅁㅈ
+  { word: '햄버거', svgFn: svgBurger     },  // ㅎㅂㄱ
+  { word: '우유',   svgFn: svgMilk       },  // ㅇㅇ
 ];
 
 // Pre-compute initials for each word
