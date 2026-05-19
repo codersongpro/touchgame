@@ -16,44 +16,17 @@ const PLAYER_CONFIG = [
 ];
 
 // ── Hand SVG Library (comic style, viewBox 0 0 90 90) ───────
-function handRock() {
+// 시스템 이모지 폰트를 활용한 손 아이콘 (OS별 컬러 이모지 그대로 렌더)
+function emojiSvg(emoji) {
   return `<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="45" cy="58" rx="32" ry="26" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="3"/>
-    <path d="M22 42 Q22 36 28 36 Q34 36 34 42 Z" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <path d="M36 38 Q36 32 42 32 Q48 32 48 38 Z" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <path d="M50 38 Q50 32 56 32 Q62 32 62 38 Z" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <path d="M64 42 Q64 36 70 36 Q76 36 76 42 Z" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <path d="M18 60 Q10 50 16 44 Q22 40 26 50 Z" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <path d="M30 50 Q32 52 34 50" fill="none" stroke="#2C2C2C" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M42 50 Q44 52 46 50" fill="none" stroke="#2C2C2C" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M54 50 Q56 52 58 50" fill="none" stroke="#2C2C2C" stroke-width="1.8" stroke-linecap="round"/>
+    <text x="45" y="60" text-anchor="middle" font-size="64"
+          font-family="'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji','Twemoji Mozilla',sans-serif">${emoji}</text>
   </svg>`;
 }
 
-function handPaper() {
-  return `<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="45" cy="62" rx="24" ry="20" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="3"/>
-    <rect x="15" y="36" width="9" height="32" rx="4.5" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <rect x="27" y="22" width="10" height="46" rx="5" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <rect x="40" y="14" width="10" height="54" rx="5" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <rect x="53" y="20" width="10" height="48" rx="5" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <rect x="66" y="32" width="9" height="36" rx="4.5" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <path d="M35 60 Q45 64 55 60" fill="none" stroke="#2C2C2C" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
-  </svg>`;
-}
-
-function handScissors() {
-  return `<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="45" cy="64" rx="26" ry="20" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="3"/>
-    <rect x="29" y="14" width="10" height="52" rx="5" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"
-          transform="rotate(-15 34 40)"/>
-    <rect x="51" y="14" width="10" height="52" rx="5" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"
-          transform="rotate(15 56 40)"/>
-    <path d="M62 56 Q70 56 70 62 Q70 68 62 68 Z" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <path d="M67 64 Q74 64 74 70 Q74 76 67 76 Z" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-    <path d="M22 56 Q14 50 18 44 Q24 40 28 52 Z" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/>
-  </svg>`;
-}
+function handRock()     { return emojiSvg('✊'); }
+function handPaper()    { return emojiSvg('✋'); }
+function handScissors() { return emojiSvg('✌️'); }
 
 // ── Hand definitions ────────────────────────────────────────
 const HANDS = {
@@ -366,20 +339,13 @@ function populateAnswerBtns() {
       btn.dataset.player = i;
       btn.dataset.choice = handKey;
       btn.setAttribute('aria-label', `P${i + 1} ${hand.name}`);
+      btn.style.setProperty('--player-color', PLAYER_CONFIG[i].dot);
 
-      // 손 SVG 본문만 추출해서 내부 g에 삽입
-      const handBody = hand.svg()
-        .replace('<svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">', '')
-        .replace('</svg>', '');
-
-      btn.innerHTML = `<svg viewBox="0 0 220 70" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <rect x="2" y="2" width="216" height="66" rx="16" ry="16"
-              fill="#FFFFFF" stroke="${PLAYER_CONFIG[i].dot}" stroke-width="3"/>
-        <g transform="translate(8 4) scale(0.7)">${handBody}</g>
-        <text x="145" y="42" text-anchor="middle" dominant-baseline="middle"
-              font-family="'Pretendard Variable',-apple-system,'Noto Sans KR',sans-serif"
-              font-size="26" font-weight="900" fill="#2C2C2C">${hand.name}</text>
-      </svg>`;
+      const emojiMap = { rock: '✊', paper: '✋', scissors: '✌️' };
+      btn.innerHTML = `
+        <span class="answer-emoji" aria-hidden="true">${emojiMap[handKey]}</span>
+        <span class="answer-label">${hand.name}</span>
+      `;
 
       onTap(btn, () => handleAnswerTap(i, handKey, btn));
       grid.appendChild(btn);
