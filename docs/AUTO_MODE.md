@@ -1,6 +1,6 @@
 # 자동 모드 실행 절차
 
-매일 한국시간 오전 10시에 cron이 트리거할 때 Claude가 따라야 할 단계별 절차.
+매일 한국시간 오전 10시에 cron이 트리거할 때 Claude가 따라야 할 단계별 절차. **한 번의 실행에서 게임 2개를 연속으로 제작·검증·푸시한다** (별도 커밋, 카테고리 다양성 우선).
 
 ---
 
@@ -49,6 +49,12 @@ node scripts/auto-add-game-helpers.js list-existing-folders
 
 선택한 게임의 폴더명이 위 리스트에 있으면 → 다음 후보 선택.
 모든 후보 소진 시 → **Step 2-A (자율 생성)** 으로 이동.
+
+### 게임 2의 선택 규칙
+게임 1을 완료(커밋·푸시)한 뒤 게임 2를 시작할 때:
+- `stats`를 **다시** 실행해 게임 1이 추가된 후의 분포를 본다.
+- 게임 1과 **다른 카테고리** 후보를 우선한다. 게임 1이 speed였다면 게임 2는 coop/math 등 다른 부족 카테고리.
+- 같은 카테고리에만 후보가 남아 있으면 같은 카테고리도 허용 (다양성보다 "그래도 한 개 더 추가"가 우선).
 
 ---
 
@@ -123,12 +129,12 @@ git diff --name-only | grep -q "^shared/" && echo "VIOLATION: shared 수정됨" 
 ## Step 7-OK. 통과 시: 커밋 + 푸시
 
 ```bash
-git add games/{folder}/ games/registry.json index.html
+git add games/{folder}/ games/registry.json index.html shared/engine.js
 git commit -m "Auto-add: {게임 이름} ({카테고리}, 패턴 {A|B|C})
 
 선택 근거: {부족 카테고리 / 메커니즘 다양성}
 데이터: {n}개
-검증: 정적 17/17, 브라우저 정상, 자가 게이트 6/6
+검증: 정적 19/19, 브라우저 정상, 자가 게이트 6/6
 실행: 자동 (KST {timestamp})
 
 Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
@@ -136,7 +142,9 @@ Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"
 git push origin master
 ```
 
-푸시 실패 시 → 로컬 커밋 유지하고 종료. 다음날 10시 재시도.
+푸시 실패 시 → 로컬 커밋 유지하고 **다음 게임 시도 계속**. 첫 게임 푸시 실패해도 두 번째 게임은 그대로 시도 (둘 다 별도 커밋이라 게임 1 커밋이 살아 있고 다음날 push 재시도 됨).
+
+**게임 1이 통과·푸시되면 → Step 1로 돌아가 게임 2 제작 시작** (`stats` 재실행, 카테고리 다양성 우선). 게임 2가 끝나면 그날 작업 종료.
 
 ---
 
@@ -150,8 +158,10 @@ node scripts/auto-add-game-helpers.js discard {folder}
 node scripts/auto-add-game-helpers.js recent-failures
 ```
 
-`blockedForToday: true` (3회 도달) → 그날 작업 중단.
-아니면 → Step 2로 돌아가 다음 후보 시도.
+`blockedForToday: true` (게임 1·2 합산 누적 3회 도달) → 그날 작업 중단.
+아니면 → Step 2로 돌아가 같은 자리(게임 1 또는 게임 2) 다음 후보 시도.
+
+게임 2가 누적 실패 3회로 막혀도 게임 1은 그대로 유지된다.
 
 ---
 
