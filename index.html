@@ -498,6 +498,7 @@
       'jamo-merge': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="10" y="22" width="20" height="32" rx="4" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="2"/><text x="20" y="48" text-anchor="middle" font-size="20" font-weight="900" fill="#2C2C2C">ㄱ</text><text x="38" y="44" text-anchor="middle" font-size="16" font-weight="900" fill="#43A047">+</text><rect x="46" y="22" width="20" height="32" rx="4" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="2"/><text x="56" y="48" text-anchor="middle" font-size="20" font-weight="900" fill="#2C2C2C">ㅏ</text><circle cx="40" cy="64" r="9" fill="#FFD54F" stroke="#2C2C2C" stroke-width="2"/><text x="40" y="69" text-anchor="middle" font-size="12" font-weight="900" fill="#2C2C2C">가</text></svg>',
       'rps-react': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><circle cx="22" cy="40" r="13" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/><circle cx="40" cy="40" r="13" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/><circle cx="58" cy="40" r="13" fill="#FFD7A8" stroke="#2C2C2C" stroke-width="2.5"/><text x="22" y="46" text-anchor="middle" font-size="16">✊</text><text x="40" y="46" text-anchor="middle" font-size="16">✋</text><text x="58" y="46" text-anchor="middle" font-size="16">✌️</text><text x="40" y="68" text-anchor="middle" font-size="9" font-weight="900" fill="#7B1FA2">반사</text></svg>',
       'chase-tap': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><path d="M16 22 Q32 56 48 32 Q60 14 70 50" fill="none" stroke="#FFD54F" stroke-width="2.5" stroke-dasharray="3 4" stroke-linecap="round"/><circle cx="16" cy="22" r="7" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="2" opacity="0.65"/><circle cx="16" cy="22" r="3" fill="#EF5350" opacity="0.65"/><circle cx="48" cy="32" r="7" fill="#C8E6C9" stroke="#2C2C2C" stroke-width="2" opacity="0.75"/><circle cx="48" cy="32" r="3" fill="#EF5350" opacity="0.75"/><circle cx="62" cy="56" r="11" fill="#FFE0B2" stroke="#2C2C2C" stroke-width="2.5"/><circle cx="62" cy="56" r="7" fill="#fff" stroke="#2C2C2C" stroke-width="1.5"/><circle cx="62" cy="56" r="3.5" fill="#EF5350" stroke="#2C2C2C" stroke-width="1"/></svg>',
+      'color-mix': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><circle cx="26" cy="36" r="14" fill="#E53935" stroke="#2C2C2C" stroke-width="2.5" opacity="0.85"/><circle cx="46" cy="36" r="14" fill="#FDD835" stroke="#2C2C2C" stroke-width="2.5" opacity="0.85"/><circle cx="36" cy="58" r="11" fill="#FB8C00" stroke="#2C2C2C" stroke-width="2.5"/><text x="36" y="63" text-anchor="middle" font-size="9" font-weight="900" fill="#FFFFFF">MIX</text><text x="62" y="68" text-anchor="middle" font-size="9" font-weight="900" fill="#FF7043">협력</text></svg>',
     };
 
     // 카테고리 매핑
@@ -540,7 +541,8 @@
       'sum-relay': 'coop',
       'jamo-merge': 'coop',
       'rps-react': 'speed',
-      'chase-tap': 'speed'
+      'chase-tap': 'speed',
+      'color-mix': 'coop'
     };
 
     // 게임별 지원 인원수 표시 (정의 안 된 게임은 기본 '2-4명')
@@ -551,6 +553,7 @@
       'color-signal': '2명',
       'sum-relay': '2명',
       'jamo-merge': '2명',
+      'color-mix': '2명',
       'animal-buddy': '2명'
       // 나머지 게임은 자동으로 '2-4명' 적용
     };
@@ -594,7 +597,8 @@
       { folder:'sum-relay', name:'숫자 합 만들기', description:'P1과 P2가 카드 한 장씩 골라 목표 합을 맞춰요! 협력 덧셈 게임', icon:'➕', color:'#43A047', grades:[1,2,3,4,5,6], playTime:'1~2분' },
       { folder:'jamo-merge', name:'자음+모음 합치기', description:'P1은 자음, P2는 모음을 골라 목표 글자를 만들어요! 한글 협력 게임', icon:'🔤', color:'#43A047', grades:[1,2,3,4,5,6], playTime:'1~2분' },
       { folder:'rps-react', name:'가위바위보 반사', description:'상대 손을 보고 이기는 손을 가장 먼저 골라요! 순발력 게임', icon:'✊', color:'#7B1FA2', grades:[1,2,3,4,5,6], playTime:'1~2분' },
-      { folder:'chase-tap', name:'점프하는 표적', description:'이리저리 점프하는 표적을 빠르게 따라가서 터치하세요!', icon:'🎯', color:'#00ACC1', grades:[1,2,3,4,5,6], playTime:'30초' }
+      { folder:'chase-tap', name:'점프하는 표적', description:'이리저리 점프하는 표적을 빠르게 따라가서 터치하세요!', icon:'🎯', color:'#00ACC1', grades:[1,2,3,4,5,6], playTime:'30초' },
+      { folder:'color-mix', name:'색 섞기', description:'P1·P2가 색을 하나씩 골라 목표 색을 만들어요! 협력 색 합성 게임', icon:'🎨', color:'#FF7043', grades:[1,2,3,4,5,6], playTime:'1~2분' }
     ];
 
     const grid = document.getElementById('gameGrid');
