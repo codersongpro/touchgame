@@ -1,0 +1,1 @@
+{ "name": "동물 짝꿍", "description": "P1은 동물 이름, P2는 동물 소리! 둘이 함께 짝을 맞춰요", "icon": "🐶", "color": "#FF9800", "grades": [1,2,3], "playTime": "1~2분" }
