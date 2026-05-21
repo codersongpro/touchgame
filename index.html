@@ -501,6 +501,7 @@
       'color-mix': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><circle cx="26" cy="36" r="14" fill="#E53935" stroke="#2C2C2C" stroke-width="2.5" opacity="0.85"/><circle cx="46" cy="36" r="14" fill="#FDD835" stroke="#2C2C2C" stroke-width="2.5" opacity="0.85"/><circle cx="36" cy="58" r="11" fill="#FB8C00" stroke="#2C2C2C" stroke-width="2.5"/><text x="36" y="63" text-anchor="middle" font-size="9" font-weight="900" fill="#FFFFFF">MIX</text><text x="62" y="68" text-anchor="middle" font-size="9" font-weight="900" fill="#FF7043">협력</text></svg>',
       'number-strike': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="16" y="14" width="48" height="18" rx="6" fill="#FFD54F" stroke="#2C2C2C" stroke-width="2.5"/><text x="26" y="27" font-size="10" font-weight="900" fill="#2C2C2C">🎯</text><text x="50" y="28" text-anchor="middle" font-size="13" font-weight="900" fill="#F4511E">7</text><text x="20" y="58" font-size="14" font-weight="900" fill="#90CAF9" opacity="0.65">3</text><text x="58" y="56" font-size="14" font-weight="900" fill="#A5D6A7" opacity="0.65">2</text><circle cx="40" cy="60" r="13" fill="#66BB6A" stroke="#2C2C2C" stroke-width="2.5"/><text x="40" y="65" text-anchor="middle" font-size="14" font-weight="900" fill="#FFFFFF">7</text></svg>',
       'turn-count': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="10" y="18" width="28" height="44" rx="6" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="2.5"/><text x="24" y="32" text-anchor="middle" font-size="9" font-weight="900" fill="#1565C0">P1</text><text x="18" y="46" text-anchor="middle" font-size="11" font-weight="900" fill="#2C2C2C">1</text><text x="30" y="46" text-anchor="middle" font-size="11" font-weight="900" fill="#2C2C2C">3</text><text x="24" y="58" text-anchor="middle" font-size="11" font-weight="900" fill="#2C2C2C">5</text><path d="M40,40 L46,40" stroke="#26A69A" stroke-width="3" stroke-linecap="round"/><polygon points="44,36 50,40 44,44" fill="#26A69A"/><rect x="42" y="18" width="28" height="44" rx="6" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="2.5"/><text x="56" y="32" text-anchor="middle" font-size="9" font-weight="900" fill="#C62828">P2</text><text x="50" y="46" text-anchor="middle" font-size="11" font-weight="900" fill="#2C2C2C">2</text><text x="62" y="46" text-anchor="middle" font-size="11" font-weight="900" fill="#2C2C2C">4</text><text x="56" y="58" text-anchor="middle" font-size="11" font-weight="900" fill="#2C2C2C">6</text></svg>',
+      'hangul-jamo': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="12" y="14" width="28" height="28" rx="5" fill="#EDE7F6" stroke="#2C2C2C" stroke-width="2"/><text x="26" y="38" text-anchor="middle" font-size="22" font-weight="900" fill="#5E35B1">ㄱ</text><rect x="42" y="14" width="26" height="28" rx="5" fill="#FFE0B2" stroke="#2C2C2C" stroke-width="2"/><text x="55" y="38" text-anchor="middle" font-size="22" font-weight="900" fill="#EF6C00">ㅏ</text><rect x="12" y="46" width="26" height="22" rx="5" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="2"/><text x="25" y="63" text-anchor="middle" font-size="16" font-weight="900" fill="#C62828">ㄲ</text><rect x="42" y="46" width="26" height="22" rx="5" fill="#C8E6C9" stroke="#2C2C2C" stroke-width="2"/><text x="55" y="63" text-anchor="middle" font-size="16" font-weight="900" fill="#2E7D32">ㅖ</text></svg>',
     };
 
     // 카테고리 매핑
@@ -546,7 +547,8 @@
       'chase-tap': 'speed',
       'color-mix': 'coop',
       'number-strike': 'speed',
-      'turn-count': 'coop'
+      'turn-count': 'coop',
+      'hangul-jamo': 'knowledge'
     };
 
     // 게임별 지원 인원수 표시 (정의 안 된 게임은 기본 '2-4명')
@@ -559,7 +561,8 @@
       'jamo-merge': '2명',
       'color-mix': '2명',
       'turn-count': '2명',
-      'animal-buddy': '2명'
+      'animal-buddy': '2명',
+      'hangul-jamo': '2-4명'
       // 나머지 게임은 자동으로 '2-4명' 적용
     };
 
@@ -605,7 +608,8 @@
       { folder:'chase-tap', name:'점프하는 표적', description:'이리저리 점프하는 표적을 빠르게 따라가서 터치하세요!', icon:'🎯', color:'#00ACC1', grades:[1,2,3,4,5,6], playTime:'30초' },
       { folder:'color-mix', name:'색 섞기', description:'P1·P2가 색을 하나씩 골라 목표 색을 만들어요! 협력 색 합성 게임', icon:'🎨', color:'#FF7043', grades:[1,2,3,4,5,6], playTime:'1~2분' },
       { folder:'number-strike', name:'숫자 폭격', description:'목표 숫자가 깜빡이는 순간만 빠르게 터치! 다른 숫자는 피하세요!', icon:'💥', color:'#F4511E', grades:[1,2,3,4,5,6], playTime:'30초' },
-      { folder:'turn-count', name:'번갈아 카운트', description:'P1은 홀수, P2는 짝수! 번갈아 가며 1부터 10까지 순서대로 찾아 터치하세요', icon:'🔢', color:'#26A69A', grades:[1,2,3,4,5,6], playTime:'1~2분' }
+      { folder:'turn-count', name:'번갈아 카운트', description:'P1은 홀수, P2는 짝수! 번갈아 가며 1부터 10까지 순서대로 찾아 터치하세요', icon:'🔢', color:'#26A69A', grades:[1,2,3,4,5,6], playTime:'1~2분' },
+      { folder:'hangul-jamo', name:'한글 자모', description:'한글 자음과 모음을 보고 이름을 맞혀보세요!', icon:'🔠', color:'#5E35B1', grades:[1,2,3,4,5,6], playTime:'1분' }
     ];
 
     const grid = document.getElementById('gameGrid');

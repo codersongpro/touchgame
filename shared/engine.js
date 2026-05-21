@@ -280,7 +280,7 @@ const _GAME_CATEGORY_MAP = {
   'number-tap': 'math', 'clock-reading': 'math', 'math-sign': 'math',
   'ox-quiz': 'knowledge', 'initial-quiz': 'knowledge', 'capital-quiz': 'knowledge',
   'flag-quiz': 'knowledge', 'proverb-quiz': 'knowledge', 'english-word': 'knowledge',
-  'animal-sort': 'knowledge',
+  'animal-sort': 'knowledge', 'hangul-jamo': 'knowledge',
   'secret-code': 'coop', 'color-signal': 'coop', 'sum-relay': 'coop', 'jamo-merge': 'coop', 'color-mix': 'coop', 'turn-count': 'coop',
   'slide-puzzle': 'puzzle', 'maze-run': 'puzzle', 'pipe-connect': 'puzzle',
   'laser-reflect': 'puzzle', 'one-stroke': 'puzzle', 'dot-connect': 'puzzle',
