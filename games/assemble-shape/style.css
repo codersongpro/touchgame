@@ -1,0 +1,327 @@
+/* games/assemble-shape/style.css */
+
+body {
+  background: #E0F2F1;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.screen {
+  height: 100vh;
+  min-height: unset;
+}
+
+/* ===== 인트로 ===== */
+.screen-intro {
+  justify-content: space-between;
+  padding: var(--space-lg);
+  background: #fff;
+}
+.intro-illustration {
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+  align-self: center;
+}
+.intro-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+.badge-2p {
+  display: inline-block;
+  background: #00897B;
+  color: #fff;
+  padding: 5px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 900;
+  border: 2px solid #2C2C2C;
+  box-shadow: 2px 2px 0 #2C2C2C;
+}
+.btn-play {
+  width: 80%;
+  max-width: 300px;
+  padding: var(--space-md) var(--space-xl);
+  font-size: 1.3rem;
+  margin-bottom: var(--space-xl);
+  background: #00897B;
+  color: #fff;
+}
+
+/* ===== 카운트다운 ===== */
+.screen-countdown {
+  justify-content: center;
+  align-items: center;
+  background: #00897B;
+}
+
+/* ===== 게임 화면 ===== */
+.screen-game {
+  background: #B2DFDB;
+  padding: 0;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.game-hud {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.18);
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 52px;
+}
+.hud-round {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #fff;
+  min-width: 48px;
+}
+.hud-timer-track {
+  flex: 1;
+  height: 12px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 6px;
+  overflow: hidden;
+}
+.hud-timer-fill {
+  height: 100%;
+  width: 100%;
+  background: #FFEE58;
+  transition: width 0.25s linear;
+}
+.hud-timer-fill.danger { background: #FF7043; }
+.hud-score {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #FFD54F;
+  min-width: 48px;
+  text-align: right;
+}
+.hud-close {
+  flex-shrink: 0;
+  color: #fff;
+  opacity: 0.85;
+}
+
+.banner {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 900;
+  padding: 4px 14px;
+  margin: 6px 10px;
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+  border: 3px solid transparent;
+  box-sizing: border-box;
+}
+.banner.show { opacity: 1; }
+.banner.info { color: #00695C; background: #B2DFDB; border-color: #2C2C2C; }
+.banner.ok   { color: #1B5E20; background: #C8E6C9; border-color: #2C2C2C; }
+.banner.ng   { color: #B71C1C; background: #FFCDD2; border-color: #2C2C2C; }
+
+/* ===== 보드 ===== */
+.boards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+  min-height: 0;
+}
+.board {
+  border-radius: 18px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  border: 3px solid #2C2C2C;
+  box-shadow: 4px 4px 0 #2C2C2C;
+}
+.board.p1 { background: #B3E5FC; }
+.board.p2 { background: #FFCDD2; }
+
+.board-label {
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.p1 .board-label { color: #1565C0; }
+.p2 .board-label { color: #C62828; }
+.board-sub {
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-top: -4px;
+  flex-shrink: 0;
+}
+.p1 .board-sub { color: #1976D2; }
+.p2 .board-sub { color: #D32F2F; }
+
+/* ===== P1 부품 리스트 ===== */
+.parts-list {
+  margin-top: auto;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  align-items: stretch;
+}
+.part-item {
+  background: #fff;
+  border: 2.5px solid #2C2C2C;
+  border-radius: 12px;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #2C2C2C;
+  box-shadow: 2px 2px 0 #2C2C2C;
+}
+
+/* ===== P2 보기 그리드 ===== */
+.options-grid {
+  margin-top: auto;
+  margin-bottom: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+.option-btn {
+  aspect-ratio: 1;
+  background: #fff;
+  border: 3px solid #2C2C2C;
+  border-radius: 16px;
+  box-shadow: 3px 3px 0 #2C2C2C;
+  font-size: clamp(2rem, 8vw, 3rem);
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  font-family: inherit;
+  color: #2C2C2C;
+  padding: 0;
+}
+.option-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #2C2C2C;
+}
+.option-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.option-btn.is-correct {
+  background: #66BB6A !important;
+  color: #fff;
+  animation: pulseOk 0.4s ease-out;
+}
+.option-btn.is-wrong {
+  background: #EF5350 !important;
+  color: #fff;
+  animation: shakeNg 0.4s ease-out;
+}
+@keyframes pulseOk {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+@keyframes shakeNg {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-6px); }
+  75%      { transform: translateX(6px); }
+}
+
+/* ===== 결과 ===== */
+.screen-result {
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--space-lg);
+  background: #fff;
+}
+.result-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+}
+.result-crown {
+  filter: drop-shadow(0 4px 8px rgba(255,200,0,0.4));
+}
+.result-winner-label {
+  font-size: 1rem;
+  color: var(--text-sub);
+  font-weight: 700;
+}
+.result-winner-name {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #00897B;
+}
+.result-scores {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+  max-width: 320px;
+  margin-top: var(--space-sm);
+}
+.result-score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: 14px;
+  background: #f5f5f5;
+  border: 3px solid #2C2C2C;
+  box-shadow: 3px 3px 0 #2C2C2C;
+}
+.result-score-row.winner {
+  background: #E0F2F1;
+  border-color: #00897B;
+}
+.result-score-name {
+  font-size: 1rem;
+  font-weight: 800;
+}
+.result-score-val {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #00897B;
+}
+.result-actions {
+  width: 100%;
+  max-width: 320px;
+  justify-content: center;
+}
+.btn {
+  padding: 0 var(--space-xl);
+}
+.btn-primary {
+  background: #00897B;
+  color: #fff;
+}
+.icon-btn {
+  font-size: 1.4rem;
+  border-radius: var(--btn-radius);
+}

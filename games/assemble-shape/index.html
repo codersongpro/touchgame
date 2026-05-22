@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>조각 맞히기</title>
+  <link rel="stylesheet" href="../../shared/style.css?v=2">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 화면 1: 인트로 -->
+  <section class="screen screen-intro active" id="introScreen">
+    <header class="game-header">
+      <button class="icon-btn" id="backBtn" aria-label="뒤로가기">←</button>
+      <h1 class="game-title">조각 맞히기</h1>
+      <button class="icon-btn sound-btn" id="soundToggleIntro" aria-label="사운드 토글">🔇</button>
+    </header>
+
+    <div class="intro-body">
+      <div class="intro-illustration" aria-hidden="true">
+        <svg viewBox="0 0 160 110" width="160" height="110">
+          <!-- Left: P1 sees parts -->
+          <rect x="6" y="14" width="64" height="80" rx="10" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="3"/>
+          <text x="38" y="30" text-anchor="middle" font-size="9" font-weight="900" fill="#1565C0">P1: 부품</text>
+          <rect x="14" y="38" width="48" height="14" rx="4" fill="#fff" stroke="#2C2C2C" stroke-width="2"/>
+          <text x="38" y="48" text-anchor="middle" font-size="8" font-weight="800" fill="#2C2C2C">둥근 몸통</text>
+          <rect x="14" y="56" width="48" height="14" rx="4" fill="#fff" stroke="#2C2C2C" stroke-width="2"/>
+          <text x="38" y="66" text-anchor="middle" font-size="8" font-weight="800" fill="#2C2C2C">다리 4개</text>
+          <rect x="14" y="74" width="48" height="14" rx="4" fill="#fff" stroke="#2C2C2C" stroke-width="2"/>
+          <text x="38" y="84" text-anchor="middle" font-size="8" font-weight="800" fill="#2C2C2C">긴 꼬리</text>
+          <!-- speech arrow -->
+          <path d="M74 54 L86 54 M82 50 L86 54 L82 58" stroke="#2C2C2C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <text x="80" y="48" text-anchor="middle" font-size="9">🗣</text>
+          <!-- Right: P2 picks -->
+          <rect x="90" y="14" width="64" height="80" rx="10" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="3"/>
+          <text x="122" y="30" text-anchor="middle" font-size="9" font-weight="900" fill="#C62828">P2: 선택</text>
+          <rect x="96" y="38" width="26" height="24" rx="4" fill="#fff" stroke="#2C2C2C" stroke-width="2"/>
+          <text x="109" y="56" text-anchor="middle" font-size="14">🐱</text>
+          <rect x="124" y="38" width="26" height="24" rx="4" fill="#FFD54F" stroke="#2C2C2C" stroke-width="2.5"/>
+          <text x="137" y="56" text-anchor="middle" font-size="14">🐶</text>
+          <rect x="96" y="66" width="26" height="24" rx="4" fill="#fff" stroke="#2C2C2C" stroke-width="2"/>
+          <text x="109" y="84" text-anchor="middle" font-size="14">🐰</text>
+          <rect x="124" y="66" width="26" height="24" rx="4" fill="#fff" stroke="#2C2C2C" stroke-width="2"/>
+          <text x="137" y="84" text-anchor="middle" font-size="14">🐭</text>
+        </svg>
+      </div>
+
+      <p class="intro-desc">P1이 본 부품을 말로 알려주세요!</p>
+      <div class="badge-2p">👥 2인 전용 협력</div>
+      <p class="intro-sub">P2는 4개 그림 중 정답을 골라요. 5라운드, 3점 이상이 성공!</p>
+    </div>
+
+    <button class="btn btn-primary btn-play" id="playBtn">PLAY</button>
+  </section>
+
+  <!-- 화면 2: 카운트다운 -->
+  <section class="screen screen-countdown" id="countdownScreen">
+    <div class="countdown-number" id="countdownNumber">3</div>
+  </section>
+
+  <!-- 화면 3: 게임 -->
+  <section class="screen screen-game" id="gameScreen">
+    <div class="game-hud">
+      <span class="hud-round" id="hudRound">1/5</span>
+      <div class="hud-timer-track"><div class="hud-timer-fill" id="hudTimerFill"></div></div>
+      <span class="hud-score" id="hudScore">0점</span>
+      <button class="icon-btn hud-close" id="closeBtn" aria-label="홈으로">✕</button>
+    </div>
+
+    <div class="banner" id="banner"></div>
+
+    <div class="boards">
+      <div class="board p1">
+        <div class="board-label">👁 P1 부품</div>
+        <div class="board-sub">P2에게 말로 알려주세요!</div>
+        <div class="parts-list" id="partsList"></div>
+      </div>
+      <div class="board p2">
+        <div class="board-label">🎮 P2 선택</div>
+        <div class="board-sub">정답을 탭하세요!</div>
+        <div class="options-grid" id="optionsGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 화면 4: 결과 -->
+  <section class="screen screen-result" id="resultScreen">
+    <div class="result-body">
+      <div class="result-crown" id="resultCrown">
+        <svg viewBox="0 0 80 60" width="80" height="60">
+          <polygon points="10,50 20,20 40,35 60,20 70,50" fill="#FFD700" stroke="#FFA000" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="10" cy="50" r="5" fill="#FFD700" stroke="#FFA000" stroke-width="2"/>
+          <circle cx="70" cy="50" r="5" fill="#FFD700" stroke="#FFA000" stroke-width="2"/>
+          <circle cx="40" cy="16" r="5" fill="#FFD700" stroke="#FFA000" stroke-width="2"/>
+          <rect x="8" y="50" width="64" height="8" rx="4" fill="#FFD700" stroke="#FFA000" stroke-width="2"/>
+        </svg>
+      </div>
+      <h2 class="result-winner-label" id="resultWinnerLabel">결과</h2>
+      <div class="result-winner-name" id="resultWinnerName">성공!</div>
+      <div class="result-scores" id="resultScores"></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-primary" id="retryBtn">다시하기</button>
+      <button class="btn btn-secondary" id="homeBtn">홈으로</button>
+    </div>
+  </section>
+
+  <script src="../../shared/engine.js?v=2"></script>
+  <script src="game.js"></script>
+</body>
+</html>
