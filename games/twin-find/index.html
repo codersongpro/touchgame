@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>짝꿍 그림 찾기</title>
+  <link rel="stylesheet" href="../../shared/style.css?v=2">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 화면 1: 인트로 -->
+  <section class="screen screen-intro active" id="introScreen">
+    <header class="game-header">
+      <button class="icon-btn" id="backBtn" aria-label="뒤로가기">←</button>
+      <h1 class="game-title">짝꿍 그림 찾기</h1>
+      <button class="sound-toggle" id="soundToggleIntro" aria-label="사운드 토글">🔊</button>
+    </header>
+
+    <div class="intro-body">
+      <div class="intro-illustration" aria-hidden="true">
+        <svg viewBox="0 0 200 110" width="200" height="110">
+          <!-- 가운데 목표 -->
+          <circle cx="100" cy="20" r="14" fill="#FFD54F" stroke="#2C2C2C" stroke-width="3"/>
+          <text x="100" y="26" text-anchor="middle" font-size="16">🦊</text>
+          <text x="100" y="46" text-anchor="middle" font-size="8" font-weight="900" fill="#2C2C2C">목표</text>
+
+          <!-- P1 격자 -->
+          <rect x="6" y="54" width="80" height="50" rx="6" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="2.5"/>
+          <text x="46" y="62" text-anchor="middle" font-size="7" font-weight="900" fill="#1565C0">P1</text>
+          <text x="20" y="80" text-anchor="middle" font-size="13">🐱</text>
+          <text x="46" y="80" text-anchor="middle" font-size="13">🦊</text>
+          <text x="72" y="80" text-anchor="middle" font-size="13">🐶</text>
+          <text x="20" y="98" text-anchor="middle" font-size="13">🐰</text>
+          <text x="46" y="98" text-anchor="middle" font-size="13">🐼</text>
+          <text x="72" y="98" text-anchor="middle" font-size="13">🦁</text>
+          <rect x="36" y="68" width="20" height="16" rx="3" fill="none" stroke="#43A047" stroke-width="2.5"/>
+
+          <!-- P2 격자 -->
+          <rect x="114" y="54" width="80" height="50" rx="6" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="2.5"/>
+          <text x="154" y="62" text-anchor="middle" font-size="7" font-weight="900" fill="#C62828">P2</text>
+          <text x="128" y="80" text-anchor="middle" font-size="13">🐶</text>
+          <text x="154" y="80" text-anchor="middle" font-size="13">🐰</text>
+          <text x="180" y="80" text-anchor="middle" font-size="13">🦊</text>
+          <text x="128" y="98" text-anchor="middle" font-size="13">🦁</text>
+          <text x="154" y="98" text-anchor="middle" font-size="13">🐱</text>
+          <text x="180" y="98" text-anchor="middle" font-size="13">🐼</text>
+          <rect x="170" y="68" width="20" height="16" rx="3" fill="none" stroke="#43A047" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <p class="intro-text">목표 그림을 본 후<br>각자 자기 격자에서 찾아 터치!</p>
+      <div class="badge-2p">👥 2인 협력</div>
+      <p class="intro-subtext">둘 다 맞으면 +1점! · 8라운드</p>
+    </div>
+
+    <button class="btn btn-primary btn-play" id="playBtn">PLAY</button>
+  </section>
+
+  <!-- 화면 1-5: 카운트다운 -->
+  <section class="screen screen-countdown" id="countdownScreen">
+    <div class="countdown-number" id="countdownNumber">3</div>
+  </section>
+
+  <!-- 화면 2: 게임 플레이 -->
+  <section class="screen screen-game" id="gameScreen">
+
+    <div class="top-bar">
+      <div class="top-bar-meta">
+        <div class="question-counter" id="questionCounter">1 / 8</div>
+        <div class="score-pill" id="scorePill">★ 0</div>
+      </div>
+
+      <div class="target-area" id="targetArea">
+        <div class="target-label">목표</div>
+        <div class="target-icon" id="targetIcon">🦊</div>
+      </div>
+
+      <div class="problem-status" id="problemStatus">목표를 잘 보고 자기 격자에서 찾으세요!</div>
+      <button class="icon-btn close-btn" id="closeBtn" aria-label="홈으로">✕</button>
+    </div>
+
+    <div class="boards" id="boardsWrap">
+      <div class="board p1" data-player="0">
+        <div class="board-header">
+          <span class="board-label">P1</span>
+          <span class="board-status" id="status-0">대기 중</span>
+        </div>
+        <div class="card-grid" id="grid-0"></div>
+      </div>
+      <div class="board p2" data-player="1">
+        <div class="board-header">
+          <span class="board-label">P2</span>
+          <span class="board-status" id="status-1">대기 중</span>
+        </div>
+        <div class="card-grid" id="grid-1"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 화면 3: 결과 -->
+  <section class="screen screen-result" id="resultScreen">
+    <header class="result-header">
+      <h2 class="result-title" id="resultTitle">협력 종료!</h2>
+    </header>
+    <div class="result-winner" id="resultWinner"></div>
+
+    <div class="total-row" id="totalRow"></div>
+
+    <div class="result-actions">
+      <button class="btn btn-primary" id="retryBtn">다시하기</button>
+      <button class="btn btn-secondary" id="homeBtn">홈으로</button>
+    </div>
+  </section>
+
+  <script src="../../shared/engine.js?v=2"></script>
+  <script src="game.js"></script>
+</body>
+</html>
