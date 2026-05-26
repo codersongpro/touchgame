@@ -284,6 +284,7 @@ const _GAME_CATEGORY_MAP = {
   'secret-code': 'coop', 'color-signal': 'coop', 'sum-relay': 'coop', 'jamo-merge': 'coop', 'color-mix': 'coop', 'turn-count': 'coop',
   'slide-puzzle': 'puzzle', 'maze-run': 'puzzle', 'pipe-connect': 'puzzle',
   'laser-reflect': 'puzzle', 'one-stroke': 'puzzle', 'dot-connect': 'puzzle',
+  'paint-fill': 'puzzle',
   'spot-the-difference': 'brain',
 };
 
