@@ -1,21 +1,38 @@
 # 자동 모드 실행 절차
 
-매일 한국시간 오전 10시에 cron이 트리거할 때 Claude가 따라야 할 단계별 절차. **한 번의 실행에서 게임 2개를 연속으로 제작·검증·푸시한다** (별도 커밋, 카테고리 다양성 우선).
+매일 한국시간 오전 10시에 cron이 트리거할 때 Claude가 따라야 할 단계별 절차. **하루 목표는 게임 2개**. 한 실행에서 두 게임을 연속 제작·검증·푸시하되, 이전 실행에서 일부만 푸시되고 끊긴 경우에는 **부족분만 보강**한다 (오늘 이미 푸시된 게임은 다시 만들지 않음).
 
 ---
 
-## Step 0. 사전 점검 (필수)
+## Step 0. 사전 점검 (필수, 한 번만 실행)
 
 ```bash
-# 0-1. 현재 디렉토리: C:/Users/User/Desktop/claude
-# 0-2. 오늘 실패 횟수 체크 (3개 이상이면 즉시 중단)
-node scripts/auto-add-game-helpers.js recent-failures
+# 0-1. 통합 사전 점검: 실패 차단 + 오늘 푸시 수 + 남은 게임 수
+node scripts/auto-add-game-helpers.js preflight
 ```
 
-`blockedForToday: true` 이면 → **즉시 종료**, 로그에 "차단됨" 기록만 남김.
+응답 예시:
+```json
+{
+  "blockedForToday": false,
+  "todayPushedCount": 1,
+  "todayPushed": [{ "hash":"...", "subject":"Auto-add: ... (coop, 패턴 C)" }],
+  "pendingGames": 1,
+  "alreadyComplete": false,
+  "shouldRun": true,
+  "action": "proceed: 1개 게임 제작 필요 (오늘 이미 1개 푸시)"
+}
+```
+
+분기:
+- `blockedForToday: true` → **즉시 종료** (오늘 누적 실패 3회 도달)
+- `alreadyComplete: true` (= `pendingGames: 0`) → **즉시 종료** (오늘 이미 2개 푸시됨)
+- 그 외 → `pendingGames` 만큼 제작 (1이면 1개, 2면 2개)
+
+⚠️ **`pendingGames`는 작업 전체 루프의 종료 조건이다.** 게임 1개 끝났다고 자동으로 멈추면 안 된다. `pendingGames === 2`면 반드시 2개를 모두 푸시해야 종료한다.
 
 ```bash
-# 0-3. 최신 코드 풀
+# 0-2. 최신 코드 풀
 git pull origin master
 ```
 
@@ -50,10 +67,11 @@ node scripts/auto-add-game-helpers.js list-existing-folders
 선택한 게임의 폴더명이 위 리스트에 있으면 → 다음 후보 선택.
 모든 후보 소진 시 → **Step 2-A (자율 생성)** 으로 이동.
 
-### 게임 2의 선택 규칙
-게임 1을 완료(커밋·푸시)한 뒤 게임 2를 시작할 때:
-- `stats`를 **다시** 실행해 게임 1이 추가된 후의 분포를 본다.
-- 게임 1과 **다른 카테고리** 후보를 우선한다. 게임 1이 speed였다면 게임 2는 coop/math 등 다른 부족 카테고리.
+### N번째 게임의 선택 규칙
+직전 게임(커밋·푸시 완료) 후 다음 게임을 시작할 때:
+- `stats`를 **다시** 실행해 직전 게임이 추가된 후의 분포를 본다.
+- **직전 게임 + 오늘 이미 푸시된 게임들과 다른 카테고리** 후보를 우선한다.
+  - 0번째 단계(`preflight`)에서 받은 `todayPushed[].subject`에 적힌 카테고리 표기(`(coop, ...)` 등)를 회피 목록에 포함시켜라.
 - 같은 카테고리에만 후보가 남아 있으면 같은 카테고리도 허용 (다양성보다 "그래도 한 개 더 추가"가 우선).
 
 ---
@@ -144,7 +162,27 @@ git push origin master
 
 푸시 실패 시 → 로컬 커밋 유지하고 **다음 게임 시도 계속**. 첫 게임 푸시 실패해도 두 번째 게임은 그대로 시도 (둘 다 별도 커밋이라 게임 1 커밋이 살아 있고 다음날 push 재시도 됨).
 
-**게임 1이 통과·푸시되면 → Step 1로 돌아가 게임 2 제작 시작** (`stats` 재실행, 카테고리 다양성 우선). 게임 2가 끝나면 그날 작업 종료.
+**게임 1이 통과·푸시되면 → Step 1로 돌아가 게임 2 제작 시작** (`stats` 재실행, 카테고리 다양성 우선).
+
+---
+
+## Step 7-OK-FINAL. 종료 전 자가 점검 (필수)
+
+게임을 푸시할 때마다, 그리고 "더 이상 할 일이 없다"고 판단하기 직전에 반드시 다음을 실행:
+
+```bash
+node scripts/auto-add-game-helpers.js today-pushed-count
+```
+
+응답:
+```json
+{ "dailyTarget": 2, "todayPushedCount": N, "pendingGames": (2 - N), "alreadyComplete": (N >= 2) }
+```
+
+- `pendingGames > 0` 이고 `recent-failures.blockedForToday`가 아니라면 → **종료 금지, Step 1로 돌아가 다음 게임 제작 계속**
+- `pendingGames === 0` 이거나 `blockedForToday` 이면 → 그날 작업 종료
+
+⚠️ **이 단계 생략은 가장 흔한 버그였다.** 게임 1 푸시 직후 "Auto-add: ... 완료!" 메시지로 끝내면 안 된다. 반드시 `today-pushed-count`로 재확인.
 
 ---
 

@@ -7,6 +7,8 @@
  *   stats                   카테고리별 게임 수 출력 (선택 알고리즘 입력)
  *   discard <folder>        실패 게임 폐기 (폴더 삭제 + registry/launcher 등록 해제)
  *   recent-failures         최근 3회 실패 기록 (3연속 실패 차단용)
+ *   today-pushed-count      오늘 KST 푸시된 Auto-add 커밋 수 + 남은 게임 수
+ *   preflight               recent-failures + today-pushed-count + pendingGames 통합 응답
  *
  * 사용법:
  *   node scripts/auto-add-game-helpers.js <command> [args]
@@ -16,6 +18,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const REGISTRY = path.join(ROOT, 'games', 'registry.json');
@@ -128,6 +131,81 @@ if (cmd === 'recent-failures') {
 if (cmd === 'reset-failures') {
   writeFailLog([]);
   console.log('✓ 실패 로그 초기화');
+  process.exit(0);
+}
+
+// 오늘 KST 기준 푸시된 Auto-add 커밋 수와 남은 게임 수 계산
+function todayPushedInfo() {
+  const DAILY_TARGET = 2;
+  let pushedToday = [];
+  try {
+    const raw = execSync('git log --format="%h|%aI|%s" -n 50', { cwd: ROOT, encoding: 'utf-8' });
+    const kstOffset = 9 * 60 * 60 * 1000;
+    const now = new Date();
+    const kstNow = new Date(now.getTime() + kstOffset);
+    const kstTodayStart = new Date(Date.UTC(
+      kstNow.getUTCFullYear(),
+      kstNow.getUTCMonth(),
+      kstNow.getUTCDate(),
+      0, 0, 0
+    ));
+    const todayStartUtc = kstTodayStart.getTime() - kstOffset;
+    raw.split(/\r?\n/).forEach(line => {
+      if (!line) return;
+      const [hash, iso, ...rest] = line.split('|');
+      const subject = rest.join('|');
+      if (!subject || !subject.startsWith('Auto-add:')) return;
+      const ts = new Date(iso).getTime();
+      if (ts >= todayStartUtc) pushedToday.push({ hash, iso, subject });
+    });
+  } catch (e) {
+    return { error: String(e.message || e), todayPushedCount: 0, pendingGames: DAILY_TARGET };
+  }
+  const pendingGames = Math.max(0, DAILY_TARGET - pushedToday.length);
+  return {
+    dailyTarget: DAILY_TARGET,
+    todayPushedCount: pushedToday.length,
+    todayPushed: pushedToday,
+    pendingGames,
+    alreadyComplete: pendingGames === 0
+  };
+}
+
+if (cmd === 'today-pushed-count') {
+  console.log(JSON.stringify(todayPushedInfo(), null, 2));
+  process.exit(0);
+}
+
+if (cmd === 'preflight') {
+  const failures = readFailLog();
+  const now = new Date();
+  const kstOffset = 9 * 60 * 60 * 1000;
+  const kstNow = new Date(now.getTime() + kstOffset);
+  const todayKstStart = new Date(kstNow);
+  todayKstStart.setUTCHours(0, 0, 0, 0);
+  const todayStartUtc = todayKstStart.getTime() - kstOffset;
+  const todayFailures = failures.filter(f => new Date(f.timestamp).getTime() >= todayStartUtc);
+  const blockedForToday = todayFailures.length >= 3;
+
+  const pushed = todayPushedInfo();
+
+  const shouldRun = !blockedForToday && !pushed.alreadyComplete;
+  const action = blockedForToday
+    ? 'abort: 오늘 누적 실패 3회 도달 → 그날 작업 중단'
+    : pushed.alreadyComplete
+      ? 'skip: 오늘 이미 2개 모두 푸시됨 → 추가 작업 불필요'
+      : `proceed: ${pushed.pendingGames}개 게임 제작 필요 (오늘 이미 ${pushed.todayPushedCount}개 푸시)`;
+
+  console.log(JSON.stringify({
+    todayFailCount: todayFailures.length,
+    blockedForToday,
+    todayPushedCount: pushed.todayPushedCount,
+    todayPushed: pushed.todayPushed,
+    pendingGames: pushed.pendingGames,
+    alreadyComplete: pushed.alreadyComplete,
+    shouldRun,
+    action
+  }, null, 2));
   process.exit(0);
 }
 
