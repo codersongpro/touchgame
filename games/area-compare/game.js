@@ -230,38 +230,57 @@ function shapeBoundingBox(shape){
   return { rows: maxR+1, cols: maxC+1 };
 }
 
-function shapeSVG(shape, fillColor, cellPx){
+// 도형을 (gridW × gridH) 모눈 격자 안에 그린다.
+// 채워진 칸은 색칠 + 검정 테두리, 빈 칸은 점선 회색 외곽 (학생이 칸 수를 직접 세도록 유도).
+function shapeSVG(shape, fillColor, gridW, gridH, cellPx){
   cellPx = cellPx || 14;
-  const bb = shapeBoundingBox(shape);
-  const w = bb.cols * cellPx;
-  const h = bb.rows * cellPx;
+  const w = gridW * cellPx;
+  const h = gridH * cellPx;
   const cellSet = new Set(shape.cells.map(c=>c[0]+','+c[1]));
   const rects = [];
-  cellSet.forEach(key=>{
-    const [r,c] = key.split(',').map(Number);
-    const x = c * cellPx;
-    const y = r * cellPx;
-    rects.push(`<rect x="${x}" y="${y}" width="${cellPx}" height="${cellPx}" fill="${fillColor}" stroke="#2C2C2C" stroke-width="2"/>`);
-  });
+  for(let r=0; r<gridH; r++){
+    for(let c=0; c<gridW; c++){
+      const x = c * cellPx;
+      const y = r * cellPx;
+      const key = r+','+c;
+      if(cellSet.has(key)){
+        rects.push(`<rect x="${x}" y="${y}" width="${cellPx}" height="${cellPx}" fill="${fillColor}" stroke="#2C2C2C" stroke-width="2"/>`);
+      } else {
+        rects.push(`<rect x="${x+1}" y="${y+1}" width="${cellPx-2}" height="${cellPx-2}" fill="none" stroke="#BDBDBD" stroke-width="1" stroke-dasharray="2,2"/>`);
+      }
+    }
+  }
   return `<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">${rects.join('')}</svg>`;
 }
 
 // ── Round generation ─────────────────────────────────────────
 function pickRound(){
-  // Pick 4 shapes with DISTINCT cell counts
   const byArea = new Map();
   SHAPES.forEach(s=>{
     const a = shapeArea(s);
     if(!byArea.has(a)) byArea.set(a, []);
     byArea.get(a).push(s);
   });
-  // Pick 4 different areas
-  const areas = shuffle([...byArea.keys()]).slice(0, 4);
-  const shapes = areas.map(a => {
+  const allAreas = [...byArea.keys()].sort((a,b)=>a-b);
+
+  // 4개 도형의 칸 수 차이를 ±2(범위 4) 이내로 좁혀 의미 있는 비교가 되게 함
+  let chosenAreas = null;
+  for(let attempt=0; attempt<50; attempt++){
+    const base = allAreas[Math.floor(Math.random()*allAreas.length)];
+    const window = allAreas.filter(a => Math.abs(a-base) <= 2);
+    if(window.length >= 4){
+      chosenAreas = shuffle(window).slice(0, 4);
+      break;
+    }
+  }
+  if(!chosenAreas){
+    chosenAreas = shuffle(allAreas).slice(0, 4);
+  }
+
+  const shapes = chosenAreas.map(a => {
     const list = byArea.get(a);
     return list[Math.floor(Math.random()*list.length)];
   });
-  // Shuffle position
   const shuffled = shuffle(shapes);
   const direction = Math.random() < 0.5 ? 'max' : 'min';
   let bestIdx = 0;
@@ -270,11 +289,17 @@ function pickRound(){
     const ba = shapeArea(shuffled[bestIdx]);
     if(direction==='max' ? a>ba : a<ba) bestIdx = i;
   });
+
+  // 4개 도형 공통 모눈 크기: 모든 bbox의 최대값 사용 → 셀 픽셀 크기가 4개 도형 모두 동일하게 보임
+  const gridW = Math.max(...shuffled.map(s => shapeBoundingBox(s).cols));
+  const gridH = Math.max(...shuffled.map(s => shapeBoundingBox(s).rows));
+
   return {
     shapes: shuffled,
     direction,
     correctIdx: bestIdx,
-    correctLabel: LABEL_LETTERS[bestIdx]
+    correctLabel: LABEL_LETTERS[bestIdx],
+    gridW, gridH
   };
 }
 
@@ -293,7 +318,8 @@ function renderIntroFlags() {
     wrap.style.display = 'flex';
     wrap.style.alignItems = 'center';
     wrap.style.justifyContent = 'center';
-    wrap.innerHTML = shapeSVG(s, SHAPE_FILLS[i % SHAPE_FILLS.length], 10);
+    const bb = shapeBoundingBox(s);
+    wrap.innerHTML = shapeSVG(s, SHAPE_FILLS[i % SHAPE_FILLS.length], bb.cols, bb.rows, 10);
     introFlagRow.appendChild(wrap);
   });
 }
@@ -598,15 +624,16 @@ function handleTimeout() {
 }
 
 function directionText(d){
-  return d === 'max' ? '🟢 가장 넓은 도형은?' : '🔵 가장 좁은 도형은?';
+  return d === 'max' ? '🟢 네모가 가장 많은 도형은?' : '🔵 네모가 가장 적은 도형은?';
 }
 
 function renderShapeDisplay(){
   flagDisplay.innerHTML = '';
+  const {gridW, gridH} = currentRound;
   currentRound.shapes.forEach((s, i) => {
     const cell = document.createElement('div');
     cell.className = 'shape-cell';
-    cell.innerHTML = `<div class="shape-label">${LABEL_LETTERS[i]}</div>` + shapeSVG(s, SHAPE_FILLS[i], 14);
+    cell.innerHTML = `<div class="shape-label">${LABEL_LETTERS[i]}</div>` + shapeSVG(s, SHAPE_FILLS[i], gridW, gridH, 14);
     flagDisplay.appendChild(cell);
   });
 }
