@@ -273,7 +273,7 @@ function createBgmManager() {
  * 런처 index.html의 CATEGORY_MAP과 동기화 유지
  */
 const _GAME_CATEGORY_MAP = {
-  'reaction-race': 'speed', 'balloon-pop': 'speed', 'bomb-dodge': 'speed', 'arrow-tap': 'speed', 'rps-react': 'speed', 'chase-tap': 'speed', 'countdown-tap': 'speed',
+  'reaction-race': 'speed', 'balloon-pop': 'speed', 'bomb-dodge': 'speed', 'arrow-tap': 'speed', 'rps-react': 'speed', 'chase-tap': 'speed', 'countdown-tap': 'speed', 'odd-color': 'speed',
   'color-touch': 'brain', 'shape-match': 'brain', 'shadow-match': 'brain', 'missing-piece': 'brain',
   'mirror-match': 'brain', 'dots-and-boxes': 'brain', 'memory-match': 'brain', 'nim-game': 'brain',
   'quick-math': 'math', 'size-compare': 'math', 'color-count': 'math', 'more-or-less': 'math',
