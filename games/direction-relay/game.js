@@ -10,7 +10,7 @@ const DIRECTIONS = [
 ];
 const ROUND_LENS = [3,3,4,4,5];
 const REVEAL_STEP = 900;
-const ROUND_TIME = 25;
+const ROUND_TIME = 12;
 
 // ── Pre-defined sequence pool (30+ entries for data diversity) ──
 // Each entry is an array of direction keys. Lengths vary 3-5.
