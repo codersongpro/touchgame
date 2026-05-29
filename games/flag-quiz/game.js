@@ -5,7 +5,7 @@
 // ── Constants ────────────────────────────────────────────────
 const TOTAL_ROUNDS    = 10;
 const ROUND_TIME      = 8;     // seconds per round
-const RESULT_PAUSE_MS = 2000;
+const RESULT_PAUSE_MS = getAutoplayPauseMs(2000);
 
 // Player config
 const PLAYER_CONFIG = [

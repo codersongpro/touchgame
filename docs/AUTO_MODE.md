@@ -134,11 +134,27 @@ node scripts/auto-add-game-helpers.js list-existing-folders
 # 정적 검증
 node scripts/verify-game.js {folder}
 
-# shared 미수정 확인
-git diff --name-only | grep -q "^shared/" && echo "VIOLATION: shared 수정됨" || echo "OK"
+# shared 미수정 확인 (shared/engine.js의 _GAME_CATEGORY_MAP 추가는 허용)
+git diff --name-only | grep -q "^shared/style.css" && echo "VIOLATION: shared/style.css 수정됨" || echo "OK"
 ```
 
 브라우저 검증은 Preview MCP로 자동 플레이 시뮬레이션.
+
+### ⚡ 자동 플레이 가속 (필수)
+
+**검증 URL은 반드시 `?autoplay=1` 쿼리를 붙여서 진입**:
+```
+http://localhost:8765/games/{folder}/?autoplay=1
+```
+
+`shared/engine.js`의 `getAutoplayPauseMs(defaultMs)` 헬퍼가 URL에 `?autoplay=1`이 있으면 라운드 사이 대기를 **50ms**로 단축한다 (평소 2000~2200ms). 10라운드 시뮬이 ~25초 → ~6초로 줄어서 `preview_eval`의 30초 타임아웃에 걸리지 않는다.
+
+**신규 게임 작성 시 반드시 사용**:
+```js
+const RESULT_PAUSE_MS = getAutoplayPauseMs(2000);
+// (또는 패턴 D는 2200)
+```
+상수 대신 헬퍼 호출로 작성. 사용자가 그냥 게임을 켰을 때는 `?autoplay=1`이 없어서 기존 2000ms 대기 그대로 작동한다.
 
 **1개라도 실패** → Step 7-FAIL로 이동.
 

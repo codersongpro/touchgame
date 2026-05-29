@@ -212,7 +212,7 @@ function evaluate(correct){
     showBanner('❌ 실패! 정답: '+seq.map(k=>COLORS.find(c=>c.key===k).emoji).join(' '),'ng');
   }
   hudScore.textContent=score+'점';
-  push(setTimeout(nextRound,2200));
+  push(setTimeout(nextRound,getAutoplayPauseMs(2200)));
 }
 
 function showBanner(txt,cls){

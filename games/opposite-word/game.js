@@ -4,7 +4,7 @@
 // ── Constants ────────────────────────────────────────────────
 const TOTAL_ROUNDS    = 10;
 const ROUND_TIME      = 8;     // seconds per round
-const RESULT_PAUSE_MS = 2000;
+const RESULT_PAUSE_MS = getAutoplayPauseMs(2000);
 
 const PLAYER_CONFIG = [
   { label: 'P1', dot: '#0288D1', zoneBg: '#B3E5FC', cls: 'p1' },

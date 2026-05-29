@@ -398,3 +398,16 @@ function onTap(element, callback) {
     touched = false;
   });
 }
+
+/**
+ * 자동 모드 검증용 빠른 라운드 사이 대기 시간.
+ * URL에 ?autoplay=1 가 있으면 50ms (시뮬 가속), 아니면 defaultMs 그대로.
+ * 신규 게임의 RESULT_PAUSE_MS는 이 헬퍼로 작성하면 자동 모드 검증이 ~5배 빨라진다.
+ * 평소 사용자 플레이는 영향 없음.
+ */
+function getAutoplayPauseMs(defaultMs) {
+  try {
+    if (new URLSearchParams(location.search).get('autoplay') === '1') return 50;
+  } catch (e) {}
+  return defaultMs;
+}

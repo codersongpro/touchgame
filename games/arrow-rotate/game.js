@@ -4,7 +4,7 @@
 // ── Constants ────────────────────────────────────────────────
 const TOTAL_ROUNDS = 3;
 const ROUND_TIME = 45;        // seconds
-const RESULT_PAUSE_MS = 2200;
+const RESULT_PAUSE_MS = getAutoplayPauseMs(2200);
 const GRID_SIZE = 9;          // 3x3
 // 화살표 방향: 0=↑, 1=→, 2=↓, 3=←
 const ARROW_CHARS = ['↑', '→', '↓', '←'];

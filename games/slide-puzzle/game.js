@@ -4,7 +4,7 @@
 // ── Constants ────────────────────────────────────────────────
 const TOTAL_ROUNDS = 3;
 const ROUND_TIME = 60;        // seconds
-const RESULT_PAUSE_MS = 2200;
+const RESULT_PAUSE_MS = getAutoplayPauseMs(2200);
 const SHUFFLE_MOVES = 20;     // 셔플 강도 (난이도)
 
 const PLAYER_CONFIG = [
