@@ -58,11 +58,11 @@
 
     <!-- Pill badges -->
     <g transform="translate(0, 110)">
-      <!-- 25개 게임 -->
+      <!-- 게임 수 배지 -->
       <rect x="0" y="0" width="170" height="56" rx="28" fill="#FFD54F" stroke="#2C2C2C" stroke-width="3"/>
       <text x="85" y="36" text-anchor="middle"
             font-family="'Pretendard Variable', sans-serif"
-            font-size="26" font-weight="900" fill="#2C2C2C">🎮 37개 게임</text>
+            font-size="26" font-weight="900" fill="#2C2C2C">🎮 48개 게임</text>
 
       <!-- 무료 -->
       <rect x="186" y="0" width="120" height="56" rx="28" fill="#fff" stroke="#2C2C2C" stroke-width="3"/>
