@@ -365,7 +365,6 @@
 - 빨간불 멈춤 (traffic-stop, A) — 초록불에 터치, 빨간불엔 손 떼고 기다리기 (자제력)
 - 공 받기 (falling-catch, B) — 좌우로 움직여 떨어지는 공 받고 폭탄은 피하기
 - 장애물 피하기 (dodge-run, B) — 달리며 다가오는 장애물을 점프·숙이기로 회피
-- 색 맞춰 터치 (color-switch, A) — 화면 배경색과 같은 색 버튼을 빠르게 (순수 색매칭+속도)
 
 **brain 후보 (7)**
 - 다음 무늬 (pattern-next, A) — 반복되는 도형 패턴의 다음에 올 것 고르기
@@ -410,7 +409,7 @@
 - 종이접기 (fold-guess, A) — 접은 종이를 펼치면 나올 모양 추측
 
 #### 🚫 사용자 삭제 (절대 재추가 금지)
-quick-sort (2026-05-11), number-strike (2026-05-21), assemble-shape (2026-05-22), twin-find (2026-05-26), find-pair-coop, whack-a-mole (2026-05-29), mirror-draw (2026-05-29), rhythm-echo (2026-05-29), turn-count (2026-05-29, 2회 삭제), countdown-tap (2026-05-29, 2회 삭제), flash-shape (2026-06-01, 번쩍 모양 - 순간 노출 도형 매칭), clue-find (2026-06-01, 단서 찾기 - 협동 수수께끼)
+quick-sort (2026-05-11), number-strike (2026-05-21), assemble-shape (2026-05-22), twin-find (2026-05-26), find-pair-coop, whack-a-mole (2026-05-29), mirror-draw (2026-05-29), rhythm-echo (2026-05-29), turn-count (2026-05-29, 2회 삭제), countdown-tap (2026-05-29, 2회 삭제), flash-shape (2026-06-01, 번쩍 모양 - 순간 노출 도형 매칭), clue-find (2026-06-01, 단서 찾기 - 협동 수수께끼), color-switch (2026-06-02, 색 맞춰 터치 - 목표색 매칭+속도 반응)
 > 사용자가 명시적으로 삭제한 게임. **폴더명이든 다른 이름이든, 같은 메커니즘이면 재추가 금지.** 풀 생성·재생성 시 반드시 이 목록과 대조한다. (재추가하면 사용자가 또 삭제하게 됨)
 
 #### 풀 재생성 규칙 (40개 소진 시)
