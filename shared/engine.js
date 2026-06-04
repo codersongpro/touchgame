@@ -285,7 +285,6 @@ const _GAME_CATEGORY_MAP = {
   'slide-puzzle': 'puzzle', 'maze-run': 'puzzle', 'pipe-connect': 'puzzle',
   'laser-reflect': 'puzzle', 'one-stroke': 'puzzle', 'dot-connect': 'puzzle',
   'paint-fill': 'puzzle', 'arrow-rotate': 'puzzle', 'fold-guess': 'puzzle',
-  'spot-the-difference': 'brain',
 };
 
 function _detectGameCategory() {
