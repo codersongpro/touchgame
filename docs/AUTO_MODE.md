@@ -171,7 +171,7 @@ git commit -m "Auto-add: {게임 이름} ({카테고리}, 패턴 {A|B|C})
 
 선택 근거: {부족 카테고리 / 메커니즘 다양성}
 데이터: {n}개
-검증: 정적 19/19, 브라우저 정상, 자가 게이트 6/6
+검증: 정적 20/20, 브라우저 정상, 자가 게이트 6/6
 실행: 자동 (KST {timestamp})
 
 Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>"

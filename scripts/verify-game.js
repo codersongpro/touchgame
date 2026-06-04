@@ -173,6 +173,32 @@ check('7. 터치 접근성: style.css에 다크 배경 색 없음', () => {
   return true;
 });
 
+check('7. 3인용 공정성: 3열 균등 배치 (2+1 금지)', () => {
+  const p = path.join(gameDir, 'style.css');
+  if (!fs.existsSync(p)) return 'style.css 없음';
+  const css = fs.readFileSync(p, 'utf-8');
+
+  // .zones-wrap.p3 규칙이 없으면 zone 기반 게임이 아님 → 통과
+  const p3Block = css.match(/\.zones-wrap\.p3\s*\{([^}]*)\}/);
+  if (!p3Block) return true;
+
+  // 금지: P3가 하단 전체폭을 차지하는 2+1 배치 (nth-child(3) grid-column 스팬)
+  if (/\.zones-wrap\.p3\s+\.zone:nth-child\(3\)\s*\{[^}]*grid-column\s*:\s*1\s*\/\s*3/.test(css)) {
+    return '2+1 배치 발견 — 3인용은 3열 균등(1fr 1fr 1fr)이어야 공정함 (P3 비대칭 금지)';
+  }
+
+  // 권장: 3열 균등 컬럼
+  const cols = p3Block[1].match(/grid-template-columns\s*:\s*([^;]+)/);
+  if (cols) {
+    const v = cols[1].replace(/\s+/g, ' ').trim();
+    const frCount = (v.match(/1fr/g) || []).length;
+    if (frCount < 3) {
+      return `.zones-wrap.p3 컬럼이 "${v}" — 3인용은 "1fr 1fr 1fr" 3열 균등이어야 공정함`;
+    }
+  }
+  return true;
+});
+
 // === 8. 카테고리 매핑 일관성 (런처 ↔ engine.js) ===
 check('8. 카테고리 매핑 일관성 (launcher ↔ engine.js)', () => {
   const launcher = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf-8');

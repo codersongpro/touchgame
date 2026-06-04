@@ -14,9 +14,20 @@
 
 ### 골든 템플릿: `flag-quiz`
 - 상단: 문제 패널 (문제 + 타이머 + X 버튼)
-- 중간: zones-wrap (플레이어 수만큼 분할 — 2P 좌우, 3P 3분할, 4P 4분할 가로)
+- 중간: zones-wrap (플레이어 수만큼 분할 — 2P 좌우, 3P 3열 균등, 4P 4분할 가로)
 - 하단: 점수 바
 - 결과: 라운드별 점수 테이블
+
+> ⚠️ **공정성 필수 규칙 (3인용 레이아웃)**
+> 퀴즈/동시반응형(패턴 A) 게임은 **3명일 때 반드시 3열 균등 배치**(`grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr;`)를 써야 한다. 모든 플레이어가 동일한 크기·형태의 zone을 가져야 동시 반응 경쟁이 공정하다.
+> **금지:** `2+1` 배치(상단 2명, 하단 1명 전체폭). P3만 가로로 넓어져 버튼 크기·터치 위치가 달라지므로 공정하지 않다.
+> ```css
+> /* ✅ 올바름 (flag-quiz) */
+> .zones-wrap.p3 { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr; }
+> /* ❌ 금지 — P3가 비대칭이 됨 */
+> .zones-wrap.p3 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+> .zones-wrap.p3 .zone:nth-child(3) { grid-column: 1 / 3; }
+> ```
 
 ### 적합한 게임 유형
 - 퀴즈류 (지식, OX, 객관식)
