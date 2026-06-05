@@ -15,29 +15,73 @@ const PLAYER_CONFIG = [
   { label: 'P4', dot: '#F57C00', zoneBg: '#FFE0B2', cls: 'p4' },
 ];
 
-// ── Problems ─────────────────────────────────────────────────
-// 각 문제: a + ? = target (빈칸 = target - a). 가르기·모으기 학습.
-const ALL_PROBLEMS = [
-  // 10 가르기 (1학년 핵심)
-  { a: 1, target: 10 }, { a: 2, target: 10 }, { a: 3, target: 10 },
-  { a: 4, target: 10 }, { a: 5, target: 10 }, { a: 6, target: 10 },
-  { a: 7, target: 10 }, { a: 8, target: 10 }, { a: 9, target: 10 },
-  // 9 가르기
-  { a: 1, target: 9 }, { a: 2, target: 9 }, { a: 4, target: 9 },
-  { a: 6, target: 9 }, { a: 8, target: 9 },
-  // 8 가르기
-  { a: 1, target: 8 }, { a: 3, target: 8 }, { a: 5, target: 8 },
-  { a: 6, target: 8 }, { a: 7, target: 8 },
-  // 7 가르기
-  { a: 2, target: 7 }, { a: 3, target: 7 }, { a: 4, target: 7 },
-  { a: 5, target: 7 }, { a: 6, target: 7 },
-  // 6 가르기
-  { a: 1, target: 6 }, { a: 2, target: 6 }, { a: 3, target: 6 },
-  { a: 4, target: 6 }, { a: 5, target: 6 },
-  // 5 가르기
-  { a: 1, target: 5 }, { a: 2, target: 5 }, { a: 3, target: 5 },
-  { a: 4, target: 5 },
-];
+// ── Problems (난이도 3단계) ──────────────────────────────────
+// 각 문제: tokens 배열 + answer(빈칸 '?'에 들어갈 수).
+// 식은 토큰 5개로 통일 — 빈칸은 맨 앞/중간/끝 어디든 올 수 있다.
+const LEVELS = {
+  // Lv1 (쉬움): 합 10 이내 가르기
+  1: [
+    { tokens: ['1', '+', '?', '=', '10'], answer: 9 },
+    { tokens: ['3', '+', '?', '=', '10'], answer: 7 },
+    { tokens: ['4', '+', '?', '=', '10'], answer: 6 },
+    { tokens: ['8', '+', '?', '=', '10'], answer: 2 },
+    { tokens: ['2', '+', '?', '=', '9'],  answer: 7 },
+    { tokens: ['4', '+', '?', '=', '9'],  answer: 5 },
+    { tokens: ['3', '+', '?', '=', '8'],  answer: 5 },
+    { tokens: ['2', '+', '?', '=', '7'],  answer: 5 },
+    { tokens: ['2', '+', '?', '=', '10'], answer: 8 },
+    { tokens: ['6', '+', '?', '=', '10'], answer: 4 },
+    { tokens: ['5', '+', '?', '=', '8'],  answer: 3 },
+  ],
+  // Lv2 (보통): 받아올림 가르기 (합 11~18)
+  2: [
+    { tokens: ['8', '+', '?', '=', '11'], answer: 3 },
+    { tokens: ['7', '+', '?', '=', '13'], answer: 6 },
+    { tokens: ['9', '+', '?', '=', '15'], answer: 6 },
+    { tokens: ['8', '+', '?', '=', '14'], answer: 6 },
+    { tokens: ['9', '+', '?', '=', '16'], answer: 7 },
+    { tokens: ['7', '+', '?', '=', '12'], answer: 5 },
+    { tokens: ['8', '+', '?', '=', '15'], answer: 7 },
+    { tokens: ['9', '+', '?', '=', '17'], answer: 8 },
+    { tokens: ['6', '+', '?', '=', '11'], answer: 5 },
+    { tokens: ['9', '+', '?', '=', '14'], answer: 5 },
+    { tokens: ['7', '+', '?', '=', '15'], answer: 8 },
+  ],
+  // Lv3 (어려움): 뺄셈 + 빈자리 변형(앞/중간)
+  3: [
+    { tokens: ['14', '-', '6', '=', '?'], answer: 8 },
+    { tokens: ['13', '-', '7', '=', '?'], answer: 6 },
+    { tokens: ['15', '-', '8', '=', '?'], answer: 7 },
+    { tokens: ['11', '-', '4', '=', '?'], answer: 7 },
+    { tokens: ['?', '+', '6', '=', '13'], answer: 7 },
+    { tokens: ['?', '+', '8', '=', '11'], answer: 3 },
+    { tokens: ['?', '+', '7', '=', '16'], answer: 9 },
+    { tokens: ['12', '-', '?', '=', '5'], answer: 7 },
+    { tokens: ['16', '-', '7', '=', '?'], answer: 9 },
+    { tokens: ['?', '+', '9', '=', '15'], answer: 6 },
+    { tokens: ['13', '-', '?', '=', '6'], answer: 7 },
+  ],
+};
+
+// 라운드별 난이도 (1~3 쉬움 → 4~6 보통 → 7~10 어려움)
+const ROUND_PLAN = [1, 1, 1, 2, 2, 2, 3, 3, 3, 3];
+
+// 같은 식을 정답으로 완성한 문자열 (결과표/상태 표시용)
+function solvedEquation(item) {
+  return item.tokens.map(t => (t === '?' ? item.answer : t)).join(' ');
+}
+
+// ROUND_PLAN에 따라 각 단계 풀을 셔플해 순서대로 10문제 구성
+function buildRounds() {
+  const pools = { 1: shuffle(LEVELS[1]), 2: shuffle(LEVELS[2]), 3: shuffle(LEVELS[3]) };
+  const idx = { 1: 0, 2: 0, 3: 0 };
+  return ROUND_PLAN.map(lv => {
+    const pool = pools[lv];
+    const item = pool[idx[lv] % pool.length];
+    idx[lv]++;
+    return item;
+  });
+}
 
 // ── Sound Manager ────────────────────────────────────────────
 const sound = createSoundManager({
@@ -197,27 +241,38 @@ function updateSoundBtn(btn) {
   btn.textContent = sound.isMuted() ? '🔇' : '🔊';
 }
 
-// 보기 4개: 정답 + 근처 오답 3개 (0..target 범위, 중복 없음)
+// 보기 4개: 정답 + 근처 오답 3개 (정답 ±4 범위, 0 이상, 중복 없음)
 function makeChoices(item) {
+  const ans = item.answer;
   const pool = [];
-  for (let n = 0; n <= item.target; n++) {
-    if (n !== item.answer) pool.push(n);
+  for (let n = Math.max(0, ans - 4); n <= ans + 4; n++) {
+    if (n !== ans) pool.push(n);
   }
   const wrong = shuffle(pool).slice(0, 3);
-  return shuffle([item.answer, ...wrong]).map(n => String(n));
+  return shuffle([ans, ...wrong]).map(n => String(n));
 }
 
-// 문제 식 SVG (a + ? = target)
+// 문제 식 SVG — 토큰 5개를 균등 배치, '?' 자리에 강조 박스
 function problemSVG(item) {
-  return `<svg viewBox="0 0 170 100" xmlns="http://www.w3.org/2000/svg">
-    <rect width="170" height="100" fill="#fff"/>
-    <text x="30" y="58" text-anchor="middle" font-size="34" font-weight="900" fill="#2C2C2C" font-family="'Pretendard Variable',sans-serif">${item.a}</text>
-    <text x="58" y="56" text-anchor="middle" font-size="28" font-weight="900" fill="#00897B" font-family="sans-serif">+</text>
-    <rect x="74" y="26" width="34" height="40" rx="8" fill="#E0F2F1" stroke="#00897B" stroke-width="3"/>
-    <text x="91" y="58" text-anchor="middle" font-size="28" font-weight="900" fill="#00897B" font-family="sans-serif">?</text>
-    <text x="124" y="56" text-anchor="middle" font-size="28" font-weight="900" fill="#2C2C2C" font-family="sans-serif">=</text>
-    <text x="150" y="58" text-anchor="middle" font-size="34" font-weight="900" fill="#2C2C2C" font-family="'Pretendard Variable',sans-serif">${item.target}</text>
-  </svg>`;
+  const tokens = item.tokens;
+  const slotW = 30;
+  const W = tokens.length * slotW + 20;          // 5토큰 → 170
+  const H = Math.round(W / 1.5);                  // .flag-display 3:2 비율에 맞춤
+  const cy = H / 2;
+  let parts = `<rect width="${W}" height="${H}" fill="#fff"/>`;
+  tokens.forEach((tok, i) => {
+    const cx = 10 + slotW * i + slotW / 2;
+    if (tok === '?') {
+      parts += `<rect x="${cx - 16}" y="${cy - 20}" width="32" height="40" rx="8" fill="#E0F2F1" stroke="#00897B" stroke-width="3"/>`;
+      parts += `<text x="${cx}" y="${cy + 9}" text-anchor="middle" font-size="26" font-weight="900" fill="#00897B" font-family="sans-serif">?</text>`;
+    } else {
+      const isOp = (tok === '+' || tok === '-' || tok === '=');
+      const color = isOp ? '#00897B' : '#2C2C2C';
+      const fs = isOp ? 24 : 30;
+      parts += `<text x="${cx}" y="${cy + 10}" text-anchor="middle" font-size="${fs}" font-weight="900" fill="${color}" font-family="'Pretendard Variable',sans-serif">${tok}</text>`;
+    }
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${parts}</svg>`;
 }
 
 // ── Player count selection ───────────────────────────────────
@@ -465,11 +520,11 @@ function resolveRound(winnerIdx) {
   }
 
   const winnerLabel = PLAYER_CONFIG[winnerIdx].label;
-  problemStatus.textContent = `${winnerLabel} 정답! ${currentItem.a} + ${currentItem.answer} = ${currentItem.target}`;
+  problemStatus.textContent = `${winnerLabel} 정답! ${solvedEquation(currentItem)}`;
 
   roundLog.push({
     answer: currentItem.answer,
-    equation: `${currentItem.a}+__=${currentItem.target}`,
+    equation: solvedEquation(currentItem),
     winnerIdx,
     dqPlayers: [...dqSet],
     timedOut: false,
@@ -501,7 +556,7 @@ function handleTimeout() {
 
   roundLog.push({
     answer: currentItem.answer,
-    equation: `${currentItem.a}+__=${currentItem.target}`,
+    equation: solvedEquation(currentItem),
     winnerIdx: -1,
     dqPlayers: [...dqSet],
     timedOut: true,
@@ -513,8 +568,7 @@ function handleTimeout() {
 // ── Load round ───────────────────────────────────────────────
 function loadRound() {
   phase        = 'active';
-  const base   = gameRounds[roundIdx];
-  currentItem  = { a: base.a, target: base.target, answer: base.target - base.a };
+  currentItem  = gameRounds[roundIdx];
   currentChoices = makeChoices(currentItem);
   dqSet        = new Set();
 
@@ -540,7 +594,7 @@ function nextRound() {
 
 // ── Start game ───────────────────────────────────────────────
 function startGame() {
-  gameRounds  = shuffle(ALL_PROBLEMS).slice(0, TOTAL_ROUNDS);
+  gameRounds  = buildRounds();
   roundIdx    = 0;
   scores      = new Array(playerCount).fill(0);
   roundLog    = [];
@@ -590,8 +644,7 @@ function showResult() {
   resultTableBody.innerHTML = '';
   roundLog.forEach((log, idx) => {
     const tr = document.createElement('tr');
-    const eq = log.equation.replace('__', log.answer);
-    let cells = `<td style="text-align:left;font-size:0.82rem;">${idx + 1}. ${eq}</td>`;
+    let cells = `<td style="text-align:left;font-size:0.82rem;">${idx + 1}. ${log.equation}</td>`;
 
     for (let i = 0; i < playerCount; i++) {
       if (log.timedOut) {
