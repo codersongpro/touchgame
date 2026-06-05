@@ -506,6 +506,7 @@
       'dice-sum': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="12" y="26" width="26" height="26" rx="6" fill="#fff" stroke="#2C2C2C" stroke-width="3"/><circle cx="19" cy="33" r="2.6" fill="#2C2C2C"/><circle cx="31" cy="45" r="2.6" fill="#2C2C2C"/><text x="44" y="44" text-anchor="middle" font-size="14" font-weight="900" fill="#FF7043">+</text><rect x="50" y="26" width="26" height="26" rx="6" fill="#fff" stroke="#2C2C2C" stroke-width="3"/><circle cx="57" cy="33" r="2.6" fill="#2C2C2C"/><circle cx="69" cy="33" r="2.6" fill="#2C2C2C"/><circle cx="57" cy="45" r="2.6" fill="#2C2C2C"/><circle cx="69" cy="45" r="2.6" fill="#2C2C2C"/><text x="40" y="70" text-anchor="middle" font-size="9" font-weight="900" fill="#F9A825">주사위 합</text></svg>',
       'fold-guess': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="16" y="18" width="20" height="44" rx="3" fill="#FFF8F0" stroke="#2C2C2C" stroke-width="2.5"/><rect x="16" y="18" width="10" height="11" fill="#7C4DFF" stroke="#2C2C2C" stroke-width="1.3"/><rect x="26" y="40" width="10" height="11" fill="#7C4DFF" stroke="#2C2C2C" stroke-width="1.3"/><line x1="36" y1="16" x2="36" y2="64" stroke="#2C2C2C" stroke-width="2" stroke-dasharray="4,3"/><rect x="36" y="18" width="20" height="44" rx="3" fill="none" stroke="#2C2C2C" stroke-width="1.3" stroke-dasharray="3,2"/><text x="63" y="44" text-anchor="middle" font-size="15" font-weight="900" fill="#7C4DFF">?</text><text x="40" y="73" text-anchor="middle" font-size="9" font-weight="900" fill="#7C4DFF">종이접기</text></svg>',
       'odd-one-out': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><rect x="13" y="16" width="22" height="18" rx="4" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="2.5"/><rect x="40" y="16" width="22" height="18" rx="4" fill="#C8E6C9" stroke="#2C2C2C" stroke-width="2.5"/><rect x="13" y="40" width="22" height="18" rx="4" fill="#FFE0B2" stroke="#2C2C2C" stroke-width="2.5"/><rect x="40" y="40" width="22" height="18" rx="4" fill="#FFCDD2" stroke="#2C2C2C" stroke-width="2.5"/><circle cx="51" cy="49" r="11" fill="none" stroke="#7E57C2" stroke-width="4"/><line x1="59" y1="57" x2="68" y2="66" stroke="#7E57C2" stroke-width="5" stroke-linecap="round"/><text x="40" y="74" text-anchor="middle" font-size="9" font-weight="900" fill="#7E57C2">다른 낱말</text></svg>',
+      'number-bond': '<svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="68" height="68" rx="10" fill="#FFF8E1" stroke="#2C2C2C" stroke-width="3"/><circle cx="40" cy="24" r="13" fill="#FFD54F" stroke="#2C2C2C" stroke-width="3"/><text x="40" y="29" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">10</text><line x1="31" y1="33" x2="22" y2="48" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/><line x1="49" y1="33" x2="58" y2="48" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="58" r="12" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="3"/><text x="20" y="63" text-anchor="middle" font-size="13" font-weight="900" fill="#2C2C2C">6</text><circle cx="60" cy="58" r="12" fill="#C8E6C9" stroke="#2C2C2C" stroke-width="3"/><text x="60" y="63" text-anchor="middle" font-size="14" font-weight="900" fill="#00897B">?</text></svg>',
     };
 
     // 카테고리 매핑
@@ -558,7 +559,8 @@
       'memory-relay': 'coop',
       'dice-sum': 'math',
       'fold-guess': 'puzzle',
-      'odd-one-out': 'brain'
+      'odd-one-out': 'brain',
+      'number-bond': 'math'
     };
 
     // 게임별 지원 인원수 표시 (정의 안 된 게임은 기본 '2-4명')
@@ -626,7 +628,8 @@
       { folder:'memory-relay', name:'기억 이어가기', description:'색 순서를 함께 외워 한 칸씩 이어가는 협력 게임! 6칸 넘기면 성공', icon:'🧠', color:'#7C4DFF', grades:[1,2,3,4,5,6], playTime:'2~3분' },
       { folder:'dice-sum', name:'주사위 합', description:'주사위 두 개의 눈을 더한 값을 가장 먼저 맞혀요! 1-3학년 덧셈', icon:'🎲', color:'#F9A825', grades:[1,2,3,4], playTime:'1분' },
       { folder:'fold-guess', name:'종이접기', description:'반으로 접은 종이를 펼치면 나올 대칭 모양을 맞혀요! 공간 추론', icon:'📄', color:'#7C4DFF', grades:[2,3,4,5,6], playTime:'1분' },
-      { folder:'odd-one-out', name:'다른 낱말 찾기', description:'끼리끼리 모인 낱말 중 어울리지 않는 하나를 찾아요! 어휘 분류', icon:'🔍', color:'#7E57C2', grades:[1,2,3,4,5,6], playTime:'1분' }
+      { folder:'odd-one-out', name:'다른 낱말 찾기', description:'끼리끼리 모인 낱말 중 어울리지 않는 하나를 찾아요! 어휘 분류', icon:'🔍', color:'#7E57C2', grades:[1,2,3,4,5,6], playTime:'1분' },
+      { folder:'number-bond', name:'수 가르기', description:'빈칸에 들어갈 수를 찾아 식을 완성해요! 가르기와 모으기', icon:'➕', color:'#00897B', grades:[1,2,3], playTime:'1분' }
     ];
 
     const grid = document.getElementById('gameGrid');
