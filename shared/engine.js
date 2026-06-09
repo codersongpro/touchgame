@@ -275,7 +275,7 @@ function createBgmManager() {
 const _GAME_CATEGORY_MAP = {
   'reaction-race': 'speed', 'balloon-pop': 'speed', 'bomb-dodge': 'speed', 'arrow-tap': 'speed', 'rps-react': 'speed', 'chase-tap': 'speed', 'odd-color': 'speed',
   'color-touch': 'brain', 'shape-match': 'brain', 'shadow-match': 'brain', 'missing-piece': 'brain',
-  'mirror-match': 'brain', 'dots-and-boxes': 'brain', 'memory-match': 'brain', 'nim-game': 'brain', 'odd-one-out': 'brain',
+  'mirror-match': 'brain', 'dots-and-boxes': 'brain', 'memory-match': 'brain', 'nim-game': 'brain', 'odd-one-out': 'brain', 'pattern-next': 'brain',
   'quick-math': 'math', 'size-compare': 'math', 'color-count': 'math', 'more-or-less': 'math',
   'number-tap': 'math', 'clock-reading': 'math', 'math-sign': 'math', 'area-compare': 'math', 'dice-sum': 'math', 'number-bond': 'math',
   'ox-quiz': 'knowledge', 'initial-quiz': 'knowledge', 'capital-quiz': 'knowledge',
