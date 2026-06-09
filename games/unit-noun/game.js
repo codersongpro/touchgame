@@ -14,42 +14,90 @@ const PLAYER_CONFIG = [
 ];
 
 // 단위(세는 말) 후보 풀 — 보기 distractor 출처
-const UNIT_POOL = ['마리', '권', '그루', '송이', '대', '자루', '장', '켤레', '채', '잔', '벌', '척', '포기', '통'];
+const UNIT_POOL = ['마리', '권', '그루', '송이', '대', '자루', '장', '켤레', '채', '잔', '벌', '척', '포기', '통', '그릇', '봉지', '모', '톨', '알'];
 
-// ── Data: 32 물건 → 알맞은 단위 ──────────────────────────────
+// ── Data: 60 물건 → 알맞은 단위 ──────────────────────────────
+// avoid: 그 물건에도 어느 정도 쓸 수 있어 정답이 애매해지는 단위 → 보기에서 제외
 const ALL_WORDS = [
+  // 마리 (동물·물고기·곤충)
   { word: '강아지', unit: '마리' },
   { word: '고양이', unit: '마리' },
   { word: '코끼리', unit: '마리' },
   { word: '물고기', unit: '마리' },
   { word: '새',     unit: '마리' },
   { word: '생선',   unit: '마리' },
+  { word: '토끼',   unit: '마리' },
+  { word: '호랑이', unit: '마리' },
+  // 권 (책류)
   { word: '책',     unit: '권' },
   { word: '공책',   unit: '권' },
   { word: '사전',   unit: '권' },
+  { word: '동화책', unit: '권' },
+  // 그루 (나무)
   { word: '나무',   unit: '그루' },
   { word: '소나무', unit: '그루' },
+  { word: '감나무', unit: '그루' },
+  // 송이 (꽃·열매 송이)
   { word: '장미',   unit: '송이' },
   { word: '꽃',     unit: '송이' },
+  { word: '포도',   unit: '송이', avoid: ['알'] },
+  { word: '국화',   unit: '송이' },
+  // 대 (탈것·기계)
   { word: '자동차', unit: '대' },
   { word: '자전거', unit: '대' },
   { word: '비행기', unit: '대' },
   { word: '컴퓨터', unit: '대' },
+  { word: '버스',   unit: '대' },
+  { word: '기차',   unit: '대' },
+  { word: '텔레비전', unit: '대' },
+  // 자루 (가늘고 긴 필기·연장)
   { word: '연필',   unit: '자루' },
   { word: '볼펜',   unit: '자루' },
+  { word: '붓',     unit: '자루' },
+  // 장 (얇고 평평한 것)
   { word: '종이',   unit: '장' },
   { word: '도화지', unit: '장' },
+  { word: '우표',   unit: '장' },
+  { word: '사진',   unit: '장' },
+  { word: '색종이', unit: '장' },
+  // 켤레 (쌍)
   { word: '신발',   unit: '켤레' },
   { word: '양말',   unit: '켤레' },
   { word: '장갑',   unit: '켤레' },
+  { word: '운동화', unit: '켤레' },
+  // 채 (집·건물)
   { word: '집',     unit: '채' },
   { word: '건물',   unit: '채' },
-  { word: '물',     unit: '잔' },
-  { word: '커피',   unit: '잔' },
+  { word: '아파트', unit: '채' },
+  // 잔 (마시는 것)
+  { word: '물',     unit: '잔', avoid: ['통'] },
+  { word: '커피',   unit: '잔', avoid: ['통'] },
+  { word: '우유',   unit: '잔', avoid: ['통'] },
+  { word: '주스',   unit: '잔', avoid: ['통'] },
+  // 벌 (옷 세트)
   { word: '옷',     unit: '벌' },
   { word: '한복',   unit: '벌' },
-  { word: '배추',   unit: '포기' },
+  { word: '양복',   unit: '벌' },
+  // 척 (배)
+  { word: '배',     unit: '척' },
+  { word: '여객선', unit: '척' },
+  // 포기 (잎채소)
+  { word: '배추',   unit: '포기', avoid: ['통'] },
+  { word: '김치',   unit: '포기' },
+  // 통 (우편)
   { word: '편지',   unit: '통' },
+  { word: '소포',   unit: '통' },
+  // 그릇 (담아 먹는 것)
+  { word: '밥',     unit: '그릇' },
+  { word: '국',     unit: '그릇' },
+  // 봉지
+  { word: '과자',   unit: '봉지' },
+  // 모 (두부)
+  { word: '두부',   unit: '모' },
+  // 톨 (밤)
+  { word: '밤',     unit: '톨', avoid: ['알', '봉지'] },
+  // 알 (달걀)
+  { word: '달걀',   unit: '알' },
 ];
 
 // ── Sound Manager ────────────────────────────────────────────
@@ -190,10 +238,11 @@ function updateSoundBtn(btn) {
   btn.textContent = sound.isMuted() ? '🔇' : '🔊';
 }
 
-// 4지선다: 정답 단위 + 풀에서 다른 3개 단위 (정답 제외, 중복 없음)
+// 4지선다: 정답 단위 + 풀에서 다른 3개 단위 (정답·혼동 단위 제외, 중복 없음)
 function makeChoices(item) {
   const correct = item.unit;
-  const pool = shuffle(UNIT_POOL.filter(u => u !== correct)).slice(0, 3);
+  const avoid = item.avoid || [];
+  const pool = shuffle(UNIT_POOL.filter(u => u !== correct && avoid.indexOf(u) === -1)).slice(0, 3);
   return shuffle([correct, ...pool]);
 }
 
