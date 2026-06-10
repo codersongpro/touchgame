@@ -1,11 +1,18 @@
 // sw.js - Service worker for offline support
 //
 // 전략 A: Network-First for 디렉토리 파일
-// - index.html (메인 런처) + games/registry.json → 항상 네트워크 우선 (오프라인 시 캐시 폴백)
+// - 메인 런처(스코프 루트 — 루트 배포 '/' 또는 GitHub Pages '/jjamjjami-gyosil/' — 및 /index.html)
+//   + games/registry.json + manifest.json → 항상 네트워크 우선
+//   (NETWORK_TIMEOUT_MS 내 응답 없거나 실패 시 캐시 폴백)
 //   → 새 게임 추가 시 사용자에게 즉시 표시됨
 // - 그 외 게임 파일들 (game.js, style.css 등) → 캐시 우선 (빠른 로딩 + 오프라인 지원)
+//   → 이미 배포된 games/*·shared/* 파일을 수정하면 CACHE_NAME을 +1 해야 기존 방문자에게 반영됨
+//     (docs/AUTO_MODE.md "캐시 버전 범프 규칙" 참고)
 
-const CACHE_NAME = 'jjamjjami-gyosil-v14';
+const CACHE_NAME = 'jjamjjami-gyosil-v15';
+
+// 느린 회선에서 network-first가 첫 화면을 오래 막지 않도록 캐시로 폴백하는 대기 시간
+const NETWORK_TIMEOUT_MS = 3000;
 
 // Install: pre-cache the launcher
 self.addEventListener('install', function(event) {
@@ -44,11 +51,14 @@ self.addEventListener('activate', function(event) {
 // - games/registry.json (게임 폴더 목록)
 // - manifest.json (앱 메타데이터)
 // 게임 폴더 안의 index.html은 제외 (그건 게임 자체이므로 캐시 우선)
+// SW 스코프 루트 경로 — 루트 배포면 '/', GitHub Pages 프로젝트 페이지면 '/jjamjjami-gyosil/'
+var SCOPE_PATH = new URL('./', self.location).pathname;
+
 function isDirectoryFile(url) {
   var pathname = new URL(url).pathname;
 
-  // 메인 런처: '/', '/index.html' (단, '/games/xxx/index.html'은 제외)
-  if (pathname === '/' ||
+  // 메인 런처: 스코프 루트 또는 '/index.html'로 끝 (단, '/games/xxx/index.html'은 제외)
+  if (pathname === SCOPE_PATH ||
       pathname.endsWith('/index.html') && !pathname.includes('/games/')) {
     return true;
   }
@@ -66,22 +76,35 @@ self.addEventListener('fetch', function(event) {
   if (!event.request.url.startsWith(self.location.origin)) return;
 
   if (isDirectoryFile(event.request.url)) {
-    // Network-First: 항상 최신 가져오기, 실패 시 캐시 폴백
+    // Network-First: 항상 최신 가져오기, 실패/지연(타임아웃) 시 캐시 폴백
+    var networkFetch = fetch(event.request).then(function(response) {
+      // 성공 시 캐시 갱신 (오프라인 폴백용)
+      if (response.ok) {
+        var clone = response.clone();
+        return caches.open(CACHE_NAME).then(function(cache) {
+          return cache.put(event.request, clone);
+        }).then(function() { return response; });
+      }
+      return response;
+    });
+    // 타임아웃으로 캐시가 먼저 응답해도 fetch는 끝까지 진행해 다음 방문용 캐시를 갱신
+    event.waitUntil(networkFetch.then(null, function() {}));
+
     event.respondWith(
-      fetch(event.request).then(function(response) {
-        // 성공 시 캐시 갱신 (오프라인 폴백용)
-        if (response.ok) {
-          var clone = response.clone();
-          caches.open(CACHE_NAME).then(function(cache) {
-            cache.put(event.request, clone);
-          });
-        }
-        return response;
-      }).catch(function() {
-        // 네트워크 실패 → 캐시에서 시도
+      Promise.race([
+        networkFetch.then(null, function() { return null; }),
+        new Promise(function(resolve) {
+          setTimeout(function() { resolve(null); }, NETWORK_TIMEOUT_MS);
+        })
+      ]).then(function(response) {
+        if (response) return response;
+        // 네트워크 실패 또는 응답 지연 → 캐시에서 시도
         return caches.match(event.request).then(function(cached) {
-          return cached || new Response('Offline', { status: 503 });
+          // 캐시도 없으면 (첫 방문 + 느린 회선) 네트워크 응답을 끝까지 기다림
+          return cached || networkFetch;
         });
+      }).catch(function() {
+        return new Response('Offline', { status: 503 });
       })
     );
     return;

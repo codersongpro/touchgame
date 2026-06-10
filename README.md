@@ -114,6 +114,8 @@ jjamjjami-gyosil/
 7. `shared/engine.js`의 `_GAME_CATEGORY_MAP`에도 추가 (BGM 분류용)
 8. `node scripts/verify-game.js {folder}`로 정적 검증
 
+> ⚠️ **기존에 배포된 게임/`shared` 파일을 수정한 경우**에는 `sw.js`의 `CACHE_NAME`을 +1 해야 기존 방문자에게 반영됨 (신규 게임 추가만이면 불필요 — [docs/AUTO_MODE.md](docs/AUTO_MODE.md) "캐시 버전 범프 규칙" 참고)
+
 자세한 절차는 [docs/AI_ROUTINE.md](docs/AI_ROUTINE.md) 참고.
 
 ## 디자인 시스템 (Level 3 Comic)

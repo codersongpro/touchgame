@@ -185,6 +185,22 @@ git push origin master
 
 ---
 
+## 캐시 버전 범프 규칙 (sw.js CACHE_NAME)
+
+게임 파일(`games/*`)과 공용 파일(`shared/*`)은 Service Worker가 **캐시 우선**으로 서빙한다. 따라서 **이미 배포된 파일을 수정하는 커밋은 `sw.js`의 `CACHE_NAME` 버전을 +1 하지 않으면 기존 방문자에게 영원히 반영되지 않는다.** (런처 index.html과 games/registry.json은 network-first라 해당 없음)
+
+| 커밋 내용 | CACHE_NAME 범프 |
+|---|---|
+| **신규 게임 추가만** (Auto-add) | ❌ 불필요 — 런처·registry는 network-first고, 새 게임 파일은 아직 어떤 캐시에도 없어 네트워크로 받음 |
+| **기존 게임 수정** (데이터 확장, 버그 수정, 스타일 변경 등 `games/*` 기존 파일) | ✅ 필수 |
+| **`shared/engine.js`·`shared/style.css` 수정** | ✅ 필수 |
+
+범프 방법: `sw.js` 상단의 `CACHE_NAME` 숫자를 +1 (`'jjamjjami-gyosil-v15'` → `-v16`) 하고 **같은 커밋에 포함**.
+
+허용되는 한계 1가지: Auto-add가 `shared/engine.js`의 `_GAME_CATEGORY_MAP`에 추가하는 한 줄은 범프 없이 둬도 된다 — 새 게임의 **BGM 분위기만** 다음 범프 전까지 기본값(brain풍)으로 재생되며 게임 동작에는 영향 없다.
+
+---
+
 ## Step 7-OK-FINAL. 종료 전 자가 점검 (필수)
 
 게임을 푸시할 때마다, 그리고 "더 이상 할 일이 없다"고 판단하기 직전에 반드시 다음을 실행:
