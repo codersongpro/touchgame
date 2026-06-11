@@ -277,7 +277,7 @@ const _GAME_CATEGORY_MAP = {
   'color-touch': 'brain', 'shape-match': 'brain', 'shadow-match': 'brain', 'missing-piece': 'brain',
   'mirror-match': 'brain', 'dots-and-boxes': 'brain', 'memory-match': 'brain', 'nim-game': 'brain', 'odd-one-out': 'brain', 'pattern-next': 'brain', 'relation-match': 'brain',
   'quick-math': 'math', 'size-compare': 'math', 'color-count': 'math', 'more-or-less': 'math',
-  'number-tap': 'math', 'clock-reading': 'math', 'math-sign': 'math', 'area-compare': 'math', 'dice-sum': 'math', 'number-bond': 'math', 'coin-count': 'math',
+  'number-tap': 'math', 'clock-reading': 'math', 'math-sign': 'math', 'area-compare': 'math', 'dice-sum': 'math', 'number-bond': 'math', 'coin-count': 'math', 'skip-count': 'math',
   'ox-quiz': 'knowledge', 'initial-quiz': 'knowledge', 'capital-quiz': 'knowledge',
   'flag-quiz': 'knowledge', 'proverb-quiz': 'knowledge', 'english-word': 'knowledge',
   'animal-sort': 'knowledge', 'hangul-jamo': 'knowledge', 'opposite-word': 'knowledge', 'synonym-quiz': 'knowledge', 'unit-noun': 'knowledge',
