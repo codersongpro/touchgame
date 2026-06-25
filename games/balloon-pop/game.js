@@ -436,6 +436,19 @@
 
   // ===== 결과 화면 =====
   function showResult() {
+    var scoreResult = reportGameResult({ gameId: 'balloon-pop', playerCount: playerCount, scores: playerScores.slice(), metric: 'score' });
+    var scoreBadge = document.getElementById('bestRecordBadge');
+    if (scoreBadge) {
+      if (scoreResult.isNewBest) {
+        scoreBadge.style.display = '';
+        scoreBadge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+        createInitialsPrompt(function () {}).open();
+      } else if (scoreResult.bestEntry) {
+        scoreBadge.style.display = '';
+        scoreBadge.textContent = '이 기기 최고 기록: ' + scoreResult.bestEntry.score + '점';
+      }
+    }
+
     var maxScore = -1;
     var winnerIdx = 0;
     playerScores.forEach(function (s, i) {

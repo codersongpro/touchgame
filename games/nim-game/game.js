@@ -414,6 +414,13 @@
     '</svg>';
 
   function showResult(winner, loser) {
+    var nimScores = [0, 0];
+    nimScores[winner] = 1;
+    var scoreResult = reportGameResult({ gameId: 'nim-game', playerCount: 2, scores: nimScores, metric: 'win' });
+    if (scoreResult.isNewBest) {
+      createInitialsPrompt(function () {}).open();
+    }
+
     var winColor = PLAYER_COLORS[winner];
 
     // Result icon: trophy
