@@ -1007,6 +1007,23 @@ function showResult() {
   phase = 'idle';
   sound.play('fanfare');
 
+  var scoreResult = reportGameResult({ gameId: 'flag-quiz', playerCount: playerCount, scores: scores.slice(), metric: 'score' });
+  var badge = document.getElementById('bestRecordBadge');
+  if (badge) {
+    if (scoreResult.isNewBest) {
+      badge.style.display = '';
+      badge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+      createInitialsPrompt(function () {
+        badge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+      }).open();
+    } else if (scoreResult.bestEntry) {
+      badge.style.display = '';
+      badge.textContent = '이 기기 최고 기록: ' + scoreResult.bestEntry.score + '점';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
+
   const maxScore = Math.max(...scores);
   const winners  = scores
     .map((s, i) => ({ s, i }))
