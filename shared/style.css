@@ -12,7 +12,7 @@
   --text-sub: #888888;
 
   /* Typography */
-  --font-family: 'Pretendard Variable', -apple-system, 'Noto Sans KR', sans-serif;
+  --font-family: 'DungGeunMo', 'Galmuri11', 'NeoDunggeunmo', 'DNFBitBitv2', 'Pretendard Variable', -apple-system, 'Noto Sans KR', sans-serif;
   --font-size-title: 1.5rem;
   --font-size-body: 1rem;
   --font-size-card: 0.9rem;
@@ -28,8 +28,8 @@
   /* Sizing */
   --card-min-size: 140px;
   --btn-min-touch: 48px;
-  --card-radius: 16px;
-  --btn-radius: 24px;
+  --card-radius: 8px;
+  --btn-radius: 8px;
 
   /* Shadows */
   --shadow-card: 0 2px 8px rgba(0,0,0,0.12);
@@ -956,4 +956,135 @@ html {
 /* Screen-game 자체 배경을 밝게 (다크 테마 게임에서) */
 .screen-game {
   background: #FFF8F0 !important;
+}
+
+/* TouchGame retro arcade shell */
+body {
+  background:
+    linear-gradient(rgba(45,212,191,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45,212,191,0.08) 1px, transparent 1px),
+    #101827 !important;
+  background-size: 28px 28px, 28px 28px, 100% 100% !important;
+}
+
+.screen-intro,
+.screen-game,
+.screen-result {
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 4px),
+    #101827 !important;
+  color: #f8fafc !important;
+}
+
+.game-header,
+.top-bar,
+.game-hud,
+.score-bar,
+.score-row,
+.scoreboard {
+  background: #172033 !important;
+  border-color: #2dd4bf !important;
+  box-shadow: 0 4px 0 #000 !important;
+}
+
+.game-title,
+.intro-text,
+.intro-title-text,
+.result-title,
+.result-headline {
+  color: #facc15 !important;
+  -webkit-text-fill-color: #facc15 !important;
+  letter-spacing: 0 !important;
+  text-shadow: 3px 3px 0 #000 !important;
+}
+
+.intro-desc,
+.intro-sub,
+.intro-subtext,
+.intro-desc-text,
+.screen-result .result-sub {
+  color: #cbd5e1 !important;
+}
+
+.intro-rules,
+.result-winner,
+.screen-result .result-stats {
+  background: #172033 !important;
+  color: #f8fafc !important;
+  border: 2px solid #2dd4bf !important;
+  border-radius: 8px !important;
+  box-shadow: 5px 5px 0 #000 !important;
+}
+
+.intro-rules li,
+.screen-result .stat-row,
+.screen-result .stat-val {
+  color: #f8fafc !important;
+}
+
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-play,
+.btn-retry,
+.btn-home,
+.btn-home-res,
+.player-btn,
+.diff-btn,
+.option-btn {
+  border: 2px solid #2dd4bf !important;
+  border-radius: 8px !important;
+  box-shadow: 5px 5px 0 #000 !important;
+  letter-spacing: 0 !important;
+}
+
+.btn-primary,
+.btn-play,
+.btn-retry,
+.player-btn.active,
+.diff-btn.active,
+.option-btn.active,
+.diff-btn.selected,
+.option-btn.selected {
+  background: #facc15 !important;
+  color: #101827 !important;
+  -webkit-text-fill-color: #101827 !important;
+}
+
+.btn-home,
+.btn-home-res,
+.btn-secondary,
+.player-btn,
+.diff-btn,
+.option-btn {
+  background: #172033 !important;
+  color: #f8fafc !important;
+}
+
+.icon-btn,
+.sound-toggle,
+.btn-glass-circle,
+.bgm-toggle-fab {
+  border-radius: 8px !important;
+  border: 2px solid #2dd4bf !important;
+  background: #172033 !important;
+  color: #f8fafc !important;
+  box-shadow: 4px 4px 0 #000 !important;
+}
+
+.countdown-number {
+  color: #facc15 !important;
+  -webkit-text-fill-color: #facc15 !important;
+  text-shadow: 5px 5px 0 #000 !important;
+}
+
+.zone,
+.player-zone {
+  border: 2px solid #0f172a !important;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.16), 0 4px 0 rgba(0,0,0,0.55) !important;
+}
+
+.hud-timer-fill,
+.progress-bar-fill {
+  background: linear-gradient(90deg, #2dd4bf, #facc15) !important;
 }

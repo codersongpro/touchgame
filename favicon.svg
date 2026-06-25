@@ -1,15 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7c4dff"/>
-      <stop offset="100%" stop-color="#5c6bc0"/>
-    </linearGradient>
-  </defs>
-  <rect width="100" height="100" rx="22" fill="url(#fg)"/>
-  <path d="M28 6 L72 6 Q94 6 94 28 L94 34 Q50 52 6 34 L6 28 Q6 6 28 6 Z" fill="#fff" opacity="0.10"/>
-  <circle cx="50" cy="52" r="28" fill="#fff"/>
-  <path d="M43 38 L43 66 L66 52 Z" fill="url(#fg)"/>
-  <circle cx="50" cy="26" r="2.8" fill="url(#fg)"/>
-  <circle cx="80" cy="20" r="6.5" fill="#FFD54F"/>
-  <circle cx="80" cy="20" r="3" fill="#fff"/>
+  <rect width="100" height="100" rx="12" fill="#101827"/>
+  <path d="M0 20H100M0 40H100M0 60H100M0 80H100M20 0V100M40 0V100M60 0V100M80 0V100" stroke="#2dd4bf" stroke-opacity=".22" stroke-width="2"/>
+  <rect x="15" y="18" width="70" height="64" rx="8" fill="#172033" stroke="#2dd4bf" stroke-width="4"/>
+  <path d="M28 58h18M37 49v18" stroke="#facc15" stroke-width="6" stroke-linecap="square"/>
+  <circle cx="64" cy="54" r="7" fill="#f472b6"/>
+  <circle cx="74" cy="66" r="7" fill="#22c55e"/>
+  <text x="50" y="38" text-anchor="middle" font-family="monospace" font-size="18" font-weight="900" fill="#f8fafc">TG</text>
 </svg>

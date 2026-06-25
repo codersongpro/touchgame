@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <meta name="description" content="자투리 시간에 즐기는 초등 교실 미니게임 48개. 반응속도, 두뇌, 수학, 지식, 협력 게임. 크롬북/태블릿 터치스크린 최적화, 무료, 오프라인 동작.">
-  <meta name="keywords" content="짬짬이 교실, 초등학교, 미니게임, 교실 게임, 자투리 시간, 두뇌 게임, 협력 게임, 무료 게임">
-  <meta name="author" content="짬짬이 교실">
+  <meta name="description" content="TouchGame은 터치스크린에서 바로 즐기는 레트로 아케이드 미니게임 모음입니다. 반응속도, 두뇌, 수학, 지식, 협력, 퍼즐 게임을 빠르게 선택해 플레이할 수 있습니다.">
+  <meta name="keywords" content="TouchGame, 터치게임, 미니게임, 교실 게임, 터치스크린 게임, 두뇌 게임, 협력 게임, 무료 게임">
+  <meta name="author" content="TouchGame">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="짬짬이 교실 - 자투리 시간 초등 미니게임">
-  <meta property="og:description" content="자투리 시간에 즐기는 48개 초등 교실 미니게임. 크롬북/태블릿에서 바로 플레이.">
-  <meta property="og:url" content="https://shway81-droid.github.io/jjamjjami-gyosil/">
-  <meta property="og:image" content="https://shway81-droid.github.io/jjamjjami-gyosil/og-image.svg">
+  <meta property="og:title" content="TouchGame - Retro Touch Arcade">
+  <meta property="og:description" content="터치스크린에서 바로 고르고 플레이하는 레트로 아케이드 미니게임 모음.">
+  <meta property="og:url" content="https://touchgame.vercel.app/">
+  <meta property="og:image" content="https://touchgame.vercel.app/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="짬짬이 교실 — 자투리 시간 초등 교실 미니게임 48개">
+  <meta property="og:image:alt" content="TouchGame - Retro Touch Arcade">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="짬짬이 교실">
-  <meta name="twitter:description" content="자투리 시간에 즐기는 초등 교실 미니게임 48개">
-  <meta name="twitter:image" content="https://shway81-droid.github.io/jjamjjami-gyosil/og-image.svg">
-  <title>짬짬이 교실 — 자투리 시간 초등 미니게임</title>
+  <meta name="twitter:title" content="TouchGame">
+  <meta name="twitter:description" content="터치스크린에서 바로 즐기는 레트로 아케이드 미니게임">
+  <meta name="twitter:image" content="https://touchgame.vercel.app/og-image.svg">
+  <title>TouchGame — Retro Touch Arcade</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#7c5cfc">
-  <link rel="stylesheet" href="shared/style.css?v=3">
+  <meta name="theme-color" content="#101827">
+  <link rel="stylesheet" href="shared/style.css?v=4">
   <style>
     /* === Launcher page background === */
     body {
@@ -396,6 +396,272 @@
       transform: translate(2px,2px) !important;
       box-shadow: 2px 2px 0 #2C2C2C !important;
     }
+
+    /* TouchGame retro arcade skin */
+    :root {
+      --arcade-bg: #101827;
+      --arcade-panel: #172033;
+      --arcade-panel-2: #202b43;
+      --arcade-line: #2dd4bf;
+      --arcade-pink: #f472b6;
+      --arcade-yellow: #facc15;
+      --arcade-green: #22c55e;
+      --arcade-text: #f8fafc;
+      --arcade-muted: #9ca3af;
+      --font-family: 'DungGeunMo', 'Galmuri11', 'NeoDunggeunmo', 'DNFBitBitv2', 'Pretendard Variable', 'Noto Sans KR', system-ui, sans-serif;
+      --card-radius: 8px;
+      --btn-radius: 8px;
+      --card-min-size: 152px;
+    }
+
+    body {
+      background:
+        linear-gradient(rgba(45,212,191,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45,212,191,0.08) 1px, transparent 1px),
+        linear-gradient(180deg, #101827 0%, #111827 48%, #182033 100%) !important;
+      background-size: 28px 28px, 28px 28px, 100% 100% !important;
+      color: var(--arcade-text) !important;
+    }
+    body::before {
+      background-image: repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 4px) !important;
+      background-size: auto !important;
+      opacity: 0.4;
+    }
+
+    .launcher-header {
+      padding: 18px clamp(14px, 3vw, 34px) 10px !important;
+      border-bottom: 1px solid rgba(45,212,191,0.28);
+    }
+    .brand { gap: 10px !important; min-width: 0; }
+    .brand-logo {
+      width: 48px !important;
+      height: 48px !important;
+      border: 2px solid var(--arcade-line);
+      border-radius: 8px;
+      box-shadow: 0 0 0 2px #0f172a, 5px 5px 0 #000, 0 0 18px rgba(45,212,191,0.45) !important;
+      filter: none !important;
+    }
+    .launcher-title {
+      color: var(--arcade-yellow) !important;
+      background: none !important;
+      -webkit-text-fill-color: var(--arcade-yellow) !important;
+      text-shadow: 3px 3px 0 #000, 0 0 16px rgba(250,204,21,0.42) !important;
+      letter-spacing: 0 !important;
+      font-size: clamp(1.8rem, 5vw, 3.1rem) !important;
+      line-height: 1;
+    }
+    .sound-toggle {
+      border-radius: 8px !important;
+      border: 2px solid var(--arcade-line) !important;
+      background: #0f172a !important;
+      color: var(--arcade-text) !important;
+      box-shadow: 4px 4px 0 #000 !important;
+    }
+
+    .arcade-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.6fr);
+      gap: 16px;
+      padding: 16px clamp(14px, 3vw, 34px) 14px;
+      align-items: stretch;
+    }
+    .arcade-copy,
+    .arcade-panel {
+      border: 2px solid var(--arcade-line);
+      border-radius: 8px;
+      background: rgba(23,32,51,0.94);
+      box-shadow: 6px 6px 0 #000;
+      min-width: 0;
+    }
+    .arcade-copy {
+      padding: clamp(16px, 3vw, 26px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+    .arcade-kicker {
+      color: var(--arcade-pink);
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .arcade-copy h2 {
+      margin: 0;
+      color: var(--arcade-text);
+      font-size: clamp(1.35rem, 4vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-shadow: 2px 2px 0 #000;
+    }
+    .arcade-copy p {
+      margin: 0;
+      color: #cbd5e1;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+    .arcade-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .arcade-stat {
+      border: 1px solid rgba(45,212,191,0.55);
+      background: #0f172a;
+      color: var(--arcade-text);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+    .arcade-panel {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .arcade-panel-title {
+      color: var(--arcade-yellow);
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+    .quick-picks {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .quick-pick {
+      border: 1px solid rgba(248,250,252,0.18);
+      border-radius: 6px;
+      background: var(--arcade-panel-2);
+      color: var(--arcade-text);
+      padding: 10px;
+      min-height: 48px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .quick-pick span { color: var(--arcade-muted); font-size: 0.78rem; }
+    .quick-pick.active {
+      background: var(--arcade-yellow);
+      color: #101827;
+      border-color: var(--arcade-yellow);
+      box-shadow: 0 0 18px rgba(250,204,21,0.32);
+    }
+    .quick-pick.active span { color: #334155; }
+
+    .filter-section {
+      padding: 0 clamp(14px, 3vw, 34px) !important;
+    }
+    .filter-bar {
+      gap: 8px !important;
+      margin-bottom: 16px !important;
+      overflow-x: auto;
+      flex-wrap: nowrap !important;
+      padding-bottom: 6px;
+    }
+    .filter-btn {
+      min-height: 44px;
+      border-radius: 8px !important;
+      border: 2px solid rgba(248,250,252,0.2) !important;
+      background: #172033 !important;
+      color: #cbd5e1 !important;
+      box-shadow: 4px 4px 0 #000 !important;
+      white-space: nowrap;
+      letter-spacing: 0 !important;
+    }
+    .filter-btn.active {
+      background: var(--arcade-yellow) !important;
+      color: #101827 !important;
+      border-color: var(--arcade-yellow) !important;
+      box-shadow: 4px 4px 0 #000, 0 0 18px rgba(250,204,21,0.32) !important;
+    }
+
+    .game-grid {
+      grid-template-columns: repeat(auto-fill, minmax(var(--card-min-size), 1fr)) !important;
+      gap: 14px !important;
+      padding: 0 clamp(14px, 3vw, 34px) 96px !important;
+    }
+    .game-card {
+      background: #111827 !important;
+      border: 2px solid rgba(45,212,191,0.7) !important;
+      border-radius: 8px !important;
+      box-shadow: 5px 5px 0 #000 !important;
+      color: var(--arcade-text) !important;
+    }
+    .game-card:hover {
+      transform: translate(-2px,-2px) !important;
+      border-color: var(--arcade-yellow) !important;
+      box-shadow: 7px 7px 0 #000, 0 0 18px rgba(45,212,191,0.25) !important;
+    }
+    .game-card-thumb {
+      aspect-ratio: 1.12 !important;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0)),
+        var(--thumb-color, #202b43) !important;
+      border-bottom: 2px solid rgba(45,212,191,0.7) !important;
+    }
+    .player-badge {
+      border: 1px solid #000 !important;
+      border-radius: 4px !important;
+      background: var(--arcade-green) !important;
+      color: #04130a !important;
+      box-shadow: 2px 2px 0 #000 !important;
+      font-size: 0.72rem !important;
+    }
+    .game-card-info {
+      padding: 11px 10px 12px !important;
+      text-align: left !important;
+    }
+    .game-card-name {
+      font-size: 0.98rem !important;
+      color: var(--arcade-text);
+      letter-spacing: 0 !important;
+      line-height: 1.25;
+      min-height: 2.4em;
+      display: flex;
+      align-items: center;
+    }
+    .game-card-time {
+      color: var(--arcade-muted) !important;
+      font-size: 0.74rem !important;
+      font-weight: 900 !important;
+    }
+    .game-card-cat {
+      color: var(--arcade-line);
+      font-size: 0.7rem;
+      font-weight: 900;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+    .feedback-fab {
+      background: var(--arcade-pink) !important;
+      color: #111827 !important;
+      border: 2px solid #fff !important;
+      border-radius: 8px !important;
+      box-shadow: 5px 5px 0 #000 !important;
+    }
+
+    @media (max-width: 760px) {
+      .arcade-hero {
+        grid-template-columns: 1fr;
+        padding-top: 12px;
+      }
+      .arcade-panel { order: -1; }
+      .quick-picks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .quick-pick { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 460px) {
+      .launcher-header { padding-top: 14px !important; }
+      .brand-logo { width: 42px !important; height: 42px !important; }
+      .quick-picks { grid-template-columns: 1fr; }
+      .game-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .game-card-name { font-size: 0.88rem !important; }
+    }
   </style>
 </head>
 <body>
@@ -423,10 +689,32 @@
         <circle cx="38" cy="10" r="3" fill="#FFD54F"/>
         <circle cx="38" cy="10" r="1.4" fill="#fff"/>
       </svg>
-      <h1 class="launcher-title">짬짬이 교실</h1>
+      <h1 class="launcher-title">TouchGame</h1>
     </div>
     <button class="sound-toggle" id="soundToggle" aria-label="사운드 토글">🔇</button>
   </header>
+
+  <section class="arcade-hero" aria-label="TouchGame 소개">
+    <div class="arcade-copy">
+      <div class="arcade-kicker">Retro Touch Arcade</div>
+      <h2>고르고, 누르고, 바로 플레이</h2>
+      <p>수업 틈새 시간에도 게임센터처럼 빠르게 시작하는 터치 미니게임 모음입니다.</p>
+      <div class="arcade-stats">
+        <span class="arcade-stat" id="totalGamesStat">60 GAMES</span>
+        <span class="arcade-stat">TOUCH READY</span>
+        <span class="arcade-stat">OFFLINE OK</span>
+      </div>
+    </div>
+    <aside class="arcade-panel" aria-label="빠른 선택">
+      <div class="arcade-panel-title">QUICK SELECT</div>
+      <div class="quick-picks">
+        <button class="quick-pick" type="button" data-quick="quick">30초 게임 <span>빠른 시작</span></button>
+        <button class="quick-pick" type="button" data-quick="two-player">2명 전용 <span>짝 활동</span></button>
+        <button class="quick-pick" type="button" data-quick="co-op">협력 게임 <span>함께 해결</span></button>
+        <button class="quick-pick" type="button" data-quick="puzzle">퍼즐 게임 <span>생각하기</span></button>
+      </div>
+    </aside>
+  </section>
 
   <div class="filter-section">
     <nav class="filter-bar" id="catFilter">
@@ -453,7 +741,7 @@
     <span>피드백</span>
   </a>
 
-  <script src="shared/engine.js?v=3"></script>
+  <script src="shared/engine.js?v=4"></script>
   <script>
     // 3D SVG 아이콘 매핑
     var GAME_ICONS = {
@@ -660,9 +948,12 @@
 
     const grid = document.getElementById('gameGrid');
     const catBtns = document.querySelectorAll('#catFilter .cat-btn');
+    const quickBtns = document.querySelectorAll('.quick-pick');
     const soundToggle = document.getElementById('soundToggle');
+    const totalGamesStat = document.getElementById('totalGamesStat');
     let allGames = [];
     let currentCat = 'all';
+    let currentQuick = '';
 
     // --- 사운드 토글 ---
     function updateSoundIcon() {
@@ -681,26 +972,49 @@
       var r = parseInt(hex.slice(1,3),16);
       var g = parseInt(hex.slice(3,5),16);
       var b = parseInt(hex.slice(5,7),16);
-      // 흰색과 70% 혼합 → 파스텔
-      r = Math.round(r + (255 - r) * 0.55);
-      g = Math.round(g + (255 - g) * 0.55);
-      b = Math.round(b + (255 - b) * 0.55);
+      r = Math.round(r * 0.7);
+      g = Math.round(g * 0.7);
+      b = Math.round(b * 0.7);
       return '#' + [r,g,b].map(function(v){ return v.toString(16).padStart(2,'0'); }).join('');
+    }
+
+    function gameCategory(game) {
+      return game.category || CATEGORY_MAP[game.folder] || 'brain';
+    }
+
+    function playerLabel(game) {
+      if (Array.isArray(game.players) && game.players.length) {
+        if (game.players.length === 1) return game.players[0] + '명';
+        return game.players[0] + '-' + game.players[game.players.length - 1] + '명';
+      }
+      return PLAYER_COUNTS[game.folder] || '2-4명';
+    }
+
+    function gameTags(game) {
+      var tags = Array.isArray(game.tags) ? game.tags.slice() : [];
+      var players = playerLabel(game);
+      var cat = gameCategory(game);
+      if (players === '2명') tags.push('two-player');
+      if (cat === 'coop') tags.push('co-op');
+      if (cat === 'puzzle') tags.push('puzzle');
+      if (String(game.playTime || '').indexOf('30') >= 0) tags.push('quick');
+      return tags.filter(function(tag, index) { return tags.indexOf(tag) === index; });
     }
 
     // --- 카드 렌더링 ---
     function renderCards(games) {
       grid.innerHTML = '';
       allGames = games;
+      totalGamesStat.textContent = games.length + ' GAMES';
       games.forEach(function(game) {
         var a = document.createElement('a');
         a.className = 'game-card';
         a.href = 'games/' + game.folder + '/index.html';
         a.setAttribute('aria-label', game.name + ' 게임 시작');
         a.dataset.grades = JSON.stringify(game.grades);
-        a.dataset.cat = CATEGORY_MAP[game.folder] || 'brain';
-        // 게임별 지원 인원수 (PLAYER_COUNTS에 정의 안 된 게임은 2-4명 기본)
-        var players = PLAYER_COUNTS[game.folder] || '2-4명';
+        a.dataset.cat = gameCategory(game);
+        a.dataset.tags = gameTags(game).join(',');
+        var players = playerLabel(game);
         a.innerHTML =
           '<div class="game-card-thumb" style="--thumb-color:' + pastelColor(game.color) + '">' +
             '<span class="player-badge">' + players + '</span>' +
@@ -709,6 +1023,7 @@
           '<div class="game-card-info">' +
             '<div class="game-card-name">' + game.name + '</div>' +
             '<div class="game-card-time">' + game.playTime + '</div>' +
+            '<div class="game-card-cat">' + a.dataset.cat + '</div>' +
           '</div>';
         grid.appendChild(a);
       });
@@ -721,7 +1036,8 @@
       cards.forEach(function(card) {
         var cat = card.dataset.cat;
         var catOk = (currentCat === 'all') || (cat === currentCat);
-        card.classList.toggle('hidden', !catOk);
+        var tagOk = !currentQuick || card.dataset.tags.split(',').indexOf(currentQuick) >= 0;
+        card.classList.toggle('hidden', !(catOk && tagOk));
       });
     }
 
@@ -729,8 +1045,23 @@
     catBtns.forEach(function(btn) {
       btn.addEventListener('click', function() {
         catBtns.forEach(function(b) { b.classList.remove('active'); });
+        quickBtns.forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
         currentCat = btn.dataset.cat;
+        currentQuick = '';
+        applyFilters();
+      });
+    });
+
+    quickBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var nextQuick = currentQuick === btn.dataset.quick ? '' : btn.dataset.quick;
+        quickBtns.forEach(function(b) { b.classList.remove('active'); });
+        catBtns.forEach(function(b) { b.classList.remove('active'); });
+        document.querySelector('#catFilter .cat-btn[data-cat="all"]').classList.add('active');
+        currentCat = 'all';
+        currentQuick = nextQuick;
+        if (currentQuick) btn.classList.add('active');
         applyFilters();
       });
     });

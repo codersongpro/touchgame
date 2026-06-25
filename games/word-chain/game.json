@@ -1,1 +1,26 @@
-{ "name": "끝말잇기 협동", "description": "P1이 단어를 읽으면 P2가 끝 글자로 시작하는 단어를 찾으세요!", "icon": "🔤", "color": "#7C4DFF", "grades": [1,2,3,4,5,6], "playTime": "1~2분" }
+{
+  "name": "끝말잇기 협동",
+  "description": "P1이 단어를 읽으면 P2가 끝 글자로 시작하는 단어를 찾으세요!",
+  "icon": "🔤",
+  "color": "#7C4DFF",
+  "grades": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "playTime": "1~2분",
+  "category": "coop",
+  "players": [
+    2
+  ],
+  "pattern": "C",
+  "tags": [
+    "co-op",
+    "coop",
+    "pattern-c",
+    "two-player"
+  ]
+}

@@ -1,84 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#FFF8F0"/>
-      <stop offset="100%" stop-color="#F3E5F5"/>
-    </linearGradient>
-    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#7c4dff"/>
-      <stop offset="100%" stop-color="#5c6bc0"/>
-    </linearGradient>
-    <radialGradient id="dot" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="rgba(0,0,0,0.06)"/>
-      <stop offset="100%" stop-color="rgba(0,0,0,0)"/>
-    </radialGradient>
-  </defs>
-
-  <!-- 배경 -->
-  <rect width="1200" height="630" fill="url(#bg)"/>
-
-  <!-- 도트 패턴 -->
-  <g fill="rgba(0,0,0,0.04)">
-    <circle cx="80" cy="80" r="3"/><circle cx="160" cy="80" r="3"/><circle cx="240" cy="80" r="3"/>
-    <circle cx="320" cy="80" r="3"/><circle cx="400" cy="80" r="3"/><circle cx="480" cy="80" r="3"/>
-    <circle cx="80" cy="160" r="3"/><circle cx="160" cy="160" r="3"/><circle cx="240" cy="160" r="3"/>
-    <circle cx="80" cy="540" r="3"/><circle cx="160" cy="540" r="3"/><circle cx="240" cy="540" r="3"/>
-    <circle cx="1120" cy="80" r="3"/><circle cx="1040" cy="160" r="3"/><circle cx="1120" cy="160" r="3"/>
-    <circle cx="1040" cy="540" r="3"/><circle cx="1120" cy="540" r="3"/><circle cx="1120" cy="460" r="3"/>
+  <rect width="1200" height="630" fill="#101827"/>
+  <path d="M0 70H1200M0 140H1200M0 210H1200M0 280H1200M0 350H1200M0 420H1200M0 490H1200M0 560H1200M100 0V630M200 0V630M300 0V630M400 0V630M500 0V630M600 0V630M700 0V630M800 0V630M900 0V630M1000 0V630M1100 0V630" stroke="#2dd4bf" stroke-opacity=".14" stroke-width="2"/>
+  <g transform="translate(92 130)">
+    <rect x="0" y="0" width="340" height="300" rx="18" fill="#172033" stroke="#2dd4bf" stroke-width="8"/>
+    <rect x="34" y="44" width="272" height="82" rx="8" fill="#0f172a" stroke="#facc15" stroke-width="5"/>
+    <text x="170" y="98" text-anchor="middle" font-family="monospace" font-size="46" font-weight="900" fill="#facc15">READY</text>
+    <path d="M66 208h84M108 166v84" stroke="#facc15" stroke-width="18" stroke-linecap="square"/>
+    <circle cx="236" cy="190" r="25" fill="#f472b6"/>
+    <circle cx="282" cy="232" r="25" fill="#22c55e"/>
   </g>
-
-  <!-- 로고 (왼쪽) -->
-  <g transform="translate(120, 175)">
-    <!-- Rounded square -->
-    <rect x="0" y="0" width="280" height="280" rx="60" fill="url(#logo)" filter="drop-shadow(0 12px 32px rgba(124,77,255,0.35))"/>
-    <!-- Top shine -->
-    <path d="M70 0 L210 0 Q280 0 280 70 L280 100 Q140 150 0 100 L0 70 Q0 0 70 0 Z" fill="#fff" opacity="0.10"/>
-    <!-- White clock face -->
-    <circle cx="140" cy="150" r="80" fill="#fff"/>
-    <!-- Play triangle -->
-    <path d="M118 110 L118 190 L186 150 Z" fill="url(#logo)"/>
-    <!-- 12 o'clock dot -->
-    <circle cx="140" cy="80" r="8" fill="url(#logo)"/>
-    <!-- Yellow spark -->
-    <circle cx="230" cy="55" r="20" fill="#FFD54F"/>
-    <circle cx="230" cy="55" r="9" fill="#fff"/>
-  </g>
-
-  <!-- 텍스트 (오른쪽) -->
-  <g transform="translate(460, 235)">
-    <!-- Title -->
-    <text x="0" y="0" font-family="'Pretendard Variable', -apple-system, 'Noto Sans KR', sans-serif"
-          font-size="92" font-weight="900" fill="#2C2C2C"
-          letter-spacing="-0.04em">짬짬이 교실</text>
-
-    <!-- Subtitle -->
-    <text x="0" y="60" font-family="'Pretendard Variable', -apple-system, 'Noto Sans KR', sans-serif"
-          font-size="38" font-weight="700" fill="#7C4DFF"
-          letter-spacing="-0.02em">자투리 시간 초등 교실 미니게임</text>
-
-    <!-- Pill badges -->
-    <g transform="translate(0, 110)">
-      <!-- 게임 수 배지 -->
-      <rect x="0" y="0" width="170" height="56" rx="28" fill="#FFD54F" stroke="#2C2C2C" stroke-width="3"/>
-      <text x="85" y="36" text-anchor="middle"
-            font-family="'Pretendard Variable', sans-serif"
-            font-size="26" font-weight="900" fill="#2C2C2C">🎮 48개 게임</text>
-
-      <!-- 무료 -->
-      <rect x="186" y="0" width="120" height="56" rx="28" fill="#fff" stroke="#2C2C2C" stroke-width="3"/>
-      <text x="246" y="36" text-anchor="middle"
-            font-family="'Pretendard Variable', sans-serif"
-            font-size="26" font-weight="900" fill="#2C2C2C">💸 무료</text>
-
-      <!-- 2-4명 -->
-      <rect x="322" y="0" width="200" height="56" rx="28" fill="#B3E5FC" stroke="#2C2C2C" stroke-width="3"/>
-      <text x="422" y="36" text-anchor="middle"
-            font-family="'Pretendard Variable', sans-serif"
-            font-size="26" font-weight="900" fill="#2C2C2C">👥 2~4인 동시</text>
+  <g transform="translate(505 190)">
+    <text x="0" y="0" font-family="monospace" font-size="92" font-weight="900" fill="#facc15">TouchGame</text>
+    <text x="0" y="72" font-family="monospace" font-size="34" font-weight="900" fill="#2dd4bf">RETRO TOUCH ARCADE</text>
+    <text x="0" y="130" font-family="system-ui, sans-serif" font-size="30" font-weight="800" fill="#f8fafc">고르고, 누르고, 바로 플레이</text>
+    <g transform="translate(0 178)" font-family="system-ui, sans-serif" font-size="24" font-weight="900">
+      <rect x="0" y="0" width="150" height="52" rx="8" fill="#facc15"/>
+      <text x="75" y="34" text-anchor="middle" fill="#101827">60 GAMES</text>
+      <rect x="170" y="0" width="190" height="52" rx="8" fill="#172033" stroke="#2dd4bf" stroke-width="3"/>
+      <text x="265" y="34" text-anchor="middle" fill="#f8fafc">TOUCH READY</text>
+      <rect x="380" y="0" width="160" height="52" rx="8" fill="#172033" stroke="#f472b6" stroke-width="3"/>
+      <text x="460" y="34" text-anchor="middle" fill="#f8fafc">OFFLINE</text>
     </g>
-
-    <!-- 카테고리 -->
-    <text x="0" y="220" font-family="'Pretendard Variable', sans-serif"
-          font-size="22" font-weight="700" fill="#666" letter-spacing="-0.01em">⚡ 반응속도 · 🧠 두뇌 · 📐 수학 · 📚 지식 · 🤝 협력 · 🧩 퍼즐</text>
   </g>
 </svg>

@@ -1,1 +1,29 @@
-{ "name": "폭탄 피하기", "description": "별은 터치! 폭탄은 피해!", "icon": "💣", "color": "#F44336", "grades": [1,2,3,4,5,6], "playTime": "30초" }
+{
+  "name": "폭탄 피하기",
+  "description": "별은 터치! 폭탄은 피해!",
+  "icon": "💣",
+  "color": "#F44336",
+  "grades": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "playTime": "30초",
+  "category": "speed",
+  "players": [
+    2,
+    3,
+    4
+  ],
+  "pattern": "B",
+  "tags": [
+    "group",
+    "pattern-b",
+    "quick",
+    "reaction",
+    "speed"
+  ]
+}

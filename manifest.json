@@ -1,13 +1,13 @@
 {
-  "name": "짬짬이 교실",
-  "short_name": "짬짬이 교실",
-  "description": "자투리 시간에 즐기는 초등 교실 미니게임 48개",
+  "name": "TouchGame",
+  "short_name": "TouchGame",
+  "description": "터치스크린에서 바로 즐기는 레트로 아케이드 미니게임 모음",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#FFFFFF",
-  "theme_color": "#7c4dff",
+  "background_color": "#101827",
+  "theme_color": "#101827",
   "lang": "ko",
   "icons": [
     {

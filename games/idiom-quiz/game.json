@@ -1,1 +1,25 @@
-{ "name": "사자성어", "description": "뜻을 보고 알맞은 사자성어를 맞혀보세요!", "icon": "📖", "color": "#8E24AA", "grades": [3,4,5,6], "playTime": "1분" }
+{
+  "name": "사자성어",
+  "description": "뜻을 보고 알맞은 사자성어를 맞혀보세요!",
+  "icon": "📖",
+  "color": "#8E24AA",
+  "grades": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "playTime": "1분",
+  "category": "knowledge",
+  "players": [
+    2,
+    3,
+    4
+  ],
+  "pattern": "A",
+  "tags": [
+    "group",
+    "knowledge",
+    "pattern-a"
+  ]
+}

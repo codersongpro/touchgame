@@ -1,0 +1,10 @@
+{
+  "name": "touchgame",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Retro touch arcade mini game collection",
+  "scripts": {
+    "verify": "node scripts/validate-catalog.js",
+    "register:game": "node scripts/register-game.js"
+  }
+}
