@@ -263,6 +263,7 @@
    - 패턴 A → `flag-quiz` 폴더 통째로 복사
    - 패턴 B → `whack-a-mole` 폴더 통째로 복사
    - 패턴 C → `nim-game` 또는 `secret-code` 폴더 통째로 복사
+   - 모든 골든 템플릿에는 이미 `shared/score-store.js` 연동(`reportGameResult()` 호출)이 포함되어 있음 — 복사만 하면 점수/랭킹 기능이 자동으로 따라옴, 별도 작업 불필요
 
 2. **HTML 구조는 그대로 유지**
    - `<section class="screen screen-intro">` 등 4개 screen 클래스명 동일
@@ -453,7 +454,7 @@ Auto-add: {게임 이름} ({카테고리}, 패턴 {A|B|C})
 
 선택 근거: {부족 카테고리|메커니즘 다양성|...}
 데이터: {n}개, {카테고리 분류}
-검증: 정적 17/17, 브라우저 정상, 자가 게이트 6/6
+검증: 정적 21/21, 브라우저 정상, 자가 게이트 6/6
 실행: 자동 (KST {timestamp})
 
 Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
