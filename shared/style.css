@@ -1088,3 +1088,57 @@ body {
 .progress-bar-fill {
   background: linear-gradient(90deg, #2dd4bf, #facc15) !important;
 }
+
+/* === Score / ranking (shared/score-store.js) === */
+.score-initials-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.score-initials-card {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-card-hover);
+  padding: var(--space-lg);
+  width: min(280px, 86vw);
+  text-align: center;
+}
+.score-initials-title {
+  font-weight: 800;
+  margin-bottom: var(--space-md);
+}
+.score-initials-input {
+  width: 100%;
+  font-size: 1.4rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding: var(--space-sm);
+  border: 1px solid #ccc;
+  border-radius: var(--btn-radius);
+  margin-bottom: var(--space-md);
+}
+.score-initials-submit {
+  width: 100%;
+  min-height: var(--btn-min-touch);
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--btn-radius);
+  cursor: pointer;
+}
+.best-record-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-sm);
+  padding: 6px 14px;
+  background: var(--accent-yellow);
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: var(--font-size-small);
+}
