@@ -66,10 +66,8 @@
       background: linear-gradient(135deg, #5c6bc0, #7c4dff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      overflow: hidden;
-      text-overflow: ellipsis;
       white-space: nowrap;
-      min-width: 0;
+      flex-shrink: 0;
     }
     .launcher-byline {
       font-size: 0.75rem;
@@ -77,8 +75,11 @@
       color: var(--text-sub);
       align-self: flex-end;
       margin-bottom: 2px;
-      flex-shrink: 0;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      flex-shrink: 1;
     }
     @media (max-width: 360px) {
       .launcher-byline { display: none; }
@@ -687,6 +688,16 @@
       </div>
     </aside>
   </section>
+
+  <div class="mascot-track" aria-hidden="true">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <div class="mascot">
+      <div class="body"><div class="eye"></div></div>
+    </div>
+  </div>
 
   <div class="filter-section">
     <nav class="filter-bar" id="catFilter">

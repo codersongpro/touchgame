@@ -9,7 +9,7 @@
 //   → 이미 배포된 games/*·shared/* 파일을 수정하면 CACHE_NAME을 +1 해야 기존 방문자에게 반영됨
 //     (docs/AUTO_MODE.md "캐시 버전 범프 규칙" 참고)
 
-const CACHE_NAME = 'touchgame-v17';
+const CACHE_NAME = 'touchgame-v18';
 
 // 느린 회선에서 network-first가 첫 화면을 오래 막지 않도록 캐시로 폴백하는 대기 시간
 const NETWORK_TIMEOUT_MS = 3000;
@@ -24,6 +24,7 @@ self.addEventListener('install', function(event) {
         './shared/style.css',
         './shared/engine.js',
         './shared/score-store.js',
+        './shared/fonts/Galmuri11-Bold.woff2',
         './games/registry.json',
         './favicon.svg',
         './og-image.svg',
