@@ -4,7 +4,7 @@
     {
       "name": "dev",
       "runtimeExecutable": "powershell",
-      "runtimeArgs": ["-NoProfile", "-File", "C:\\Users\\User\\Desktop\\claude\\.claude\\serve.ps1"],
+      "runtimeArgs": ["-NoProfile", "-File", "C:\\Users\\dungs\\Desktop\\vibecoding\\moem\\.claude\\serve.ps1"],
       "port": 8765
     }
   ]
