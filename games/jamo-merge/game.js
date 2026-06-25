@@ -356,6 +356,19 @@
     '</svg>';
 
   function showResult() {
+    var scoreResult = reportGameResult({ gameId: 'jamo-merge', playerCount: 2, scores: [score, score], metric: 'score' });
+    var scoreBadge = document.getElementById('bestRecordBadge');
+    if (scoreBadge) {
+      if (scoreResult.isNewBest) {
+        scoreBadge.style.display = '';
+        scoreBadge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+        createInitialsPrompt(function () {}).open();
+      } else if (scoreResult.bestEntry) {
+        scoreBadge.style.display = '';
+        scoreBadge.textContent = '이 기기 최고 기록: ' + scoreResult.bestEntry.score + '점';
+      }
+    }
+
     var title, sub, icon;
     if (score === TOTAL_ROUNDS) {
       title = score + '/' + TOTAL_ROUNDS;

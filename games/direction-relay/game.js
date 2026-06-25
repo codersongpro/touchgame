@@ -262,6 +262,18 @@ function showBanner(txt,cls){
 function endGame(){
   stopAll();
   sfx.play('end');
+  var scoreResult = reportGameResult({ gameId: 'direction-relay', playerCount: 2, scores: [score, score], metric: 'score' });
+  var scoreBadge = document.getElementById('bestRecordBadge');
+  if (scoreBadge) {
+    if (scoreResult.isNewBest) {
+      scoreBadge.style.display = '';
+      scoreBadge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+      createInitialsPrompt(function () {}).open();
+    } else if (scoreResult.bestEntry) {
+      scoreBadge.style.display = '';
+      scoreBadge.textContent = '이 기기 최고 기록: ' + scoreResult.bestEntry.score + '점';
+    }
+  }
   const success=score>=3;
   $('resultEmoji').textContent=success?'🏆':'😔';
   $('resultHeadline').textContent=success?'방향 해독 성공!':'아쉬워요...';

@@ -444,6 +444,19 @@
     var container = document.getElementById('resultRankings');
     container.innerHTML = '';
 
+    var scoreResult = reportGameResult({ gameId: 'number-tap', playerCount: playerCount, scores: playerStates.map(function (ps) { return ps.current; }), metric: 'score' });
+    var scoreBadge = document.getElementById('bestRecordBadge');
+    if (scoreBadge) {
+      if (scoreResult.isNewBest) {
+        scoreBadge.style.display = '';
+        scoreBadge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+        createInitialsPrompt(function () {}).open();
+      } else if (scoreResult.bestEntry) {
+        scoreBadge.style.display = '';
+        scoreBadge.textContent = '이 기기 최고 기록: ' + scoreResult.bestEntry.score + '점';
+      }
+    }
+
     // Build ranking: finished players first (in order), then unfinished by progress desc
     var finished   = finishOrder.slice();
     var unfinished = [];

@@ -245,6 +245,18 @@ function endGame(won){
   stopAll();
   sfx.play('end');
   var len=seq.length;
+  var scoreResult = reportGameResult({ gameId: 'memory-relay', playerCount: 2, scores: [len, len], metric: 'score' });
+  var scoreBadge = document.getElementById('bestRecordBadge');
+  if (scoreBadge) {
+    if (scoreResult.isNewBest) {
+      scoreBadge.style.display = '';
+      scoreBadge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+      createInitialsPrompt(function () {}).open();
+    } else if (scoreResult.bestEntry) {
+      scoreBadge.style.display = '';
+      scoreBadge.textContent = '이 기기 최고 기록: ' + scoreResult.bestEntry.score + '점';
+    }
+  }
   var success=len>=SUCCESS_LEN;
   $('resultEmoji').textContent=success?'🏆':'🙂';
   $('resultHeadline').textContent=success?'대단해요!':'좋은 도전!';

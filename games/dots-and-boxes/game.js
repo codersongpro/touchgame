@@ -648,6 +648,19 @@
 
   // ─── 결과 화면 ───────────────────────────────────────────────────────────
   function showResult(winnerIdx) {
+    var scoreResult = reportGameResult({ gameId: 'dots-and-boxes', playerCount: numPlayers, scores: scores.slice(), metric: 'score' });
+    var scoreBadge = document.getElementById('bestRecordBadge');
+    if (scoreBadge) {
+      if (scoreResult.isNewBest) {
+        scoreBadge.style.display = '';
+        scoreBadge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+        createInitialsPrompt(function () {}).open();
+      } else if (scoreResult.bestEntry) {
+        scoreBadge.style.display = '';
+        scoreBadge.textContent = '이 기기 최고 기록: ' + scoreResult.bestEntry.score + '점';
+      }
+    }
+
     if (winnerIdx >= 0) {
       resultEmoji.textContent = '🏆';
       resultTitle.textContent = PLAYER_NAMES[winnerIdx] + ' 승리!';

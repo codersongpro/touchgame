@@ -221,6 +221,18 @@ function evaluate(correct, btn){
 function endGame(){
   stopAll();
   sfx.play('end');
+  var scoreResult = reportGameResult({ gameId: 'word-chain', playerCount: 2, scores: [score, score], metric: 'score' });
+  var scoreBadge = document.getElementById('bestRecordBadge');
+  if (scoreBadge) {
+    if (scoreResult.isNewBest) {
+      scoreBadge.style.display = '';
+      scoreBadge.textContent = '🏆 이 기기 신기록! ' + scoreResult.bestEntry.score + '점';
+      createInitialsPrompt(function () {}).open();
+    } else if (scoreResult.bestEntry) {
+      scoreBadge.style.display = '';
+      scoreBadge.textContent = '이 기기 최고 기록: ' + scoreResult.bestEntry.score + '점';
+    }
+  }
   const success = score>=5;
   $('resultTitle').textContent = success?'🏆 협동 성공!':'😔 아쉬워요...';
   $('resultWinner').textContent = success?'호흡이 잘 맞았어요!':'5라운드 이상 정답이 목표!';
