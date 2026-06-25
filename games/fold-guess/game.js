@@ -653,6 +653,20 @@ function startGame() {
 
 // ── Result ───────────────────────────────────────────────────
 function showResult() {
+  var scoreResult = reportGameResult({ gameId: 'fold-guess', playerCount: playerCount, scores: scores.slice(), metric: 'score' });
+  (function () {
+    var badge = document.getElementById('bestRecordBadge');
+    if (!badge) return;
+    if (scoreResult.isNewBest) {
+      badge.style.display = '';
+      badge.textContent = '\uD83C\uDFC6 \uC774 \uAE30\uAE30 \uC2E0\uAE30\uB85D! ' + scoreResult.bestEntry.score + '\uC810';
+      createInitialsPrompt(function () {}).open();
+    } else if (scoreResult.bestEntry) {
+      badge.style.display = '';
+      badge.textContent = '\uC774 \uAE30\uAE30 \uCD5C\uACE0 \uAE30\uB85D: ' + scoreResult.bestEntry.score + '\uC810';
+    }
+  })();
+
   clearTimers();
   phase = 'idle';
   sound.play('fanfare');
