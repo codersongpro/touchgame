@@ -230,6 +230,18 @@ check('9. game.js 문법 검사', () => {
   }
 });
 
+// === 10. 점수 리포팅 연동 ===
+check('10. 점수 리포팅: score-store 연동', () => {
+  const htmlPath = path.join(gameDir, 'index.html');
+  const jsPath = path.join(gameDir, 'game.js');
+  if (!fs.existsSync(htmlPath) || !fs.existsSync(jsPath)) return '파일 없음';
+  const html = fs.readFileSync(htmlPath, 'utf-8');
+  const js = fs.readFileSync(jsPath, 'utf-8');
+  if (!html.includes('shared/score-store.js')) return 'index.html에 shared/score-store.js 링크 없음';
+  if (!/reportGameResult\s*\(/.test(js)) return 'game.js에 reportGameResult() 호출 없음';
+  return true;
+});
+
 // === 결과 출력 ===
 console.log(`\n=== 게임 검증: ${folder} ===\n`);
 let passed = 0, failed = 0;
