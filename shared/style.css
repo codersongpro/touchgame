@@ -1142,3 +1142,45 @@ body {
   font-weight: 800;
   font-size: var(--font-size-small);
 }
+.ranking-toggle {
+  width: var(--btn-min-touch);
+  height: var(--btn-min-touch);
+  border-radius: 50%;
+  border: none;
+  background: var(--card-bg);
+  box-shadow: var(--shadow-card);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.ranking-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  align-items: center;
+  justify-content: center;
+  z-index: 1900;
+}
+.ranking-panel {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  width: min(420px, 90vw);
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+.ranking-panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+.ranking-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid #eee;
+}
+.ranking-name { flex: 1; font-weight: 700; }
+.ranking-best { font-weight: 800; color: var(--primary); }
+.ranking-plays { font-size: var(--font-size-small); color: var(--text-sub); }

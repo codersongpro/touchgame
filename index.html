@@ -45,6 +45,15 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      min-width: 0;
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
     }
     .brand-logo {
       flex-shrink: 0;
@@ -57,6 +66,10 @@
       background: linear-gradient(135deg, #5c6bc0, #7c4dff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
     }
     .launcher-byline {
       font-size: 0.75rem;
@@ -64,6 +77,11 @@
       color: var(--text-sub);
       align-self: flex-end;
       margin-bottom: 2px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    @media (max-width: 360px) {
+      .launcher-byline { display: none; }
     }
 
     /* 필터 영역 */
@@ -632,8 +650,21 @@
       <h1 class="launcher-title">TouchGame</h1>
       <span class="launcher-byline">by Dustin</span>
     </div>
-    <button class="sound-toggle" id="soundToggle" aria-label="사운드 토글">🔇</button>
+    <div class="header-actions">
+      <button class="ranking-toggle" id="rankingToggle" aria-label="전체 랭킹">🏆</button>
+      <button class="sound-toggle" id="soundToggle" aria-label="사운드 토글">🔇</button>
+    </div>
   </header>
+
+  <div class="ranking-overlay" id="rankingOverlay" style="display:none;">
+    <div class="ranking-panel">
+      <div class="ranking-panel-head">
+        <h2>전체 랭킹</h2>
+        <button id="rankingClose" aria-label="닫기">✕</button>
+      </div>
+      <div class="ranking-list" id="rankingList"></div>
+    </div>
+  </div>
 
   <section class="arcade-hero" aria-label="TouchGame 소개">
     <div class="arcade-copy">
@@ -673,6 +704,7 @@
     <p style="grid-column: 1 / -1; padding: 40px; text-align: center; color: #888;">불러오는 중...</p>
   </main>
 
+  <script src="shared/score-store.js?v=1"></script>
   <script src="shared/engine.js?v=4"></script>
   <script>
     // 3D SVG 아이콘 매핑
@@ -998,6 +1030,37 @@
       });
     });
 
+    var loadedGames = [];
+
+    function renderRankingPanel() {
+      var list = document.getElementById('rankingList');
+      var summaries = getAllGameSummaries().filter(function (s) { return s.best !== null; });
+      summaries.sort(function (a, b) { return b.lastPlayedTs - a.lastPlayedTs; });
+      if (summaries.length === 0) {
+        list.innerHTML = '<p style="padding:20px;text-align:center;color:var(--text-sub);">아직 플레이한 게임이 없어요.</p>';
+        return;
+      }
+      list.innerHTML = summaries.map(function (s) {
+        var meta = loadedGames.find(function (g) { return g.folder === s.gameId; });
+        var name = meta ? meta.name : s.gameId;
+        var icon = meta ? meta.icon : '🎮';
+        return '<div class="ranking-row">' +
+          '<span class="ranking-icon">' + icon + '</span>' +
+          '<span class="ranking-name">' + name + '</span>' +
+          '<span class="ranking-best">' + s.best + '점</span>' +
+          '<span class="ranking-plays">' + s.plays + '회 플레이</span>' +
+          '</div>';
+      }).join('');
+    }
+
+    document.getElementById('rankingToggle').addEventListener('click', function () {
+      renderRankingPanel();
+      document.getElementById('rankingOverlay').style.display = 'flex';
+    });
+    document.getElementById('rankingClose').addEventListener('click', function () {
+      document.getElementById('rankingOverlay').style.display = 'none';
+    });
+
     // --- 게임 목록 로딩 ---
     async function loadGames() {
       try {
@@ -1027,8 +1090,10 @@
 
         if (validGames.length === 0) {
           // All failed → fall back
+          loadedGames = FALLBACK_GAMES;
           renderCards(FALLBACK_GAMES);
         } else {
+          loadedGames = validGames;
           renderCards(validGames);
         }
       } catch (e) {
