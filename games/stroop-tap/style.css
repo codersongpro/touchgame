@@ -219,6 +219,18 @@
   color: rgba(0,0,0,0.6);
 }
 
+.zone-prompt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  margin: 4px 0;
+}
+.stroop-word {
+  font-size: clamp(1.4rem, 7vw, 2.2rem);
+  font-weight: 900;
+}
+
 /* ── Answer button 2x2 grid ───────────────────────────────── */
 .answer-grid {
   flex: 1;

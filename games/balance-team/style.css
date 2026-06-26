@@ -158,126 +158,92 @@
   text-align: right;
 }
 
-.boards {
+.beam-wrap {
   flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  padding: 8px;
-  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
   min-height: 0;
 }
-.board {
-  border-radius: 14px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  overflow: hidden;
-}
-.board.p1 {
-  background: linear-gradient(160deg, #E8EAF6, #9FA8DA);
-  border: 2px solid #3F51B5;
-}
-.board.p2 {
-  background: linear-gradient(160deg, #1A237E, #0D1440);
-  border: 2px solid #7986CB;
-}
-.board-label {
-  font-size: 0.8rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-}
-.p1 .board-label { color: #1A237E; }
-.p2 .board-label { color: #C5CAE9; }
-.board-sub {
-  font-size: 0.7rem;
-  font-weight: 600;
-  margin-top: -4px;
-}
-.p1 .board-sub { color: #3F51B5; }
-.p2 .board-sub { color: #9FA8DA; }
-
-.seq-slots {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
+.beam-track {
+  position: relative;
   width: 100%;
+  height: 10px;
+  background: #2C2C2C;
+  border-radius: 6px;
+  transform-origin: center;
+  transition: transform 0.06s linear;
 }
-.seq-slot {
-  width: min(22vw, 110px);
-  height: min(22vw, 110px);
-  border-radius: 14px;
-  background: #fff;
-  border: 3px dashed #7986CB;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.4rem;
-  font-weight: 900;
-  color: #3F51B5;
-  flex-shrink: 0;
+.checkpoint-marks {
+  position: absolute;
+  inset: 0;
 }
-.seq-slot.filled {
-  border-style: solid;
-  border-width: 4px;
-}
-
-.input-row {
-  display: flex;
-  gap: 8px;
-  margin-top: 4px;
-  min-height: 36px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-.input-dot {
-  width: 32px;
-  height: 32px;
+.checkpoint-mark {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.3);
-  background: rgba(255,255,255,0.05);
-  flex-shrink: 0;
+  background: #fff;
+  border: 2px solid #2C2C2C;
+  transform: translate(-50%, -50%);
 }
-.input-dot.filled {
-  border-style: solid;
-  border-width: 3px;
+.checkpoint-mark.passed {
+  background: #66BB6A;
+}
+.target-zone {
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #FFD54F;
+  border-radius: 5px;
+  transform: translate(0, -50%);
+  background: rgba(255,213,79,0.25);
+}
+.ball {
+  position: absolute;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #42A5F5;
+  border: 3px solid #2C2C2C;
+  transform: translate(-50%, -50%);
+  transition: left 0.06s linear;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
 }
 
-.color-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  width: 100%;
-  max-width: min(90%, 420px);
-  flex-shrink: 0;
-}
-.color-btn {
-  aspect-ratio: 1;
-  border-radius: 16px;
-  border: 3px solid rgba(255,255,255,0.15);
-  cursor: pointer;
+.tilt-controls {
   display: flex;
-  align-items: center;
+  gap: 16px;
   justify-content: center;
-  font-size: 2.6rem;
-  color: #fff;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  padding: 16px 12px;
+}
+.tilt-btn {
+  flex: 1;
+  max-width: 160px;
+  min-height: var(--btn-min-touch);
+  border-radius: 14px;
+  border: 3px solid #2C2C2C;
+  font-weight: 900;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #2C2C2C;
+  transition: transform 0.08s, box-shadow 0.08s;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 0.1s;
-  min-height: 70px;
 }
-.color-btn:active { transform: scale(0.9); }
-.color-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+.tilt-btn.pressed,
+.tilt-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #2C2C2C;
 }
+.tilt-left { background: #B3E5FC; }
+.tilt-right { background: #FFCDD2; }
 
 .banner {
   min-height: 34px;

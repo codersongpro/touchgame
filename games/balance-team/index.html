@@ -32,13 +32,13 @@
     <p class="intro-subtext">막대 위 공의 균형을 맞춰<br>목표 지점까지 이동시켜요!</p>
 
     <ul class="intro-rules">
-      <li>왼쪽(P1): 색이 순서대로 나타남</li>
-      <li>오른쪽(P2): P1 말을 듣고 색깔 버튼 탭</li>
-      <li>순서 틀리면 실패!</li>
-      <li>5라운드, 3점 이상 성공!</li>
+      <li>P1: ◀ 왼쪽 버튼으로 공을 왼쪽으로 기울임</li>
+      <li>P2: ▶ 오른쪽 버튼으로 공을 오른쪽으로 기울임</li>
+      <li>너무 한쪽으로 기울면 공이 떨어져요!</li>
+      <li>45초 안에 목표 지점까지 이동시키세요!</li>
     </ul>
   </div>
-  <button class="btn btn-play" id="playBtn">🔐 PLAY</button>
+  <button class="btn btn-play" id="playBtn">⚖️ PLAY</button>
 </section>
 
 <section class="screen screen-countdown" id="countdownScreen">
@@ -56,29 +56,28 @@
 
   <div class="banner" id="banner"></div>
 
-  <div class="boards">
-    <div class="board p1">
-      <div class="board-label">👁 P1 암호</div>
-      <div class="board-sub">P2에게 말해주세요!</div>
-      <div class="seq-slots" id="seqSlots"></div>
+  <div class="beam-wrap">
+    <div class="beam-track" id="beamTrack">
+      <div class="checkpoint-marks" id="checkpointMarks"></div>
+      <div class="target-zone" id="targetZone"></div>
+      <div class="ball" id="ball"></div>
     </div>
-    <div class="board p2">
-      <div class="board-label">🎮 P2 입력</div>
-      <div class="board-sub">색깔 버튼을 탭!</div>
-      <div class="input-row" id="inputRow"></div>
-      <div class="color-grid" id="colorGrid"></div>
-    </div>
+  </div>
+
+  <div class="tilt-controls">
+    <button class="tilt-btn tilt-left" id="btnLeft">◀ P1</button>
+    <button class="tilt-btn tilt-right" id="btnRight">P2 ▶</button>
   </div>
 </section>
 
 <section class="screen screen-result" id="resultScreen">
   <div class="result-emoji-big" id="resultEmoji">🎉</div>
   <h2 class="result-headline" id="resultHeadline">성공!</h2>
-  <p class="result-sub" id="resultSub">암호 해독 성공!</p>
+  <p class="result-sub" id="resultSub">균형 잡기 성공!</p>
   <div class="best-record-badge" id="bestRecordBadge" style="display:none;"></div>
   <div class="result-stats">
-    <div class="stat-row"><span class="stat-label">점수</span><span class="stat-val" id="statScore">0/5</span></div>
-    <div class="stat-row"><span class="stat-label">완벽 해독</span><span class="stat-val" id="statPerfect">0회</span></div>
+    <div class="stat-row"><span class="stat-label">체크포인트</span><span class="stat-val" id="statScore">0/5</span></div>
+    <div class="stat-row"><span class="stat-label">떨어진 횟수</span><span class="stat-val" id="statPerfect">0회</span></div>
   </div>
   <div class="result-actions">
     <button class="btn btn-retry" id="retryBtn">다시하기</button>
