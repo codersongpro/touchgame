@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>피해라!</title>
+  <link rel="stylesheet" href="../../shared/style.css?v=3">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 화면 1: 인트로 -->
+  <section class="screen screen-intro active" id="introScreen">
+    <header class="game-header">
+      <button class="icon-btn" id="backBtn" aria-label="뒤로가기">←</button>
+      <h1 class="game-title">피해라!</h1>
+      <button class="icon-btn sound-btn" id="soundToggleIntro" aria-label="사운드 토글">🔇</button>
+    </header>
+
+    <div class="intro-body">
+      <div class="intro-illustration" aria-hidden="true">
+        <svg viewBox="0 0 120 140" width="120" height="140">
+          <!-- Falling obstacle blocks -->
+          <rect x="18" y="12" width="20" height="20" rx="4" fill="#FF7043" stroke="#2C2C2C" stroke-width="2"/>
+          <rect x="76" y="4" width="18" height="18" rx="4" fill="#AB47BC" stroke="#2C2C2C" stroke-width="2"/>
+          <rect x="48" y="28" width="16" height="16" rx="4" fill="#FFCA28" stroke="#2C2C2C" stroke-width="2"/>
+          <!-- motion lines on blocks -->
+          <line x1="22" y1="36" x2="22" y2="42" stroke="#FF7043" stroke-width="2" stroke-linecap="round"/>
+          <line x1="34" y1="36" x2="34" y2="42" stroke="#FF7043" stroke-width="2" stroke-linecap="round"/>
+          <line x1="80" y1="26" x2="80" y2="32" stroke="#AB47BC" stroke-width="2" stroke-linecap="round"/>
+          <line x1="90" y1="26" x2="90" y2="32" stroke="#AB47BC" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Ground -->
+          <line x1="10" y1="120" x2="110" y2="120" stroke="#2C2C2C" stroke-width="3" stroke-linecap="round"/>
+
+          <!-- Running character -->
+          <g>
+            <circle cx="60" cy="98" r="16" fill="#29B6F6" stroke="#2C2C2C" stroke-width="3"/>
+            <circle cx="55" cy="93" r="2.4" fill="#2C2C2C"/>
+            <path d="M53 104 Q60 109 67 104" fill="none" stroke="#2C2C2C" stroke-width="2" stroke-linecap="round"/>
+            <!-- legs (running pose) -->
+            <path d="M52 112 L44 120" stroke="#2C2C2C" stroke-width="3.5" stroke-linecap="round"/>
+            <path d="M68 112 L78 118" stroke="#2C2C2C" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- arms -->
+            <path d="M46 98 L36 92" stroke="#2C2C2C" stroke-width="3" stroke-linecap="round"/>
+            <path d="M74 98 L84 104" stroke="#2C2C2C" stroke-width="3" stroke-linecap="round"/>
+          </g>
+
+          <!-- dust puffs -->
+          <circle cx="40" cy="124" r="3" fill="#cfd8dc"/>
+          <circle cx="32" cy="128" r="2" fill="#cfd8dc"/>
+        </svg>
+      </div>
+
+      <p class="intro-desc">내 영역에서 캐릭터를 좌우로 움직여 장애물을 피하세요!</p>
+      <p class="intro-sub">30초 동안 가장 많이 피한 플레이어가 승리! 점점 빨라져요!</p>
+
+      <div class="player-select-wrap">
+        <p class="player-select-label">인원 선택</p>
+        <div class="player-select" id="playerSelect">
+          <button class="player-btn active" data-count="2">2명</button>
+          <button class="player-btn" data-count="3">3명</button>
+          <button class="player-btn" data-count="4">4명</button>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-play" id="playBtn">PLAY</button>
+  </section>
+
+  <!-- 화면 2: 카운트다운 -->
+  <section class="screen screen-countdown" id="countdownScreen">
+    <div class="countdown-number" id="countdownNumber">3</div>
+  </section>
+
+  <!-- 화면 3: 게임 -->
+  <section class="screen screen-game" id="gameScreen">
+    <div class="game-hud" id="gameHud">
+      <div class="hud-timer-wrap">
+        <div class="hud-timer-bar">
+          <div class="hud-timer-fill" id="timerFill"></div>
+        </div>
+        <span class="hud-timer-text" id="timerText">30</span>
+      </div>
+      <div class="hud-scores" id="hudScores"></div>
+      <button class="icon-btn hud-close" id="closeBtn" aria-label="홈으로">✕</button>
+    </div>
+
+    <div class="game-zones" id="gameZones"></div>
+  </section>
+
+  <!-- 화면 4: 결과 -->
+  <section class="screen screen-result" id="resultScreen">
+    <div class="result-body">
+      <div class="result-crown">
+        <svg viewBox="0 0 80 60" width="80" height="60">
+          <polygon points="10,50 20,20 40,35 60,20 70,50" fill="#FFD700" stroke="#FFA000" stroke-width="2" stroke-linejoin="round"/>
+          <circle cx="10" cy="50" r="5" fill="#FFD700" stroke="#FFA000" stroke-width="2"/>
+          <circle cx="70" cy="50" r="5" fill="#FFD700" stroke="#FFA000" stroke-width="2"/>
+          <circle cx="40" cy="16" r="5" fill="#FFD700" stroke="#FFA000" stroke-width="2"/>
+          <rect x="8" y="50" width="64" height="8" rx="4" fill="#FFD700" stroke="#FFA000" stroke-width="2"/>
+        </svg>
+      </div>
+      <h2 class="result-winner-label" id="resultWinnerLabel">승자</h2>
+      <div class="result-winner-name" id="resultWinnerName">P1</div>
+      <div class="result-scores" id="resultScores"></div>
+      <div class="best-record-badge" id="bestRecordBadge" style="display:none;"></div>
+    </div>
+    <div class="result-actions">
+      <button class="btn btn-primary" id="retryBtn">다시하기</button>
+      <button class="btn btn-secondary" id="homeBtn">홈으로</button>
+    </div>
+  </section>
+
+  <script src="../../shared/score-store.js?v=1"></script>
+  <script src="../../shared/engine.js?v=3"></script>
+  <script src="game.js"></script>
+</body>
+</html>

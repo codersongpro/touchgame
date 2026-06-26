@@ -1,0 +1,27 @@
+{
+  "name": "번개 타이밍 탭",
+  "description": "게이지가 초록 구간에 왔을 때 가장 먼저 탭하세요!",
+  "icon": "⚡",
+  "color": "#FFB300",
+  "grades": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "playTime": "1분",
+  "category": "speed",
+  "players": [
+    2,
+    3,
+    4
+  ],
+  "pattern": "A",
+  "tags": [
+    "speed",
+    "group",
+    "pattern-a"
+  ]
+}

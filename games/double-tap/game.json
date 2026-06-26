@@ -1,0 +1,27 @@
+{
+  "name": "두 곳 동시 탭",
+  "description": "화면에 뜬 두 점을 두 손가락으로 동시에 빠르게 탭하세요!",
+  "icon": "👆",
+  "color": "#FF7043",
+  "grades": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "playTime": "1분",
+  "category": "knowledge",
+  "players": [
+    2,
+    3,
+    4
+  ],
+  "pattern": "A",
+  "tags": [
+    "group",
+    "knowledge",
+    "pattern-a"
+  ]
+}
