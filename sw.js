@@ -9,7 +9,7 @@
 //   → 이미 배포된 games/*·shared/* 파일을 수정하면 CACHE_NAME을 +1 해야 기존 방문자에게 반영됨
 //     (docs/AUTO_MODE.md "캐시 버전 범프 규칙" 참고)
 
-const CACHE_NAME = 'touchgame-v20';
+const CACHE_NAME = 'touchgame-v21';
 
 // 느린 회선에서 network-first가 첫 화면을 오래 막지 않도록 캐시로 폴백하는 대기 시간
 const NETWORK_TIMEOUT_MS = 3000;
@@ -72,7 +72,12 @@ function isDirectoryFile(url) {
   return false;
 }
 
-// Fetch: 디렉토리 파일은 network-first, 나머지는 cache-first
+// Fetch: 디렉토리 파일과 게임 파일은 network-first, 나머지는 cache-first
+function isGameAsset(url) {
+  var pathname = new URL(url).pathname;
+  return pathname.includes('/games/') || pathname.includes('/shared/');
+}
+
 self.addEventListener('fetch', function(event) {
   if (event.request.method !== 'GET') return;
   if (!event.request.url.startsWith(self.location.origin)) return;
@@ -112,7 +117,28 @@ self.addEventListener('fetch', function(event) {
     return;
   }
 
-  // Cache-First: 게임 파일들 (빠른 로딩 + 오프라인 지원)
+  // Network-First: 게임 파일들 (최신 코드 우선 + 오프라인 폴백)
+  if (isGameAsset(event.request.url)) {
+    var freshAsset = fetch(event.request).then(function(response) {
+      if (response.ok) {
+        var responseClone = response.clone();
+        return caches.open(CACHE_NAME).then(function(cache) {
+          return cache.put(event.request, responseClone);
+        }).then(function() { return response; });
+      }
+      return response;
+    });
+
+    event.respondWith(
+      freshAsset.catch(function() {
+        return caches.match(event.request).then(function(cached) {
+          return cached || new Response('Offline', { status: 503 });
+        });
+      })
+    );
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request).then(function(cached) {
       if (cached) return cached;
