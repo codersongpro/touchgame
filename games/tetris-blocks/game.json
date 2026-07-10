@@ -1,0 +1,27 @@
+{
+  "name": "테트리스 블록 쌓기",
+  "description": "떨어지는 블록을 돌리고 옮겨서 줄을 채우세요! 시간 안에 가장 높은 점수를 노려보세요!",
+  "icon": "🧱",
+  "color": "#5C6BC0",
+  "grades": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "playTime": "1~2분",
+  "category": "puzzle",
+  "players": [
+    2,
+    3,
+    4
+  ],
+  "pattern": "D",
+  "tags": [
+    "group",
+    "pattern-d",
+    "puzzle"
+  ]
+}

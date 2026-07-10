@@ -288,6 +288,16 @@ const _GAME_CATEGORY_MAP = {
   'slide-puzzle': 'puzzle', 'maze-run': 'puzzle', 'pipe-connect': 'puzzle',
   'one-stroke': 'puzzle', 'dot-connect': 'puzzle',
   'arrow-rotate': 'puzzle', 'fold-guess': 'puzzle', 'hanoi': 'puzzle',
+  'times-table-quiz': 'math',
+  'times-table-pop': 'math',
+  'times-table-ladder': 'math',
+  'add-dash': 'math',
+  'add-balloon': 'math',
+  'add-fruit-count': 'math',
+  'sub-dash': 'math',
+  'sub-balloon': 'math',
+  'sub-fruit-count': 'math',
+  'tetris-blocks': 'puzzle',
 };
 
 function _detectGameCategory() {
