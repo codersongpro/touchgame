@@ -1,0 +1,72 @@
+.shadow-field {
+  position: relative;
+  aspect-ratio: 1.47;
+  max-width: 96%;
+  height: 94%;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #415c79;
+  background-color: #253b54;
+  background-image:
+    linear-gradient(#80abcb24 1px, transparent 1px),
+    linear-gradient(90deg, #80abcb24 1px, transparent 1px);
+  background-size: 10% 16.67%;
+}
+.shadow-field > * { position: absolute; }
+.shadow-ray {
+  inset: 0;
+  clip-path: var(--beam-shape);
+  background: #fde68a96;
+}
+.shadow-cast {
+  left: 50%;
+  top: 50%;
+  visibility: hidden;
+  width: 16%;
+  height: 44%;
+  transform-origin: top center;
+  transform: translateX(-50%) rotate(var(--shadow-turn));
+  clip-path: polygon(16% 0, 84% 0, 100% 100%, 0 100%);
+  background: #060f20;
+}
+[data-revealed="true"] .shadow-cast { visibility: visible; }
+.shadow-object, .shadow-lamp {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.shadow-object {
+  height: 24%;
+  aspect-ratio: 1;
+  border: 3px solid #fff2c0;
+  background: repeating-linear-gradient(0deg, #ad642d 0 7px, #bd7439 7px 10px);
+  box-shadow: inset 0 0 0 4px #6e341a40;
+}
+.shadow-object.pillar {
+  border-radius: 50%;
+  border-color: #c8fffe;
+  background: #408992;
+}
+.shadow-lamp {
+  left: var(--lamp-x);
+  top: var(--lamp-y);
+  display: grid;
+  place-items: center;
+  height: 21%;
+  aspect-ratio: 1;
+  border: 2px solid #fff3ba;
+  border-radius: 50%;
+  color: #30230c;
+  background: #facc59;
+  font-size: clamp(.82rem, 2vw, 1.3rem);
+}
+.shadow-choice {
+  display: grid;
+  justify-items: center;
+  line-height: 1.1;
+}
+.shadow-choice span {
+  font-size: 1.25em;
+  margin-bottom: 2px;
+}

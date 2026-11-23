@@ -1,0 +1,24 @@
+{
+  "name": "그림자는 어느 쪽?",
+  "description": "한 손은 물체, 다른 손은 그림자. 손전등의 반대쪽을 몸으로 가리켜요!",
+  "icon": "🔦",
+  "color": "#0EA5E9",
+  "grades": [
+    3,
+    4
+  ],
+  "playTime": "1~2분",
+  "category": "knowledge",
+  "players": [
+    2,
+    3,
+    4
+  ],
+  "pattern": "A",
+  "tags": [
+    "hall",
+    "knowledge",
+    "pattern-a",
+    "physical-activity"
+  ]
+}

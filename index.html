@@ -685,6 +685,7 @@
         <button class="quick-pick" type="button" data-quick="two-player">2명 전용 <span>짝 활동</span></button>
         <button class="quick-pick" type="button" data-quick="co-op">협력 게임 <span>함께 해결</span></button>
         <button class="quick-pick" type="button" data-quick="puzzle">퍼즐 게임 <span>생각하기</span></button>
+        <button class="quick-pick" type="button" data-quick="hall">강당 게임 <span>함께 움직이기</span></button>
       </div>
     </aside>
   </section>
@@ -850,6 +851,9 @@
       'sub-balloon': 'math',
       'sub-fruit-count': 'math',
       'tetris-blocks': 'puzzle',
+      'shadow-direction': 'knowledge',
+      'open-pass': 'brain',
+      'shape-turn': 'math',
     };
 
     // 게임별 지원 인원수 표시 (정의 안 된 게임은 기본 '2-4명')
@@ -948,7 +952,10 @@
       { folder:'sub-dash', name:'빼기 스피드 퀴즈', description:'뺄셈식을 보고 정답을 가장 먼저 터치하세요!', icon:'➖', color:'#5C6BC0', grades:[1,2,3,4,5,6], playTime:'1~2분' },
       { folder:'sub-balloon', name:'빼기 콕콕', description:'뺄셈식의 정답 풍선만 골라 콕콕 터치!', icon:'🎈', color:'#26A69A', grades:[1,2,3,4,5,6], playTime:'30~45초' },
       { folder:'sub-fruit-count', name:'과일 빼기', description:'지워진 과일을 빼고 남은 개수를 가장 먼저 터치하세요!', icon:'🍊', color:'#8E24AA', grades:[1,2,3,4,5,6], playTime:'1~2분' },
-      { folder:'tetris-blocks', name:'테트리스 블록 쌓기', description:'떨어지는 블록을 돌리고 옮겨서 줄을 채우세요! 시간 안에 가장 높은 점수를 노려보세요!', icon:'🧱', color:'#5C6BC0', grades:[1,2,3,4,5,6], playTime:'1~2분' }
+      { folder:'tetris-blocks', name:'테트리스 블록 쌓기', description:'떨어지는 블록을 돌리고 옮겨서 줄을 채우세요! 시간 안에 가장 높은 점수를 노려보세요!', icon:'🧱', color:'#5C6BC0', grades:[1,2,3,4,5,6], playTime:'1~2분' },
+      { folder:'shadow-direction', name:'그림자는 어느 쪽?', description:'한 손은 물체, 다른 손은 그림자. 손전등의 반대쪽을 몸으로 가리켜요!', icon:'🔦', color:'#0EA5E9', grades:[3, 4], playTime:'1~2분', category:'knowledge', players:[2, 3, 4], pattern:'A', tags:["hall", "knowledge", "pattern-a", "physical-activity"] },
+      { folder:'open-pass', name:'빈자리로 패스!', description:'공이 수비를 지나지 않고 도착할 방향을 손으로 보여 줘요!', icon:'⚽', color:'#16A34A', grades:[3, 4], playTime:'1~2분', category:'brain', players:[2, 3, 4], pattern:'A', tags:["brain", "hall", "pattern-a", "physical-activity"] },
+      { folder:'shape-turn', name:'모양 돌려 맞추기', description:'손으로 도형의 모양을 만들고 화살표 방향으로 돌려 봐요!', icon:'🔄', color:'#7C3AED', grades:[3, 4], playTime:'1~2분', category:'math', players:[2, 3, 4], pattern:'A', tags:["hall", "math", "pattern-a", "physical-activity"] }
     ];
 
     const grid = document.getElementById('gameGrid');

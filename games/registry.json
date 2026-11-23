@@ -78,5 +78,8 @@
   "sub-dash",
   "sub-balloon",
   "sub-fruit-count",
-  "tetris-blocks"
+  "tetris-blocks",
+  "shadow-direction",
+  "open-pass",
+  "shape-turn"
 ]

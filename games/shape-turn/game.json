@@ -1,0 +1,24 @@
+{
+  "name": "모양 돌려 맞추기",
+  "description": "손으로 도형의 모양을 만들고 화살표 방향으로 돌려 봐요!",
+  "icon": "🔄",
+  "color": "#7C3AED",
+  "grades": [
+    3,
+    4
+  ],
+  "playTime": "1~2분",
+  "category": "math",
+  "players": [
+    2,
+    3,
+    4
+  ],
+  "pattern": "A",
+  "tags": [
+    "hall",
+    "math",
+    "pattern-a",
+    "physical-activity"
+  ]
+}

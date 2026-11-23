@@ -1,0 +1,24 @@
+{
+  "name": "빈자리로 패스!",
+  "description": "공이 수비를 지나지 않고 도착할 방향을 손으로 보여 줘요!",
+  "icon": "⚽",
+  "color": "#16A34A",
+  "grades": [
+    3,
+    4
+  ],
+  "playTime": "1~2분",
+  "category": "brain",
+  "players": [
+    2,
+    3,
+    4
+  ],
+  "pattern": "A",
+  "tags": [
+    "brain",
+    "hall",
+    "pattern-a",
+    "physical-activity"
+  ]
+}

@@ -1,0 +1,288 @@
+.motion-quiz {
+  --mq-ink: #f8fafc;
+  --mq-muted: #b7c7da;
+  --mq-panel: #172539;
+  --mq-edge: #3d536e;
+  --mq-accent: #5eead4;
+}
+
+.motion-quiz .screen {
+  min-height: 100dvh;
+}
+
+.motion-quiz .icon-btn,
+.motion-quiz .result-actions a {
+  text-decoration: none;
+}
+
+.motion-quiz button:focus-visible,
+.motion-quiz a:focus-visible {
+  outline: 3px solid #facc15;
+  outline-offset: 3px;
+}
+
+.mq-intro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: min(100%, 60rem);
+  padding: 12px 20px;
+  color: var(--mq-accent);
+}
+
+.mq-setup, .mq-results {
+  width: min(100% - 32px, 42rem);
+  margin: auto;
+  padding: clamp(18px, 4vw, 36px);
+  text-align: center;
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  border: 2px solid var(--mq-edge);
+  border-radius: 22px;
+  background: var(--mq-panel);
+  box-shadow: 0 7px 0 #0a101b;
+}
+
+.motion-quiz .screen-intro::before {
+  display: none;
+}
+
+.mq-intro-icon {
+  display: grid;
+  place-items: center;
+  width: 80px;
+  aspect-ratio: 1;
+  background: #0c182a;
+  border: 2px solid var(--mq-accent);
+  border-radius: 20px;
+  font-size: 2.5rem;
+}
+
+.mq-setup h1, .mq-results h2 {
+  font-size: clamp(1.65rem, 4vw, 3rem);
+}
+
+.mq-setup p, .mq-results p {
+  line-height: 1.55;
+  color: var(--mq-muted);
+}
+
+.mq-settings {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+.mq-settings fieldset {
+  display: flex;
+  gap: 6px;
+  border: 0;
+}
+
+.mq-settings legend {
+  padding-bottom: 6px;
+  color: var(--mq-muted);
+}
+
+.mq-settings button, .mq-choice {
+  min-height: 48px;
+  border: 2px solid var(--mq-edge);
+  border-radius: 9px;
+  background: #0d192b;
+  color: var(--mq-ink);
+  font: inherit;
+  cursor: pointer;
+}
+
+.mq-settings button { padding: 0 12px; }
+
+.mq-settings button[aria-pressed="true"] {
+  background: var(--mq-accent);
+  border-color: var(--mq-accent);
+  color: #10251f;
+}
+
+.mq-setup .btn-play {
+  min-width: min(100%, 224px);
+}
+
+.mq-play {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: clamp(6px, 1.2vh, 12px);
+  width: min(100%, 85rem);
+  padding: 8px clamp(8px, 2vw, 24px) 14px;
+}
+
+.mq-hud {
+  display: grid;
+  grid-template-columns: minmax(46px, 1fr) minmax(0, 2fr) 42px 48px 48px;
+  align-items: center;
+  gap: 7px;
+}
+
+.mq-hud strong, .mq-play h2 {
+  text-align: center;
+  font-size: clamp(1rem, 2.7vw, 1.65rem);
+}
+
+.mq-round, .mq-timer {
+  width: max-content;
+  border: 2px solid var(--mq-edge);
+  border-radius: 8px;
+  padding: 4px 7px;
+  color: var(--mq-accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.mq-hud .icon-btn {
+  grid-column: 5;
+}
+
+body:has(.motion-quiz .screen-game.active) .bgm-toggle-fab {
+  position: absolute;
+  bottom: auto;
+  left: auto;
+  top: 10px;
+  right: max(calc(clamp(8px, 2vw, 24px) + 55px), calc((100vw - 85rem) / 2 + 79px));
+}
+
+.mq-scene {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: clamp(116px, 36dvh, 390px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 2px solid var(--mq-edge);
+  border-radius: clamp(10px, 2vw, 18px);
+  background: #0b1628;
+}
+
+.mq-message {
+  display: grid;
+  place-content: center;
+  min-height: 2.25em;
+  color: var(--mq-muted);
+  font-size: clamp(.87rem, 1.8vw, 1.18rem);
+  line-height: 1.36;
+  text-align: center;
+  padding: 0 3px;
+}
+
+.mq-scene[data-revealed="true"] + .mq-message {
+  color: #c1fff0;
+}
+
+.mq-teams {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mq-teams[data-players="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mq-teams[data-players="4"] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.mq-team {
+  min-width: 0;
+  border: 2px solid var(--mq-edge);
+  border-top: 4px solid var(--team);
+  border-radius: 10px;
+  background: var(--mq-panel);
+  padding: 5px;
+}
+
+.mq-team h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  color: var(--team);
+  font-size: clamp(.79rem, 1.6vw, 1.13rem);
+  margin-bottom: 5px;
+}
+
+.mq-choices {
+  display: grid;
+  grid-template-columns: repeat(var(--choices), minmax(0, 1fr));
+  gap: 4px;
+}
+
+.mq-choice {
+  display: grid;
+  place-content: center;
+  min-width: 0;
+  min-height: 52px;
+  padding: 3px 2px;
+  font-size: clamp(.82rem, 1.9vw, 1.25rem);
+  word-break: keep-all;
+}
+
+.mq-choice:enabled:hover {
+  border-color: var(--team);
+  background: #20354d;
+}
+
+.mq-choice:disabled {
+  cursor: default;
+  color: #9cabc1;
+}
+
+.mq-choice.is-selected { border-color: var(--team); background: #334a63; }
+.mq-choice.is-correct { border-color: #6ee7b7; color: #fff; background: #145444; }
+.mq-choice.is-wrong { border-color: #fda4af; color: #fff; background: #6f2a37; }
+
+.mq-results {
+  margin-block: auto;
+}
+
+#resultScores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  list-style: none;
+}
+
+#resultScores li {
+  padding: 12px 6px;
+  background: #0e1b2d;
+  border: 2px solid var(--team);
+  border-radius: 11px;
+  color: var(--team);
+}
+
+.mq-final-points {
+  display: block;
+  color: var(--mq-ink);
+  font-size: 1.85rem;
+  margin-top: 6px;
+}
+
+@media (max-width: 600px) {
+  .mq-teams[data-players="3"] { grid-template-columns: minmax(0, 1fr); }
+  .mq-teams[data-players="4"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 480px) {
+  .mq-teams:not([data-players="3"]) .mq-choices {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-height: 460px) and (orientation: landscape) {
+  .mq-play { gap: 5px; padding-block: 4px 6px; }
+  .mq-scene { height: 37dvh; }
+  .mq-choice { min-height: 46px; }
+  .mq-setup, .mq-results { padding: 12px; gap: 8px; }
+  .mq-intro-icon { display: none; }
+  body:has(.motion-quiz .screen-game.active) .bgm-toggle-fab { top: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-quiz .screen, .motion-quiz button { transition: none; }
+}

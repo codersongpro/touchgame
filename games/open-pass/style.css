@@ -1,0 +1,83 @@
+.pass-field {
+  position: relative;
+  width: min(95%, 64rem);
+  height: 93%;
+  overflow: hidden;
+  border: 2px solid #a4e7be;
+  border-radius: 10px;
+  background: repeating-linear-gradient(90deg, #146b4b 0 10%, #115e43 10% 20%);
+}
+.pass-field::before {
+  content: '';
+  position: absolute;
+  inset: 8% 4%;
+  border: 2px solid #d6ffdc85;
+  border-radius: 5px;
+}
+.pass-field::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  right: 4%;
+  border-top: 2px dashed #d6ffdc60;
+  pointer-events: none;
+}
+.pass-player {
+  position: absolute;
+  left: var(--player-x);
+  top: var(--player-y);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  height: clamp(26px, 7.8dvh, 62px);
+  padding-inline: 5px;
+  min-width: clamp(26px, 7.8dvh, 62px);
+  transform: translate(-50%, -50%);
+  border: 2px solid;
+  font-size: clamp(.76rem, 2vw, 1.35rem);
+}
+.pass-receiver {
+  border-color: #c8e8ff;
+  border-radius: 50%;
+  background: #164e83;
+  color: #fff;
+}
+.pass-defender {
+  border-color: #ffd7ca;
+  border-radius: 6px;
+  background: #942d33;
+  color: #fff;
+  height: clamp(22px, 5.6dvh, 43px);
+  min-width: 0;
+}
+.pass-ball {
+  width: clamp(26px, 7.8dvh, 62px);
+  padding: 0;
+  border-radius: 50%;
+  border-color: #fef9c3;
+  background: #e9bd4b;
+  font-size: clamp(1rem, 3vw, 2rem);
+  z-index: 2;
+}
+.pass-lane {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  visibility: hidden;
+  background: #fef08a;
+}
+[data-revealed="true"] .pass-lane { visibility: visible; }
+[data-revealed="true"] .pass-ball {
+  left: var(--ball-to-x);
+  top: var(--ball-to-y);
+  scale: .64;
+  animation: pass-ball-flight .75s ease-in-out both;
+}
+@keyframes pass-ball-flight {
+  from { left: var(--ball-from-x); top: var(--ball-from-y); scale: 1; }
+  to { left: var(--ball-to-x); top: var(--ball-to-y); scale: .64; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-revealed="true"] .pass-ball { animation: none; }
+}

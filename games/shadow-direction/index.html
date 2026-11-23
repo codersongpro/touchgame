@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>그림자는 어느 쪽? · 터치게임</title>
+  <link rel="stylesheet" href="../../shared/style.css?v=3">
+  <link rel="stylesheet" href="../../shared/motion-quiz.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="motion-quiz">
+    <section class="screen screen-intro active" id="introScreen">
+      <header class="mq-intro-header">
+        <a class="icon-btn" href="../../index.html" aria-label="홈으로">←</a>
+        <span>과학</span>
+      </header>
+      <div class="mq-setup">
+        <span class="mq-intro-icon" aria-hidden="true">🔦</span>
+        <h1>그림자는 어느 쪽?</h1>
+        <p>빛이 오는 쪽을 보고 물체의 그림자가 생길 방향을 골라요.</p>
+        <div class="mq-settings">
+          <fieldset>
+            <legend>참가 인원</legend>
+            <button type="button" data-count="2" aria-pressed="true">2명</button>
+            <button type="button" data-count="3" aria-pressed="false">3명</button>
+            <button type="button" data-count="4" aria-pressed="false">4명</button>
+          </fieldset>
+          <fieldset>
+            <legend>진행 방식</legend>
+            <button type="button" data-mode="desk" aria-pressed="true">교실</button>
+            <button type="button" data-mode="hall" aria-pressed="false">강당</button>
+          </fieldset>
+        </div>
+        <p class="mq-mode-hint" id="modeHint">지금 보이는 문제에 각자 답해요.</p>
+        <button class="btn btn-primary btn-play" type="button" id="playBtn">시작하기</button>
+      </div>
+    </section>
+    <section class="screen screen-countdown" id="countdownScreen" aria-label="게임 시작 카운트다운">
+      <div class="countdown-number" id="countdownNumber">3</div>
+    </section>
+    <section class="screen screen-game" id="gameScreen" aria-label="그림자는 어느 쪽? 플레이">
+      <div class="mq-play">
+        <header class="mq-hud">
+          <span class="mq-round" id="roundLabel"></span>
+          <strong id="phaseLabel"></strong>
+          <span class="mq-timer" id="phaseTime" aria-label="남은 시간"></span>
+          <a class="icon-btn" id="closeBtn" href="../../index.html" aria-label="홈으로">✕</a>
+        </header>
+        <h2 id="roundPrompt"></h2>
+        <div class="mq-scene" id="roundScene" data-revealed="false"></div>
+        <p class="mq-message" id="roundExplanation" role="status"></p>
+        <div class="mq-teams" id="teamChoices"></div>
+      </div>
+    </section>
+    <section class="screen screen-result" id="resultScreen" aria-label="게임 결과">
+      <div class="mq-results">
+        <h2 id="resultHeading" tabindex="-1">게임 종료!</h2>
+        <p id="resultSummary"></p>
+        <ol id="resultScores"></ol>
+        <div class="result-actions">
+          <button class="btn btn-primary btn-retry" id="retryBtn" type="button">다시하기</button>
+          <a class="btn btn-secondary" href="../../index.html">홈으로</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="../../shared/score-store.js?v=1"></script>
+  <script src="../../shared/engine.js?v=3"></script>
+  <script src="../../shared/motion-quiz.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

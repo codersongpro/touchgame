@@ -21,6 +21,7 @@
 /* ── Game screen ─────────────────────────────────────────────── */
 .screen-game {
   height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   position: relative;
 }
@@ -76,6 +77,12 @@
   z-index: 30;
 }
 
+body:has(.screen-game.active) .bgm-toggle-fab {
+  top: 8px;
+  bottom: auto;
+  left: 10px;
+}
+
 /* Zones layout (병렬 경쟁: 각자 자신의 테트리스 보드) */
 .zones-wrap {
   flex: 1;
@@ -98,6 +105,7 @@
 }
 
 .zone {
+  container-type: inline-size;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -122,6 +130,10 @@
   flex-shrink: 0;
   padding: 0 4px;
 }
+.zones-wrap .zone:last-child .zone-header {
+  /* The close button is in the top bar, outside the player zones. */
+  padding-right: 4px !important;
+}
 .zone-label {
   font-size: 0.8rem;
   font-weight: 900;
@@ -136,6 +148,7 @@
   border-radius: 999px;
   padding: 2px 10px;
   color: #2C2C2C;
+  white-space: nowrap;
 }
 
 /* 테트리스 보드 — zone 중앙에 배치 */
@@ -184,17 +197,18 @@
 
 /* 조작 버튼 — 터치스크린 접근성: zone 하단에 배치 */
 .tetris-controls {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 6px;
   width: 100%;
-  justify-content: center;
+  max-width: 242px;
   margin-top: auto;
   padding-top: 4px;
   flex-shrink: 0;
 }
 .tetris-btn {
-  flex: 1;
-  max-width: 56px;
+  min-width: 0;
+  padding: 0;
   height: 44px;
   border-radius: 12px;
   border: 3px solid #2C2C2C;
@@ -215,6 +229,20 @@
 }
 .tetris-btn.tetris-btn-drop {
   background: #FFD54F;
+}
+
+@container (max-width: 193px) {
+  .tetris-controls {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 118px;
+  }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
+  .zones-wrap.p4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Score bar */
@@ -249,6 +277,18 @@
   font-weight: 900;
   min-width: 18px;
   text-align: center;
+}
+
+@media (max-width: 520px) {
+  .score-bar {
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-inline: 6px;
+  }
+  .score-chip {
+    gap: 4px;
+    padding-inline: 6px;
+  }
 }
 
 /* Result screen */

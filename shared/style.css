@@ -1131,15 +1131,23 @@ body {
   border-radius: var(--btn-radius);
   margin-bottom: var(--space-md);
 }
-.score-initials-submit {
+.score-initials-submit,
+.score-initials-skip {
   width: 100%;
   min-height: var(--btn-min-touch);
-  background: var(--primary);
-  color: #fff;
   font-weight: 800;
   border: none;
   border-radius: var(--btn-radius);
   cursor: pointer;
+}
+.score-initials-submit {
+  background: var(--primary);
+  color: #fff;
+}
+.score-initials-skip {
+  margin-top: var(--space-sm);
+  background: transparent;
+  color: var(--text);
 }
 .best-record-badge {
   display: inline-flex;

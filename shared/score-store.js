@@ -23,7 +23,12 @@ function _scoreStoreRead() {
 }
 
 function _scoreStoreWrite(store) {
-  localStorage.setItem(SCORE_STORE_KEY, JSON.stringify(store));
+  try {
+    localStorage.setItem(SCORE_STORE_KEY, JSON.stringify(store));
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
 
 function _isBetter(metric, a, b) {
@@ -79,7 +84,9 @@ function reportGameResult(payload) {
   var rank = game.entries.indexOf(entry);
   var isNewBest = prevBest === null || _isBetter(metric, bestScore, prevBest);
 
-  _scoreStoreWrite(store);
+  if (!_scoreStoreWrite(store)) {
+    return { isNewBest: false, bestEntry: null, rank: null };
+  }
 
   return {
     isNewBest: isNewBest,
@@ -140,8 +147,9 @@ function createInitialsPrompt(onSubmit) {
     overlay.innerHTML =
       '<div class="score-initials-card">' +
       '<p class="score-initials-title">신기록! 이니셜 3자를 입력하세요</p>' +
-      '<input class="score-initials-input" maxlength="3" autocomplete="off" />' +
-      '<button class="score-initials-submit">확인</button>' +
+      '<input class="score-initials-input" aria-label="이니셜" maxlength="3" autocomplete="off" />' +
+      '<button type="button" class="score-initials-submit">확인</button>' +
+      '<button type="button" class="score-initials-skip">건너뛰기</button>' +
       '</div>';
     document.body.appendChild(overlay);
 
@@ -158,8 +166,10 @@ function createInitialsPrompt(onSubmit) {
     }
 
     submitBtn.addEventListener('click', submit);
+    overlay.querySelector('.score-initials-skip').addEventListener('click', close);
     input.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') submit();
+      if (e.key === 'Escape') close();
     });
     input.focus();
   }

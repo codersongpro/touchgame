@@ -70,3 +70,18 @@ test('a corrupted stored value resets to defaults instead of throwing', () => {
     sandbox.reportGameResult({ gameId: 'flag-quiz', playerCount: 2, scores: [5] });
   });
 });
+
+test('a full storage quota does not report an unsaved score as a new record', () => {
+  const storage = makeFakeStorage();
+  storage.setItem = () => {
+    throw new DOMException('Storage quota exceeded', 'QuotaExceededError');
+  };
+  const sandbox = loadScoreStore(storage);
+
+  const result = sandbox.reportGameResult({ gameId: 'flag-quiz', playerCount: 2, scores: [3, 5] });
+
+  assert.equal(result.isNewBest, false);
+  assert.equal(result.bestEntry, null);
+  assert.equal(result.rank, null);
+  assert.equal(sandbox.getLeaderboard('flag-quiz').length, 0);
+});
